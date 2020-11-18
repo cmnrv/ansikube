@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  vars_files:
+    - "../configurations/{{ inventory_hostname }}.context.yaml"
+  tasks:
+    - name: include roles
+      include_role:
+        name: "{{ item.key }}"
+      when: item.value
+      loop: "{{ components | dict2items }}"

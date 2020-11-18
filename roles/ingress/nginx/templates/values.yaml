@@ -1,0 +1,22 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "{{ release_name }}"
+
+controller:
+  service:
+    {% if ingress_service_type == 'LoadBalancer' %}
+    loadBalancerIP: "{{ ingress_service_ip }}"
+    {% endif %}
+    type: "{{ ingress_service_type }}"
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+
+  priorityClassName: "system-cluster-critical"
+
+podSecurityPolicy:
+  enabled: true

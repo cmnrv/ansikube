@@ -1,0 +1,17 @@
+---
+
+# Context configuration example, to be copied and adapted to your context (local, staging,...). Values do
+# not have be encrypted or base64 encoded, ansible is taking care of that in the templates. Context files are
+# ignored and won't be commited.
+
+# Context name, must match a context in your .kube/config file
+context: development
+
+# Components to be installed in your cluster
+components:
+  ingress/nginx: true
+
+# Ingress configuration
+ingress_name: nginx
+ingress_service_ip: 127.0.0.1
+ingress_service_type: LoadBalancer
