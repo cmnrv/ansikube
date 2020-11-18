@@ -3,9 +3,12 @@
 - hosts: all
   vars_files:
     - "../configurations/{{ inventory_hostname }}.context.yaml"
-  tasks:
-    - name: include roles
-      include_role:
-        name: "{{ item.key }}"
-      when: item.value
-      loop: "{{ components | dict2items }}"
+  pre_tasks:
+    - name: check only one ingress controller is enabled
+      meta: end_play
+      when: components.ingress.nginx and components.ingress.traefik
+  roles:
+    - role: ingress/nginx
+      when: components.ingress.nginx
+    - role: ingress/traefik
+      when: components.ingress.traefik

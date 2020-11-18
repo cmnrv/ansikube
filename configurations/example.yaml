@@ -9,7 +9,9 @@ context: development
 
 # Components to be installed in your cluster
 components:
-  ingress/nginx: true
+  ingress:
+    nginx: true
+    traefik: false
 
 # Ingress configuration
 ingress_name: nginx
