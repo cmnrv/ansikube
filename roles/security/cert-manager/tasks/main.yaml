@@ -1,0 +1,54 @@
+---
+
+- name: deploy release
+  community.kubernetes.helm:
+    context: "{{ context }}"
+    release_name: "{{ release_name }}"
+    release_namespace: "{{ release_namespace }}"
+    release_values: "{{ lookup('template', 'templates/values.yaml') | from_yaml }}"
+    release_state: present
+    chart_repo_url: "{{ chart_repository }}"
+    chart_ref: "{{ chart_name }}"
+    chart_version: "{{ chart_version }}"
+    atomic: yes
+    wait: yes
+  tags:
+    - install
+
+- name: check if the clusterissuer crd exists
+  community.kubernetes.k8s_info:
+    context: "{{ context }}"
+    api_version: v1
+    kind: CustomResourceDefinition
+    name: clusterissuers.cert-manager.io
+  register: clusterissuer
+  tags:
+    - install
+
+- name: create cluster issuers
+  community.kubernetes.k8s:
+    context: "{{ context }}"
+    template: templates/issuers.yaml
+    state: present
+  when: clusterissuer.resources
+  tags:
+    - install
+
+- name: delete cluster issuers
+  community.kubernetes.k8s:
+    context: "{{ context }}"
+    template: templates/issuers.yaml
+    state: absent
+  tags:
+    - never
+    - uninstall
+
+- name: delete release
+  community.kubernetes.helm:
+    context: "{{ context }}"
+    release_name: "{{ release_name }}"
+    release_namespace: "{{ release_namespace }}"
+    release_state: absent
+  tags:
+    - never
+    - uninstall
