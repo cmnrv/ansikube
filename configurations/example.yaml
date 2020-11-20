@@ -12,7 +12,10 @@ components:
   administration:
     dashboard: true
     pgadmin: true
+  automation:
+    rundeck: true
   communication:
+    mattermost: false
     wiki: false
   datastore:
     postgresql: true
@@ -22,6 +25,7 @@ components:
     traefik: false
   messaging:
     nats: false
+    rabbitmq: false
   monitoring:
     grafana: true
     prometheus: true
@@ -38,19 +42,6 @@ ingress_name: nginx
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
-# Grafana configuration
-grafana_admin_user: admin
-grafana_admin_password: grafana
-grafana_database_enabled: false
-grafana_database_name: grafana
-grafana_database_user:
-grafana_database_password:
-grafana_oauth_enabled: false
-grafana_oauth_client_id:
-grafana_oauth_client_secret:
-grafana_persistence_enabled: false
-grafana_persistence_size: 10Gi
-
 # PostgreSQL configuration
 postgresql_admin_user: postgres
 postgresql_admin_password:
@@ -66,7 +57,44 @@ pgadmin_admin_password:
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 5Gi
 
+# Redis configuration
+redis_persistence_enabled: false
+redis_persistence_size: 5Gi
+
+# Grafana configuration
+grafana_admin_user: admin
+grafana_admin_password: grafana
+grafana_database_enabled: false
+grafana_database_name: grafana
+grafana_database_user:
+grafana_database_password:
+grafana_oauth_enabled: false
+grafana_oauth_client_id:
+grafana_oauth_client_secret:
+grafana_persistence_enabled: false
+grafana_persistence_size: 10Gi
+
+# RabbitMQ configuration
+rabbitmq_admin_user: admin
+rabbitmq_admin_password:
+rabbitmq_erlang_cookie:
+rabbitmq_persistence_enabled: false
+rabbitmq_persistence_size: 10Gi
+rabbitmq_plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+
 # Wiki configuration
 wiki_database_name: wiki
 wiki_database_user: wiki
 wiki_database_password:
+
+# Rundeck configuration
+rundeck_database_name: rundeck
+rundeck_database_user: rundeck
+rundeck_database_password:
+rundeck_persistence_enabled: false
+rundeck_persistence_size: 5Gi
+
+# Mattermost configuration
+mattermost_database_name: mattermost
+mattermost_database_user: mattermost
+mattermost_database_password:
