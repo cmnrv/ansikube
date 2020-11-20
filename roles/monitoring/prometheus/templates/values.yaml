@@ -1,0 +1,54 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: prometheus
+
+alertmanager:
+  baseURL: "https://alertmanager.{{ domain }}"
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+    hosts:
+      - "alertmanager.{{ domain }}"
+    tls:
+      - secretName: alertmanager-tls-certificate
+        hosts:
+          - "alertmanager.{{ domain }}"
+
+server:
+  baseURL: "https://prometheus.{{ domain }}"
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+    hosts:
+      - "prometheus.{{ domain }}"
+    tls:
+      - secretName: prometheus-tls-certificate
+        hosts:
+          - "prometheus.{{ domain }}"
+
+pushgateway:
+  enabled: false
+
+alertmanagerFiles:
+  alertmanager.yml:
+    global: {}
+    receivers:
+      - name: default-receiver
+    route:
+      group_wait: 10s
+      group_interval: 5m
+      receiver: default-receiver
+      repeat_interval: 3h
+
+serverFiles:
+  alerting_rules.yml: {}
+  recording_rules.yml: {}
+  prometheus.yml:
+    rule_files:
+      - /etc/config/recording_rules.yml
+      - /etc/config/alerting_rules.yml
+
+extraScrapeConfigs:
