@@ -30,3 +30,5 @@
       when: components.communication.wiki
     - role: administration/dashboard
       when: components.administration.dashboard
+    - role: automation/rundeck
+      when: components.automation.rundeck

@@ -1,0 +1,36 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "rundeck"
+
+deployment:
+  replicaCount: 1
+
+rundeck:
+  env:
+    RUNDECK_GRAILS_URL: "https://rundeck.{{ domain }}/"
+    RUNDECK_SERVER_FORWARDED: "false"
+    RUNDECK_DATABASE_DRIVER: org.postgresql.Driver
+    RUNDECK_DATABASE_USERNAME: "{{ rundeck_database_user }}"
+    RUNDECK_DATABASE_URL: "jdbc:postgresql://postgresql.datastore.svc.cluster.local/{{ rundeck_database_name }}"
+  envSecret: "rundeck-credentials"
+
+persistence:
+  enabled: "{{ rundeck_persistence_enabled }}"
+  claim:
+    create: true
+    accessMode: ReadWriteOnce
+    size: "{{ rundeck_persistence_size }}"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  paths:
+    - /
+  hosts:
+    - "rundeck.{{ domain }}"
+  tls:
+    - secretName: rundeck-tls-certificate
+      hosts:
+        - "rundeck.{{ domain }}"
