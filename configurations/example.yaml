@@ -66,6 +66,10 @@ pgadmin_admin_password:
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 5Gi
 
+# Redis configuration
+redis_persistence_enabled: false
+redis_persistence_size: 5Gi
+
 # Wiki configuration
 wiki_database_name: wiki
 wiki_database_user: wiki

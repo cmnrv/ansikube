@@ -1,0 +1,29 @@
+---
+
+fullnameOverride: redis
+
+cluster:
+  enabled: true
+  slaveCount: 3
+
+sentinel:
+  enabled: true
+  usePassword: true
+  masterSet: master
+  quorum: 2
+  staticID: true
+
+usePassword: false
+
+{% if redis_persistence_enabled %}
+slave:
+  persistence:
+    enabled: true
+    size: "{{ redis_persistence_size }}"
+{% endif %}
+
+metrics:
+  enabled: true
+
+sysctlImage:
+  enabled: true
