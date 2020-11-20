@@ -5,15 +5,58 @@
 # ignored and won't be commited.
 
 # Context name, must match a context in your .kube/config file
-context: development
+context: example
 
 # Components to be installed in your cluster
 components:
+  administration:
+    pgadmin: true
+  datastore:
+    postgresql: true
+    redis: false
   ingress:
     nginx: true
     traefik: false
+  monitoring:
+    grafana: true
+    prometheus: true
+  security:
+    certmanager: true
+
+# Organization details
+organization: My Organization
+domain: example.com
+email_domain: example.com
 
 # Ingress configuration
 ingress_name: nginx
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
+
+# Grafana configuration
+grafana_admin_user: admin
+grafana_admin_password: grafana
+grafana_database_enabled: false
+grafana_database_name: grafana
+grafana_database_user:
+grafana_database_password:
+grafana_oauth_enabled: false
+grafana_oauth_client_id:
+grafana_oauth_client_secret:
+grafana_persistence_enabled: false
+grafana_persistence_size: 10Gi
+
+# PostgreSQL configuration
+postgresql_admin_user: postgres
+postgresql_admin_password:
+postgresql_persistence_enabled: false
+postgresql_persistence_size: 10Gi
+postgresql_replication_enabled: false
+postgresql_replication_user: repl
+postgresql_replication_password:
+
+# pgAdmin configuration
+pgadmin_admin_email: "admin@{{ email_domain }}"
+pgadmin_admin_password:
+pgadmin_persistence_enabled: false
+pgadmin_persistence_size: 5Gi
