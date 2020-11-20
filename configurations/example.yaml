@@ -32,6 +32,9 @@ components:
   security:
     certmanager: true
 
+# Cluster configuration
+kubernetes_extra_namespaces: []
+
 # Organization details
 organization: My Organization
 domain: example.com
