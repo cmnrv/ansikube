@@ -1,0 +1,49 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: pgadmin
+
+replicaCount: 1
+
+serverDefinitions:
+  enabled: true
+  {% if components.datastore.postgresql %}
+  servers: |-
+    "1": {
+      "Name": "Local PostgreSQL server",
+      "Group": "Servers",
+      "Port": 5432,
+      "Username": "postgres",
+      "Host": "postgresql.datastore.svc.cluster.local",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres"
+    }
+  {% endif %}
+
+networkPolicy:
+  enabled: false
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  hosts:
+    - host: "pgadmin.{{ domain }}"
+      paths:
+        - /
+  tls:
+    - secretName: pgadmin-tls-certificate
+      hosts:
+        - "pgadmin.{{ domain }}"
+
+env:
+  email: "{{ pgadmin_admin_email }}"
+  password: "{{ pgadmin_admin_password }}"
+
+  variables:
+    - name: PGADMIN_CONFIG_PROXY_X_HOST_COUNT
+      value: "1"
+
+persistentVolume:
+  enabled: "{{ pgadmin_persistence_enabled }}"
+  size: "{{ pgadmin_persistence_size }}"

@@ -1,0 +1,28 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: postgresql
+
+{% if postgresql_replication_enabled %}
+replication:
+  enabled: true
+  user: "{{ postgresql_replication_user }}"
+  password: "{{ postgresql_replication_password }}"
+  readReplicas: 1
+  applicationName: postgres
+{% endif %}
+
+postgresqlUsername: "{{ postgresql_admin_user }}"
+existingSecret: postgresql-credentials
+usePasswordFile: true
+postgresqlDatabase: postgres
+
+postgresqlSharedPreloadLibraries: "pgaudit, pg_stat_statements"
+postgresqlMaxConnections: 64
+
+persistence:
+  enabled: "{{ postgresql_persistence_enabled }}"
+  size: "{{ postgresql_persistence_size }}"
+
+metrics:
+  enabled: true
