@@ -12,7 +12,8 @@
       when: components.ingress.nginx
     - role: ingress/traefik
       when: components.ingress.traefik
-
+    - role: security/certmanager
+      when: components.security.certmanager
     - role: datastore/postgresql
       when: components.datastore.postgresql
     - role: administration/pgadmin
