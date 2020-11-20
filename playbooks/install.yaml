@@ -34,3 +34,5 @@
       when: components.administration.dashboard
     - role: automation/rundeck
       when: components.automation.rundeck
+    - role: communication/mattermost
+      when: components.communication.mattermost

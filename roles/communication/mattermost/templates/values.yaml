@@ -1,0 +1,103 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "mattermost"
+
+persistence:
+  data:
+    size: 5Gi
+  plugins:
+    size: 2Gi
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  hosts:
+    - "mattermost.{{ domain }}"
+  path: /
+  tls:
+    - secretName: mattermost-certificate
+      hosts:
+        - "mattermost.{{ domain }}"
+
+externalDB:
+  enabled: true
+  externalDriverType: "postgres"
+  externalConnectionString: "postgres://{{ mattermost_database_user }}:{{ mattermost_database_password }}@postgresql.datastore.svc.cluster.local:5432/{{ mattermost_database_name }}?sslmode=disable&connect_timeout=10"
+
+mysql:
+  enabled: false
+
+extraInitContainers:
+  - name: change-folders-owners
+    command:
+    - sh
+    - -c
+    - chown -R 2000:2000 /mattermost/data /mattermost/plugins
+    - chgrp 2000 /mattermost/data /mattermost/plugins
+    image: busybox:latest
+    securityContext:
+      privileged: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /mattermost/data
+      name: mattermost-data
+    - mountPath: /mattermost/plugins
+      name: mattermost-plugins
+
+configJSON: {
+  "ServiceSettings": {
+    "SiteURL": "https://mattermost.{{ domain }}",
+    "EnableOAuthServiceProvider": true,
+    "EnableOnlyAdminIntegrations": false,
+    "EnableBotAccountCreation": true,
+    "EnableDeveloper": true,
+    "EnableMultifactorAuthentication": true,
+    "EnforceMultifactorAuthentication": false,
+    "WebsocketSecurePort": 443,
+    "WebsocketPort": 80,
+    "AllowCorsFrom": "*",
+    "EnableCustomEmoji": true,
+    "TimeBetweenUserTypingUpdatesMilliseconds": 1000,
+  },
+  "TeamSettings": {
+    "SiteName": "{{ organization }}",
+    "MaxUsersPerTeam": 50000,
+    "EnableTeamCreation": true,
+    "EnableUserCreation": true,
+    "EnableOpenServer": true,
+    "EnableCustomBrand": true,
+    "CustomBrandText": "{{ organization }}",
+    "CustomDescriptionText": "",
+  },
+  "PasswordSettings": {
+    "MinimumLength": 10,
+    "Lowercase": true,
+    "Number": true,
+    "Uppercase": true,
+    "Symbol": true
+  },
+  "EmailSettings": {
+    "EnableSignUpWithEmail": true,
+    "EnableSignInWithEmail": true,
+    "EnableSignInWithUsername": true,
+    "SendEmailNotifications": false,
+    "RequireEmailVerification": false,
+    "SMTPUsername": "",
+    "SMTPPassword": "",
+    "EnableSMTPAuth": "",
+    "SMTPServer": "",
+    "SMTPPort": "",
+    "SkipServerCertificateVerification": false
+  },
+  "RateLimitSettings": {
+    "Enable": true,
+  },
+  "AnnouncementSettings": {
+    "EnableBanner": true,
+    "BannerText": "{{ organization }}",
+    "AllowBannerDismissal": true
+  }
+}

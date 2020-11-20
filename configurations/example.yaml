@@ -15,6 +15,7 @@ components:
   automation:
     rundeck: true
   communication:
+    mattermost: false
     wiki: false
   datastore:
     postgresql: true
@@ -92,3 +93,8 @@ rundeck_database_user: rundeck
 rundeck_database_password:
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 5Gi
+
+# Mattermost configuration
+mattermost_database_name: mattermost
+mattermost_database_user: mattermost
+mattermost_database_password:

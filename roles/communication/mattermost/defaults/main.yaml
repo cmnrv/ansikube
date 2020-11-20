@@ -1,0 +1,12 @@
+---
+
+release_name: mattermost
+release_namespace: communication
+
+chart_repository: https://helm.mattermost.com
+chart_name: mattermost-team-edition
+chart_version: 3.19.0
+
+mattermost_database_name: mattermost
+mattermost_database_user: mattermost
+mattermost_database_password:
