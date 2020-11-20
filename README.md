@@ -1,4 +1,4 @@
-# Kubernetes
+# Ansikube
 
 This project is used to configure and manage Kubernetes clusters through Ansible, using simple definitions and configurations.
 
