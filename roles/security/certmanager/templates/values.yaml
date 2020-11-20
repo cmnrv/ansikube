@@ -1,0 +1,10 @@
+---
+
+fullnameOverride: "{{ release_name }}"
+
+global:
+  priorityClassName: system-cluster-critical
+  logLevel: 1
+
+clusterResourceNamespace: "{{ release_namespace }}"
+installCRDs: true
