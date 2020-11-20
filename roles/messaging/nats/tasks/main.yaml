@@ -15,34 +15,6 @@
   tags:
     - install
 
-- name: check if the clusterissuer crd exists
-  community.kubernetes.k8s_info:
-    context: "{{ context }}"
-    api_version: v1
-    kind: CustomResourceDefinition
-    name: clusterissuers.cert-manager.io
-  register: clusterissuer
-  tags:
-    - install
-
-- name: create cluster issuers
-  community.kubernetes.k8s:
-    context: "{{ context }}"
-    template: templates/issuers.yaml
-    state: present
-  when: clusterissuer.resources
-  tags:
-    - install
-
-- name: delete cluster issuers
-  community.kubernetes.k8s:
-    context: "{{ context }}"
-    template: templates/issuers.yaml
-    state: absent
-  tags:
-    - never
-    - uninstall
-
 - name: delete release
   community.kubernetes.helm:
     context: "{{ context }}"

@@ -18,6 +18,8 @@ components:
   ingress:
     nginx: true
     traefik: false
+  messaging:
+    nats: true
   monitoring:
     grafana: true
     prometheus: true

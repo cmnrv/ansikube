@@ -1,8 +1,0 @@
----
-
-release_name: cert-manager
-release_namespace: kube-system
-
-chart_repository: https://charts.jetstack.io
-chart_name: cert-manager
-chart_version: 1.0.4
