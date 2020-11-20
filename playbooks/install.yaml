@@ -12,3 +12,21 @@
       when: components.ingress.nginx
     - role: ingress/traefik
       when: components.ingress.traefik
+    - role: security/certmanager
+      when: components.security.certmanager
+    - role: datastore/postgresql
+      when: components.datastore.postgresql
+    - role: administration/pgadmin
+      when: components.administration.pgadmin
+    - role: datastore/redis
+      when: components.datastore.redis
+    - role: monitoring/prometheus
+      when: components.monitoring.prometheus
+    - role: monitoring/grafana
+      when: components.monitoring.grafana
+    - role: messaging/nats
+      when: components.messaging.nats
+    - role: communication/wiki
+      when: components.communication.wiki
+    - role: administration/dashboard
+      when: components.administration.dashboard

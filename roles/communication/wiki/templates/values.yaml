@@ -1,0 +1,29 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "wiki"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  hosts:
+    - host: "wiki.{{ domain }}"
+      paths:
+        - /
+  tls:
+    - secretName: wiki-tls-certificate
+      hosts:
+        - "wiki.{{ domain }}"
+
+postgresql:
+  {% if components.datastore.postgresql %}
+  enabled: false
+  postgresqlHost: postgresql.datastore.svc.cluster.local
+  postgresqlUser: "{{ wiki_database_user }}"
+  postgresqlDatabase: "{{ wiki_database_name }}"
+  existingSecret: wiki-credentials
+  existingSecretKey: postgresql-password
+  {% else %}
+  enabled: true
+  {% endif %}

@@ -1,0 +1,8 @@
+---
+
+release_name: dashboard
+release_namespace: administration
+
+chart_repository: https://kubernetes.github.io/dashboard/
+chart_name: kubernetes-dashboard
+chart_version: 3.0.0

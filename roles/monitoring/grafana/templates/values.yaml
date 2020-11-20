@@ -1,0 +1,69 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "{{ release_name }}"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  hosts:
+    - "grafana.{{ domain }}"
+  path: /
+  tls:
+    - secretName: grafana-tls-certificate
+      hosts:
+        - "grafana.{{ domain }}"
+
+persistence:
+  enabled: "{{ grafana_persistence_enabled }}"
+  size: "{{ grafana_persistence_size }}"
+
+admin:
+  existingSecret: "grafana-credentials"
+
+env:
+  GF_AUTH_GOOGLE_ALLOWED_DOMAINS: "{{ email_domain }}"
+  GF_AUTH_GOOGLE_ENABLED: "{{ grafana_oauth_enabled }}"
+  GF_SERVER_ROOT_URL: "https://grafana.{{ domain }}"
+  {% if grafana_database_enabled %}
+  GF_DATABASE_TYPE: "postgres"
+  GF_DATABASE_HOST: "postgresql.datastore.svc.cluster.local"
+  GF_DATABASE_NAME: "{{ grafana_database_name }}"
+  GF_DATABASE_USER: "{{ grafana_database_user }}"
+  GF_DATABASE_PASSWORD: "{{ grafana_database_password }}"
+  GF_DATABASE_SSL_MODE: "disable"
+  {% endif %}
+
+{% if grafana_oauth_enabled %}
+envFromSecret: "grafana-oauth-credentials"
+{% endif %}
+
+plugins:
+  - digrich-bubblechart-panel
+  - grafana-clock-panel
+
+{% if components.datastore.postgresql or components.monitoring.prometheus %}
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      {% if components.datastore.postgresql %}
+      - name: PostgreSQL
+        type: postgres
+        url: postgresql.datastore.svc.cluster.local
+        database: "{{ grafana_database_name }}"
+        user: "{{ grafana_database_user }}"
+        secureJsonData:
+          password: "{{ grafana_database_password }}"
+        jsonData:
+          sslmode: disable
+      {% endif %}
+      {% if components.monitoring.prometheus %}
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        access: proxy
+        isDefault: true
+      {% endif %}
+{% endif %}

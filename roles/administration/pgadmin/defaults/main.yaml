@@ -1,0 +1,14 @@
+---
+
+release_name: pgadmin
+release_namespace: administration
+
+chart_repository: https://helm.runix.net/
+chart_name: pgadmin4
+chart_version: 1.3.7
+
+pgadmin_admin_email: "admin@{{ email_domain }}"
+pgadmin_admin_password:
+
+pgadmin_persistence_enabled: false
+pgadmin_persistence_size: 5Gi

@@ -1,0 +1,7 @@
+---
+
+fullnameOverride: "nats"
+
+cluster:
+  enabled: true
+  replicas: 3
