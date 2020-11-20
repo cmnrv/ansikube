@@ -1,0 +1,67 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: rabbitmq
+
+auth:
+  username: "{{ rabbitmq_admin_user }}"
+  existingPasswordSecret: rabbitmq-credentials
+  existingErlangSecret: rabbitmq-erlang-cookie
+
+plugins: "{{ rabbitmq_plugins }}"
+
+configuration: |-
+{% raw %}
+  default_user = admin
+  cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
+  cluster_formation.k8s.host = kubernetes.default.svc.{{ .Values.clusterDomain }}
+  cluster_formation.node_cleanup.interval = 10
+  cluster_formation.node_cleanup.only_log_warning = true
+  cluster_partition_handling = autoheal
+  queue_master_locator = min-masters
+  loopback_users.guest = false
+  {{ tpl .Values.extraConfiguration . }}
+  {{- if .Values.auth.tls.enabled }}
+  ssl_options.verify = {{ .Values.auth.tls.sslOptionsVerify }}
+  listeners.ssl.default = {{ .Values.service.tlsPort }}
+  ssl_options.fail_if_no_peer_cert = {{ .Values.auth.tls.failIfNoPeerCert }}
+  ssl_options.cacertfile = /opt/bitnami/rabbitmq/certs/ca_certificate.pem
+  ssl_options.certfile = /opt/bitnami/rabbitmq/certs/server_certificate.pem
+  ssl_options.keyfile = /opt/bitnami/rabbitmq/certs/server_key.pem
+  {{- end }}
+  {{- if .Values.metrics.enabled }}
+  prometheus.tcp.port = 9419
+  {{- end }}
+  {{- if .Values.memoryHighWatermark.enabled }}
+  total_memory_available_override_value = {{ include "rabbitmq.toBytes" .Values.resources.limits.memory }}
+  vm_memory_high_watermark.{{ .Values.memoryHighWatermark.type }} = {{ .Values.memoryHighWatermark.value }}
+  {{- end }}
+{% endraw %}
+
+replicaCount: 3
+
+serviceAccount:
+  create: true
+  name: rabbitmq
+
+rbac:
+  create: true
+
+{% if rabbitmq_persistence_enabled %}
+persistence:
+  enabled: true
+  size: "{{ rabbitmq_persistence_size }}"
+{% endif %}
+
+pdb:
+  create: true
+  minAvailable: 1
+
+metrics:
+  enabled: true
+  plugins: "rabbitmq_prometheus"
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    {% raw %}
+    prometheus.io/port: "{{ .Values.service.metricsPort }}"
+    {% endraw %}

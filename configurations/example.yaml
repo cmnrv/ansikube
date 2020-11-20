@@ -24,6 +24,7 @@ components:
     traefik: false
   messaging:
     nats: false
+    rabbitmq: false
   monitoring:
     grafana: true
     prometheus: true
@@ -71,6 +72,14 @@ grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
 grafana_persistence_size: 10Gi
+
+# RabbitMQ configuration
+rabbitmq_admin_user: admin
+rabbitmq_admin_password:
+rabbitmq_erlang_cookie:
+rabbitmq_persistence_enabled: false
+rabbitmq_persistence_size: 10Gi
+rabbitmq_plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
 
 # Wiki configuration
 wiki_database_name: wiki

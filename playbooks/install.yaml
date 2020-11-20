@@ -26,6 +26,8 @@
       when: components.monitoring.grafana
     - role: messaging/nats
       when: components.messaging.nats
+    - role: messaging/rabbitmq
+      when: components.messaging.rabbitmq
     - role: communication/wiki
       when: components.communication.wiki
     - role: administration/dashboard
