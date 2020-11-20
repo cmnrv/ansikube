@@ -12,6 +12,8 @@ components:
   administration:
     dashboard: true
     pgadmin: true
+  communication:
+    wiki: false
   datastore:
     postgresql: true
     redis: false
@@ -19,7 +21,7 @@ components:
     nginx: true
     traefik: false
   messaging:
-    nats: true
+    nats: false
   monitoring:
     grafana: true
     prometheus: true
@@ -63,3 +65,8 @@ pgadmin_admin_email: "admin@{{ email_domain }}"
 pgadmin_admin_password:
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 5Gi
+
+# Wiki configuration
+wiki_database_name: wiki
+wiki_database_user: wiki
+wiki_database_password:
