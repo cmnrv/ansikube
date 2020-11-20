@@ -1,0 +1,46 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: dashboard
+
+extraArgs:
+  - --system-banner="{{ organization }} - {{ context }} cluster"
+
+service:
+  externalPort: 80
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  hosts:
+    - "dashboard.{{ domain }}"
+  paths:
+    - /
+  tls:
+    - secretName: dashboard-tls-certificate
+      hosts:
+        - "dashboard.{{ domain }}"
+
+settings:
+  clusterName: "{{ context }}"
+  itemsPerPage: 20
+  disableAccessDeniedNotifications: true
+
+pinnedCRDs:
+  {% if components.security.certmanager %}
+  - kind: customresourcedefinition
+    name: certificates.cert-manager.io
+    displayName: cert-manager/certificates
+    namespaced: true
+  - kind: customresourcedefinition
+    name: clusterissuers.cert-manager.io
+    displayName: cert-manager/clusterissuers
+    namespaced: false
+  {% endif %}
+
+metricsScraper:
+  enabled: true
+
+rbac:
+  clusterReadOnlyRole: true

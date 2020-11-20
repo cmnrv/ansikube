@@ -10,6 +10,7 @@ context: example
 # Components to be installed in your cluster
 components:
   administration:
+    dashboard: true
     pgadmin: true
   datastore:
     postgresql: true

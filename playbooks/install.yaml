@@ -24,3 +24,5 @@
       when: components.monitoring.prometheus
     - role: monitoring/grafana
       when: components.monitoring.grafana
+    - role: administration/dashboard
+      when: components.administration.dashboard
