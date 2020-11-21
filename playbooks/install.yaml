@@ -6,7 +6,7 @@
   pre_tasks:
     - name: check only one ingress controller is enabled
       meta: end_play
-      when: components.ingress.nginx and components.ingress.traefik
+      when: components.ingress.values() | select('true') | count > 1
   roles:
     - role: ingress/nginx
       when: components.ingress.nginx
