@@ -1,8 +1,10 @@
 # Ansikube
 
-This project is used to configure and manage Kubernetes clusters through Ansible, using simple definitions and configurations.
+This project is used to configure and manage Kubernetes clusters through Ansible, using simple YAML definitions and configurations.
 
-Our goal is to have an operational Kubernetes cluster within minutes, including components to handle traffic, TLS certificates, monitoring, metrics and much more. However, this is still a work in progress and the project could go through a complete overhaul at some point.
+The purpose of this project is to provide an operational Kubernetes cluster within minutes. This includes components to handle traffic, TLS certificates, datastores, monitoring and a few other features.
+
+Please note that this is still a work in progress and thus the project could go through a major overhaul at some point.
 
 ## Requirements
 
