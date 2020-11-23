@@ -9,28 +9,62 @@ context: example
 
 # Components to be installed in your cluster
 components:
-  administration:
-    dashboard: true
-    pgadmin: true
-  automation:
-    rundeck: true
-  communication:
-    mattermost: false
-    wiki: false
-  datastore:
-    postgresql: true
-    redis: false
-  ingress:
-    nginx: true
-    traefik: false
-  messaging:
-    nats: false
-    rabbitmq: false
-  monitoring:
-    grafana: true
-    prometheus: true
-  security:
-    certmanager: true
+  certmanager:
+    enabled: true
+    type: security
+    priority: 5
+  dashboard:
+    enabled: false
+    type: administration
+    priority: 15
+  grafana:
+    enabled: false
+    type: monitoring
+    priority: 15
+  mattermost:
+    enabled: false
+    type: communication
+    priority: 25
+  nats:
+    enabled: false
+    type: messaging
+    priority: 20
+  nginx:
+    enabled: true
+    type: ingress
+    priority: 1
+  pgadmin:
+    enabled: false
+    type: administration
+    priority: 15
+  postgresql:
+    enabled: false
+    type: datastore
+    priority: 10
+  prometheus:
+    enabled: false
+    type: monitoring
+    priority: 5
+  redis:
+    enabled: false
+    type: datastore
+    priority: 10
+  rabbitmq:
+    enabled: false
+    type: messaging
+    priority: 20
+  rundeck:
+    enabled: false
+    type: automation
+    priority: 25
+  traefik:
+    enabled: false
+    type: ingress
+    priority: 1
+  wiki:
+    enabled: false
+    type: communication
+    priority: 25
 
 # Organization details
 organization: My Organization
