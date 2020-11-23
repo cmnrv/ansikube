@@ -7,7 +7,7 @@ replicaCount: 1
 
 serverDefinitions:
   enabled: true
-  {% if components.datastore.postgresql %}
+  {% if components.postgresql.enabled %}
   servers: |-
     "1": {
       "Name": "Local PostgreSQL server",
