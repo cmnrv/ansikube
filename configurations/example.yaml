@@ -8,63 +8,65 @@
 context: example
 
 # Components to be installed in your cluster
+# Priorities defined here are used to control the order in which the components are installed. It starts from 10
+# and then increases by steps of 10.
 components:
   certmanager:
     enabled: true
     type: security
-    priority: 5
+    priority: 20
   dashboard:
     enabled: false
     type: administration
-    priority: 15
+    priority: 40
   grafana:
     enabled: false
     type: monitoring
-    priority: 15
+    priority: 40
   mattermost:
     enabled: false
     type: communication
-    priority: 25
+    priority: 60
   nats:
     enabled: false
     type: messaging
-    priority: 20
+    priority: 50
   nginx:
     enabled: true
     type: ingress
-    priority: 1
+    priority: 10
   pgadmin:
     enabled: false
     type: administration
-    priority: 15
+    priority: 40
   postgresql:
     enabled: false
     type: datastore
-    priority: 10
+    priority: 30
   prometheus:
     enabled: false
     type: monitoring
-    priority: 5
+    priority: 20
   redis:
     enabled: false
     type: datastore
-    priority: 10
+    priority: 30
   rabbitmq:
     enabled: false
     type: messaging
-    priority: 20
+    priority: 50
   rundeck:
     enabled: false
     type: automation
-    priority: 25
+    priority: 60
   traefik:
     enabled: false
     type: ingress
-    priority: 1
+    priority: 10
   wiki:
     enabled: false
     type: communication
-    priority: 25
+    priority: 60
 
 # Organization details
 organization: My Organization
