@@ -4,35 +4,21 @@
   vars_files:
     - "../configurations/{{ inventory_hostname }}.context.yaml"
   pre_tasks:
+    - name: define roles based on components
+      set_fact:
+        roles: "{{ components | dict2items | selectattr('value.enabled', 'equalto', true) | sort(attribute='value.priority') }}"
+      tags:
+        - always
     - name: check only one ingress controller is enabled
       meta: end_play
-      when: components.ingress.values() | select('true') | count > 1
-  roles:
-    - role: ingress/nginx
-      when: components.ingress.nginx
-    - role: ingress/traefik
-      when: components.ingress.traefik
-    - role: security/certmanager
-      when: components.security.certmanager
-    - role: datastore/postgresql
-      when: components.datastore.postgresql
-    - role: administration/pgadmin
-      when: components.administration.pgadmin
-    - role: datastore/redis
-      when: components.datastore.redis
-    - role: monitoring/prometheus
-      when: components.monitoring.prometheus
-    - role: monitoring/grafana
-      when: components.monitoring.grafana
-    - role: messaging/nats
-      when: components.messaging.nats
-    - role: messaging/rabbitmq
-      when: components.messaging.rabbitmq
-    - role: communication/wiki
-      when: components.communication.wiki
-    - role: administration/dashboard
-      when: components.administration.dashboard
-    - role: automation/rundeck
-      when: components.automation.rundeck
-    - role: communication/mattermost
-      when: components.communication.mattermost
+      when: roles | selectattr('value.type', 'equalto', 'ingress') | count > 1
+      tags:
+        - always
+  tasks:
+    - name: include role
+      include_role:
+        name: "{{ item.value.type }}/{{ item.key }}"
+      tags:
+        - install
+        - uninstall
+      loop: "{{ roles }}"
