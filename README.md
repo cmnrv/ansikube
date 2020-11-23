@@ -36,40 +36,29 @@ ansible-galaxy collection install community.kubernetes
 # the installation folder (default is /usr/local/bin)
 export K3D_INSTALL_DIR=~/.local/bin
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 ```
 > **_NOTE:_**
 > This also works with kind or minikube, but you need to change the ingress_service_type to `NodePort`.
 
 ## Usage
 
-First, create your local cluster using k3d:
+Create your configuration file and adapt it to your needs:
 ```sh
-# We disable the default traefik deployment since we're deploying it
-# manually later on
-k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
-```
-
-Create your configuration and adapt it to your needs:
-```sh
-# It will be included in the playbooks
 cp configurations/example.yaml configurations/local.context.yaml
 ```
 
-Then configure your cluster:
+Then, run the configuration playbook to create cluster resources (such as namespaces and service accounts):
 ```sh
-# This will add Helm repositories and create required resources
-# such as namespaces and cluster roles
 ansible-playbook --diff playbooks/config.yaml --limit local [--check]
 ```
 
-Finally, install all of its components:
+Finally, run the installation playbook to deploy secrets, releases and additional CRDs:
 ```sh
-# This will deploy the Helm releases, create the required secrets and
-# additional CRDs
 ansible-playbook --diff playbooks/install.yaml --limit local [--check]
 ```
 
-And that's it, your cluster is operational.
+That's it, your cluster is now ready.
 
 ### Want to start over ?
 
