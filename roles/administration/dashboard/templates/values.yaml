@@ -28,7 +28,7 @@ settings:
   disableAccessDeniedNotifications: true
 
 pinnedCRDs:
-  {% if components.security.certmanager %}
+  {% if components.certmanager.enabled %}
   - kind: customresourcedefinition
     name: certificates.cert-manager.io
     displayName: cert-manager/certificates

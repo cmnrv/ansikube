@@ -17,7 +17,7 @@ ingress:
         - "wiki.{{ domain }}"
 
 postgresql:
-  {% if components.datastore.postgresql %}
+  {% if components.postgresql.enabled %}
   enabled: false
   postgresqlHost: postgresql.datastore.svc.cluster.local
   postgresqlUser: "{{ wiki_database_user }}"

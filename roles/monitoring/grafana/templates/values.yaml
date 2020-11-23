@@ -43,12 +43,12 @@ plugins:
   - digrich-bubblechart-panel
   - grafana-clock-panel
 
-{% if components.datastore.postgresql or components.monitoring.prometheus %}
+{% if components.postgresql.enabled or components.prometheus.enabled %}
 datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-      {% if components.datastore.postgresql %}
+      {% if components.postgresql.enabled %}
       - name: PostgreSQL
         type: postgres
         url: postgresql.datastore.svc.cluster.local
@@ -59,7 +59,7 @@ datasources:
         jsonData:
           sslmode: disable
       {% endif %}
-      {% if components.monitoring.prometheus %}
+      {% if components.prometheus.enabled %}
       - name: Prometheus
         type: prometheus
         url: http://prometheus-server.monitoring.svc.cluster.local

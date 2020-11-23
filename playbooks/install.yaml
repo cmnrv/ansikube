@@ -6,33 +6,19 @@
   pre_tasks:
     - name: check only one ingress controller is enabled
       meta: end_play
-      when: components.ingress.nginx and components.ingress.traefik
-  roles:
-    - role: ingress/nginx
-      when: components.ingress.nginx
-    - role: ingress/traefik
-      when: components.ingress.traefik
-    - role: security/certmanager
-      when: components.security.certmanager
-    - role: datastore/postgresql
-      when: components.datastore.postgresql
-    - role: administration/pgadmin
-      when: components.administration.pgadmin
-    - role: datastore/redis
-      when: components.datastore.redis
-    - role: monitoring/prometheus
-      when: components.monitoring.prometheus
-    - role: monitoring/grafana
-      when: components.monitoring.grafana
-    - role: messaging/nats
-      when: components.messaging.nats
-    - role: messaging/rabbitmq
-      when: components.messaging.rabbitmq
-    - role: communication/wiki
-      when: components.communication.wiki
-    - role: administration/dashboard
-      when: components.administration.dashboard
-    - role: automation/rundeck
-      when: components.automation.rundeck
-    - role: communication/mattermost
-      when: components.communication.mattermost
+      when: components | dict2items | selectattr('value.type', 'eq', 'ingress') | selectattr('value.enabled', 'eq', true) | count > 1
+      tags:
+        - always
+    - name: define roles based on components
+      set_fact:
+        enabled_components: "{{ components | dict2items | selectattr('value.enabled', 'eq', true) | sort(attribute='value.priority') }}"
+      tags:
+        - always
+  tasks:
+    - name: include role
+      include_role:
+        name: "{{ item.value.type }}/{{ item.key }}"
+      tags:
+        - install
+        - uninstall
+      loop: "{{ enabled_components }}"
