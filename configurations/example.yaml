@@ -68,6 +68,10 @@ components:
     type: communication
     priority: 60
 
+# Cluster configuration
+kubernetes_extra_namespaces: []
+kubernetes_extra_service_accounts: []
+
 # Organization details
 organization: My Organization
 domain: example.com

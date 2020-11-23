@@ -1,0 +1,17 @@
+---
+
+kubernetes_namespaces:
+  - administration
+  - automation
+  - communication
+  - datastore
+  - deployment
+  - messaging
+  - monitoring
+  - security
+
+kubernetes_extra_namespaces: []
+
+kubernetes_service_accounts: []
+
+kubernetes_extra_service_accounts: []
