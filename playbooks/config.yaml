@@ -4,4 +4,4 @@
   vars_files:
     - "../configurations/{{ inventory_hostname }}.context.yaml"
   roles:
-    - role: cluster/setup
+    - cluster/setup
