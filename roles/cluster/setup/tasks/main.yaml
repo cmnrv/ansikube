@@ -11,6 +11,31 @@
   tags:
     - config
 
+- name: Kubernetes - create service accounts
+  community.kubernetes.k8s:
+    context: "{{ context }}"
+    api_version: v1
+    kind: ServiceAccount
+    name: "{{ item.name }}"
+    namespace: "{{ item.namespace }}"
+    state: present
+  loop: "{{ kubernetes_service_accounts + kubernetes_extra_service_accounts }}"
+  tags:
+    - config
+
+- name: Kubernetes - delete service accounts
+  community.kubernetes.k8s:
+    context: "{{ context }}"
+    api_version: v1
+    kind: ServiceAccount
+    name: "{{ item.name }}"
+    namespace: "{{ item.namespace }}"
+    state: absent
+  loop: "{{ kubernetes_service_accounts + kubernetes_extra_service_accounts }}"
+  tags:
+    - never
+    - purge
+
 - name: delete namespaces
   community.kubernetes.k8s:
     context: "{{ context }}"
