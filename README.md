@@ -24,8 +24,7 @@ ansible-galaxy collection install community.kubernetes
 ### k3d
 
 ```sh
-# Exporting K3D_INSTALL_DIR is useful if you want to change the installation folder (default is /usr/local/bin)
-export K3D_INSTALL_DIR=~/.local/bin
+export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 ```
