@@ -4,14 +4,14 @@
   vars_files:
     - "../configurations/{{ inventory_hostname }}.context.yaml"
   pre_tasks:
-    - name: define roles based on components
-      set_fact:
-        roles: "{{ components | dict2items | selectattr('value.enabled', 'equalto', true) | sort(attribute='value.priority') }}"
-      tags:
-        - always
     - name: check only one ingress controller is enabled
       meta: end_play
-      when: roles | selectattr('value.type', 'equalto', 'ingress') | count > 1
+      when: components | dict2items | selectattr('value.type', 'eq', 'ingress') | selectattr('value.enabled', 'eq', true) | count > 1
+      tags:
+        - always
+    - name: define roles based on components
+      set_fact:
+        enabled_components: "{{ components | dict2items | selectattr('value.enabled', 'eq', true) | sort(attribute='value.priority') }}"
       tags:
         - always
   tasks:
@@ -21,4 +21,4 @@
       tags:
         - install
         - uninstall
-      loop: "{{ roles }}"
+      loop: "{{ enabled_components }}"
