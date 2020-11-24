@@ -52,9 +52,12 @@ That's it, your cluster is now ready.
 
 ### Want to start over ?
 
+Delete the releases and associated resources:
 ```sh
-# This will delete releases, secrets and resources
 ansible-playbook --diff playbooks/install.yaml --limit local --tags "uninstall" [--check]
-# This will wipe roles, namespaces and configuration
+```
+
+Remove the cluster configuration:
+```sh
 ansible-playbook --diff playbooks/config.yaml --limit local --tags "purge" [--check]
 ```
