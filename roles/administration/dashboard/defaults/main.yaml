@@ -6,3 +6,7 @@ release_namespace: administration
 chart_repository: https://kubernetes.github.io/dashboard/
 chart_name: kubernetes-dashboard
 chart_version: 3.0.0
+
+dashboard_disable_notifications: true
+dashboard_items_per_page: 20
+dashboard_readonly: true

@@ -4,7 +4,7 @@
 fullnameOverride: dashboard
 
 extraArgs:
-  - --system-banner="{{ organization }} - {{ context }} cluster"
+  - --system-banner="{{ organization }} / {{ context }}"
 
 service:
   externalPort: 80
@@ -24,8 +24,8 @@ ingress:
 
 settings:
   clusterName: "{{ context }}"
-  itemsPerPage: 20
-  disableAccessDeniedNotifications: true
+  itemsPerPage: "{{ dashboard_items_per_page }}"
+  disableAccessDeniedNotifications: "{{ dashboard_disable_notifications }}"
 
 pinnedCRDs:
   {% if components.certmanager.enabled %}
@@ -43,4 +43,4 @@ metricsScraper:
   enabled: true
 
 rbac:
-  clusterReadOnlyRole: true
+  clusterReadOnlyRole: "{{ dashboard_readonly }}"
