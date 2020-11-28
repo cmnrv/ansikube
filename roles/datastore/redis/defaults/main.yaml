@@ -11,5 +11,5 @@ redis_persistence_enabled: false
 redis_persistence_size: 5Gi
 
 redis_master_set: master
-redis_members_count: 3
+redis_replicas: 3
 redis_quorum: 2
