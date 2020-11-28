@@ -5,7 +5,7 @@ fullnameOverride: "{{ release_name }}"
 
 controller:
   service:
-    {% if ingress_service_type == 'LoadBalancer' %}
+    {% if ingress_service_type == 'LoadBalancer' and ingress_service_ip %}
     loadBalancerIP: "{{ ingress_service_ip }}"
     {% endif %}
     type: "{{ ingress_service_type }}"
