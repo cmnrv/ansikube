@@ -8,5 +8,6 @@ chart_name: ingress-nginx
 chart_version: 3.12.0
 
 ingress_name: nginx
+ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
