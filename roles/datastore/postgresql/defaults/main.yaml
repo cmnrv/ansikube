@@ -16,3 +16,6 @@ postgresql_persistence_size: 10Gi
 postgresql_replication_enabled: false
 postgresql_replication_user: repl
 postgresql_replication_password:
+
+postgresql_max_connections: 64
+postgresql_shared_libraries: pgaudit,pg_stat_statements
