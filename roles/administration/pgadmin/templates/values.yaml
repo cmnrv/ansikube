@@ -26,7 +26,7 @@ networkPolicy:
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+    kubernetes.io/tls-acme: "true"
   hosts:
     - host: "pgadmin.{{ domain }}"
       paths:
