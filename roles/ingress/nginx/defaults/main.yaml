@@ -1,13 +1,18 @@
 ---
 
+# release information
 release_name: nginx
 release_namespace: kube-system
 
+# chart information
 chart_repository: https://kubernetes.github.io/ingress-nginx
 chart_name: ingress-nginx
 chart_version: 3.12.0
 
+# common ingress configuration
 ingress_name: nginx
 ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
+
+# nginx configuration
