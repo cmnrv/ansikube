@@ -8,3 +8,8 @@ global:
 
 clusterResourceNamespace: "{{ release_namespace }}"
 installCRDs: true
+
+ingressShim:
+  defaultIssuerName: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+  defaultIssuerKind: ClusterIssuer
+  defaultIssuerGroup: cert-manager.io

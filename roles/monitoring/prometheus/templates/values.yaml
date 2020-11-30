@@ -8,7 +8,7 @@ alertmanager:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+      kubernetes.io/tls-acme: "true"
     hosts:
       - "alertmanager.{{ domain }}"
     tls:
@@ -21,7 +21,7 @@ server:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+      kubernetes.io/tls-acme: "true"
     hosts:
       - "prometheus.{{ domain }}"
     tls:

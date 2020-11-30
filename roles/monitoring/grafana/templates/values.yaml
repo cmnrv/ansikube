@@ -6,7 +6,7 @@ fullnameOverride: "{{ release_name }}"
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "{{ 'selfsigned' if local else 'letsencrypt' }}"
+    kubernetes.io/tls-acme: "true"
   hosts:
     - "grafana.{{ domain }}"
   path: /
