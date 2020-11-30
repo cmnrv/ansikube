@@ -5,7 +5,7 @@ release_namespace: kube-system
 
 chart_repository: https://kubernetes.github.io/ingress-nginx
 chart_name: ingress-nginx
-chart_version: 3.10.1
+chart_version: 3.12.0
 
 ingress_name: nginx
 ingress_service_ip: 127.0.0.1
