@@ -39,9 +39,7 @@ env:
 envFromSecret: "grafana-oauth-credentials"
 {% endif %}
 
-plugins:
-  - digrich-bubblechart-panel
-  - grafana-clock-panel
+plugins: "{{ grafana_plugins }}"
 
 {% if components.postgresql.enabled or components.prometheus.enabled %}
 datasources:

@@ -4,13 +4,13 @@ fullnameOverride: redis
 
 cluster:
   enabled: true
-  slaveCount: 3
+  slaveCount: "{{ redis_replicas }}"
 
 sentinel:
   enabled: true
   usePassword: true
-  masterSet: master
-  quorum: 2
+  masterSet: "{{ redis_master_set }}"
+  quorum: "{{ redis_quorum }}"
   staticID: true
 
 usePassword: false

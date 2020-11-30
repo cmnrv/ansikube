@@ -4,4 +4,4 @@ fullnameOverride: "nats"
 
 cluster:
   enabled: true
-  replicas: 3
+  replicas: "{{ nats_replicas }}"

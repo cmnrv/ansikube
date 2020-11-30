@@ -9,3 +9,7 @@ chart_version: 12.1.1
 
 redis_persistence_enabled: false
 redis_persistence_size: 5Gi
+
+redis_master_set: master
+redis_replicas: 3
+redis_quorum: 2

@@ -30,7 +30,7 @@ server:
           - "prometheus.{{ domain }}"
 
 pushgateway:
-  enabled: false
+  enabled: "{{ prometheus_pushgateway_enabled }}"
 
 alertmanagerFiles:
   alertmanager.yml:

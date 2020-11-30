@@ -17,8 +17,8 @@ existingSecret: postgresql-credentials
 usePasswordFile: true
 postgresqlDatabase: postgres
 
-postgresqlSharedPreloadLibraries: "pgaudit, pg_stat_statements"
-postgresqlMaxConnections: 64
+postgresqlSharedPreloadLibraries: "{{ postgresql_shared_libraries }}"
+postgresqlMaxConnections: "{{ postgresql_max_connections }}"
 
 persistence:
   enabled: "{{ postgresql_persistence_enabled }}"
