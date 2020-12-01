@@ -1,0 +1,19 @@
+---
+
+# release information
+release_name: dokuwiki
+release_namespace: communication
+
+# chart information
+chart_repository: https://charts.bitnami.com/bitnami
+chart_name: dokuwiki
+chart_version: 10.0.1
+
+# DokuWiki configuration
+dokuwiki_admin_user: admin
+dokuwiki_admin_email: "admin@{{ email_domain }}"
+dokuwiki_admin_password:
+dokuwiki_admin_name: "Administrator"
+dokuwiki_metrics_enabled: true
+dokuwiki_persistence_enabled: true
+dokuwiki_persistence_size: 8Gi

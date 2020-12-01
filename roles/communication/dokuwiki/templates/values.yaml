@@ -1,0 +1,31 @@
+---
+
+fullnameOverride: "{{ release_name }}"
+
+dokuwikiUsername: "{{ dokuwiki_admin_user }}"
+existingSecret: "dokuwiki-credentials"
+dokuwikiEmail: "{{ dokuwiki_admin_email }}"
+dokuwikiFullName: "{{ dokuwiki_admin_name }}"
+dokuwikiWikiName: "{{ organization}} - DokuWiki"
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hosts:
+    - name: "dokuwiki.{{ domain }}"
+      certManager: true
+      tlsSecret: dokuwiki-tls-certificate
+      annotations:
+        kubernetes.io/tls-acme: true
+
+persistence:
+  enabled: "{{ dokuwiki_persistence_enabled }}"
+  size: "{{ dokuwiki_persistence_size }}"
+
+volumePermissions:
+  enabled: true
+
+metrics:
+  enabled: "{{ dokuwiki_metrics_enabled }}"
