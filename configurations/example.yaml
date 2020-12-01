@@ -23,6 +23,10 @@ components:
     enabled: false
     type: monitoring
     priority: 40
+  mariadb:
+    enabled: false
+    type: datastore
+    priority: 30
   mattermost:
     enabled: false
     type: communication
@@ -88,6 +92,15 @@ ingress_nginx_config: {}
 ingress_nginx_headers: {}
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
+
+# MariaDB configuration
+mariadb_metrics_enabled: true
+mariadb_persistence_enabled: false
+mariadb_persistence_size: 8Gi
+mariadb_replicas: 1
+mariadb_replication_user: replicator
+mariadb_replication_password:
+mariadb_root_password:
 
 # PostgreSQL configuration
 postgresql_admin_user: postgres
