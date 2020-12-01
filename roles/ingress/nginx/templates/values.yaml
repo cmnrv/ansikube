@@ -5,7 +5,9 @@ fullnameOverride: "{{ release_name }}"
 
 controller:
   config:
-    enable-modsecurity: "true"
+    {% for option in ingress_nginx_config %}
+    {{ option }}: "{{ nginx_config[option] }}"
+    {% endfor %}
   replicaCount: "{{ ingress_replicas }}"
   service:
     type: "{{ ingress_service_type }}"
