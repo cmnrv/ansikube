@@ -8,6 +8,10 @@ controller:
     {% for config in ingress_nginx_config %}
     {{ config }}: "{{ ingress_nginx_config[config] }}"
     {% endfor %}
+  addHeaders:
+    {% for header in ingress_nginx_headers | default({}) %}
+    {{ header }}: "{{ ingress_nginx_headers[header] }}"
+    {% endfor %}
   replicaCount: "{{ ingress_replicas }}"
   service:
     type: "{{ ingress_service_type }}"

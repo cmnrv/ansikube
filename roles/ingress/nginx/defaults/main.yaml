@@ -18,5 +18,6 @@ ingress_service_type: LoadBalancer
 # nginx configuration
 ingress_nginx_config:
   enable-modsecurity: "true"
+ingress_nginx_headers: {}
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
