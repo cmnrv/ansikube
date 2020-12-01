@@ -15,5 +15,5 @@ dokuwiki_admin_email: "admin@{{ email_domain }}"
 dokuwiki_admin_password:
 dokuwiki_admin_name: "Administrator"
 dokuwiki_metrics_enabled: true
-dokuwiki_persistence_enabled: true
+dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 8Gi
