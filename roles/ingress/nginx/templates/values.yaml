@@ -5,8 +5,8 @@ fullnameOverride: "{{ release_name }}"
 
 controller:
   config:
-    {% for option in ingress_nginx_config %}
-    {{ option }}: "{{ nginx_config[option] }}"
+    {% for config in ingress_nginx_config %}
+    {{ config }}: "{{ ingress_nginx_config[config] }}"
     {% endfor %}
   replicaCount: "{{ ingress_replicas }}"
   service:
@@ -14,12 +14,15 @@ controller:
     {% if ingress_service_type == 'LoadBalancer' and ingress_service_ip %}
     loadBalancerIP: "{{ ingress_service_ip }}"
     {% endif %}
+  {% if ingress_nginx_metrics_enabled %}
   metrics:
     enabled: true
+    port: "{{ ingress_nginx_metrics_port }}"
     service:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "10254"
+        prometheus.io/port: "{{ ingress_nginx_metrics_port }}"
+  {% endif %}
 
   priorityClassName: "system-cluster-critical"
 
