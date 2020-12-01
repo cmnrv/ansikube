@@ -15,10 +15,11 @@ ingress:
   enabled: true
   hosts:
     - name: "dokuwiki.{{ domain }}"
+      tls: true
       certManager: true
       tlsSecret: dokuwiki-tls-certificate
       annotations:
-        kubernetes.io/tls-acme: true
+        kubernetes.io/tls-acme: "true"
 
 persistence:
   enabled: "{{ dokuwiki_persistence_enabled }}"
