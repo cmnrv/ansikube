@@ -79,8 +79,15 @@ email_domain: example.com
 
 # Ingress configuration
 ingress_name: nginx
+ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
+
+# Nginx ingress configuration
+ingress_nginx_config: {}
+ingress_nginx_headers: {}
+ingress_nginx_metrics_enabled: true
+ingress_nginx_metrics_port: 10254
 
 # PostgreSQL configuration
 postgresql_admin_user: postgres
