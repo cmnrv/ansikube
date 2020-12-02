@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-replicaCount: "{{ gitea_replicas | int }}"
+replicaCount: "{{ gitea_replicas }}"
 
 service:
   http:
@@ -9,7 +9,7 @@ service:
     port: 3000
   ssh:
     type: ClusterIP
-    port: "{{ gitea_ssh_port | int }}"
+    port: "{{ gitea_ssh_port }}"
     {% if ingress_service_type == 'LoadBalancer' and ingress_service_ip %}
     loadBalancerIP: "{{ ingress_service_ip }}"
     {% endif %}
@@ -38,8 +38,12 @@ gitea:
   config:
     APP_NAME: "{{ organization }} - Gitea"
     RUN_MODE: "{{ 'prod' if inventory_hostname == 'production' else 'dev' }}"
+    database:
+      LOG_SQL: false
+    security:
+      PASSWORD_COMPLEXITY: "{{ gitea_config_password_complexity }}"
     server:
-      SSH_PORT: "{{ gitea_ssh_port | int }}"
+      SSH_PORT: "{{ gitea_ssh_port }}"
 
   {% if not components.postgresql.enabled %}
   database:
@@ -62,7 +66,7 @@ postgresql:
       postgresqlDatabase: "{{ gitea_database_name }}"
       postgresqlUsername: "{{ gitea_database_user }}"
       postgresqlPassword: "{{ gitea_database_password }}"
-      servicePort: "{{ gitea_database_port | int }}"
+      servicePort: 5432
   {% if not components.postgresql.enabled %}
   persistence:
     size: "{{ gitea_persistence_size }}"

@@ -7,16 +7,16 @@ release_namespace: deployment
 # chart information
 chart_repository: https://dl.gitea.io/charts/
 chart_name: gitea
-chart_version: 2.0.6
+chart_version: 2.0.4
 
 # Gitea configuration
-gitea_admin_user: admin
+gitea_admin_user: gitea
 gitea_admin_password:
 gitea_admin_email: "admin@{{ email_domain }}"
+gitea_config_password_complexity: "lower,upper,digit,spec"
 gitea_database_name: gitea
 gitea_database_user: gitea
 gitea_database_password:
-gitea_database_port: 5432
 gitea_persistence_enabled: false
 gitea_persistence_size: 10Gi
 gitea_replicas: 1
