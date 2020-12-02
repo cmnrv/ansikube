@@ -19,6 +19,10 @@ components:
     enabled: false
     type: administration
     priority: 40
+  dokuwiki:
+    enabled: false
+    type: communication
+    priority: 60
   grafana:
     enabled: false
     type: monitoring
@@ -128,6 +132,15 @@ rabbitmq_erlang_cookie:
 rabbitmq_persistence_enabled: false
 rabbitmq_persistence_size: 10Gi
 rabbitmq_plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+
+# DokuWiki configuration
+dokuwiki_admin_user: admin
+dokuwiki_admin_email: "admin@{{ email_domain }}"
+dokuwiki_admin_password:
+dokuwiki_admin_name: "Administrator"
+dokuwiki_metrics_enabled: true
+dokuwiki_persistence_enabled: false
+dokuwiki_persistence_size: 8Gi
 
 # Wiki configuration
 wiki_database_name: wiki
