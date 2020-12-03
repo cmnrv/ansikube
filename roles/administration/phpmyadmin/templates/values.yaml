@@ -1,10 +1,6 @@
 ---
 
-fullnameOverride: phpmyadmin
-
-service:
-  type: ClusterIP
-  port: 80
+fullnameOverride: "{{ release_name }}"
 
 db:
   allowArbitraryServer: false
