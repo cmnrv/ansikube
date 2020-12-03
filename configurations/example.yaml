@@ -47,6 +47,10 @@ components:
     enabled: true
     type: ingress
     priority: 10
+  phpmyadmin:
+    enabled: false
+    type: administration
+    priority: 40
   pgadmin:
     enabled: false
     type: administration

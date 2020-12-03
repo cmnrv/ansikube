@@ -1,0 +1,13 @@
+---
+
+# Release information
+release_name: phpmyadmin
+release_namespace: administration
+
+# Chart information
+chart_repository: https://charts.bitnami.com/bitnami
+chart_name: phpmyadmin
+chart_version: 7.0.0
+
+# Main configuration
+phpmyadmin_metrics_enabled: true
