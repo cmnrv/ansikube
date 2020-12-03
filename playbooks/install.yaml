@@ -4,8 +4,9 @@
   vars_files:
     - "../configurations/{{ inventory_hostname }}.context.yaml"
   pre_tasks:
-    - name: check only one ingress controller is enabled
-      meta: end_play
+    - name: check enabled components
+      fail:
+        msg: Multiple ingress controllers are enabled
       when: components | dict2items | selectattr('value.type', 'eq', 'ingress') | selectattr('value.enabled', 'eq', true) | count > 1
       tags:
         - always
