@@ -1,15 +1,15 @@
 ---
 
-# release information
+# Release information
 release_name: dokuwiki
 release_namespace: communication
 
-# chart information
+# Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: dokuwiki
 chart_version: 10.0.1
 
-# DokuWiki configuration
+# Main configuration
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
 dokuwiki_admin_password:

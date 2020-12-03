@@ -1,15 +1,17 @@
 ---
 
+# Release information
 release_name: rundeck
 release_namespace: automation
 
+# Chart information
 chart_repository: http://storage.googleapis.com/kubernetes-charts-incubator
 chart_name: rundeck
 chart_version: 0.3.4
 
+# Main configuration
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
-
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 5Gi

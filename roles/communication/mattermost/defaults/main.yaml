@@ -1,12 +1,15 @@
 ---
 
+# Release information
 release_name: mattermost
 release_namespace: communication
 
+# Chart information
 chart_repository: https://helm.mattermost.com
 chart_name: mattermost-team-edition
 chart_version: 3.19.0
 
+# Main configuration
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:

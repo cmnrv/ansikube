@@ -1,25 +1,24 @@
 ---
 
+# Release information
 release_name: grafana
 release_namespace: monitoring
 
+# Chart information
 chart_repository: https://grafana.github.io/helm-charts
 chart_name: grafana
 chart_version: 6.1.10
 
+# Main configuration
 grafana_admin_user: admin
 grafana_admin_password: grafana
-
 grafana_database_enabled: false
 grafana_database_name: grafana
 grafana_database_user:
 grafana_database_password:
-
 grafana_oauth_enabled: false
 grafana_oauth_client_id:
 grafana_oauth_client_secret:
-
 grafana_persistence_enabled: false
 grafana_persistence_size: 10Gi
-
 grafana_plugins: digrich-bubblechart-panel,grafana-clock-panel

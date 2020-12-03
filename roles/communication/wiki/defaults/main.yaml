@@ -1,12 +1,15 @@
 ---
 
+# Release information
 release_name: wiki
 release_namespace: communication
 
+# Chart information
 chart_repository: https://charts.wener.tech/
 chart_name: wiki
 chart_version: 2.1.0
 
+# Main configuration
 wiki_database_name: wiki
 wiki_database_user: wiki
 wiki_database_password:

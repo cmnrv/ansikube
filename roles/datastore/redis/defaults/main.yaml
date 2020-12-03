@@ -1,15 +1,17 @@
 ---
 
+# Release information
 release_name: redis
 release_namespace: datastore
 
+# Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: redis
 chart_version: 12.1.1
 
+# Main configuration
+redis_master_set: master
 redis_persistence_enabled: false
 redis_persistence_size: 5Gi
-
-redis_master_set: master
-redis_replicas: 3
 redis_quorum: 2
+redis_replicas: 3

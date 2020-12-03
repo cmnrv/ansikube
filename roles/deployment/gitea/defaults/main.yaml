@@ -1,15 +1,15 @@
 ---
 
-# release information
+# Release information
 release_name: gitea
 release_namespace: deployment
 
-# chart information
+# Chart information
 chart_repository: https://dl.gitea.io/charts/
 chart_name: gitea
 chart_version: 2.0.4
 
-# Gitea configuration
+# Main configuration
 gitea_admin_user: gitea
 gitea_admin_password:
 gitea_admin_email: "admin@{{ email_domain }}"

@@ -1,12 +1,18 @@
 ---
 
+# Release information
 release_name: traefik
 release_namespace: kube-system
 
+# Chart information
 chart_repository: https://helm.traefik.io/traefik
 chart_name: traefik
 chart_version: 9.11.0
 
+# Ingress configuration
 ingress_name: traefik
+ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: NodePort
+
+# Main configuration
