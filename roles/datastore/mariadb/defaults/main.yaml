@@ -1,0 +1,19 @@
+---
+
+# release information
+release_name: mariadb
+release_namespace: datastore
+
+# chart information
+chart_repository: https://charts.bitnami.com/bitnami
+chart_name: mariadb
+chart_version: 9.0.1
+
+# MariaDB configuration
+mariadb_metrics_enabled: true
+mariadb_persistence_enabled: false
+mariadb_persistence_size: 8Gi
+mariadb_replicas: 1
+mariadb_replication_user: replicator
+mariadb_replication_password:
+mariadb_root_password:
