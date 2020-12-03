@@ -1,21 +1,23 @@
 ---
 
+# release information
 release_name: postgresql
 release_namespace: datastore
 
+# chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: postgresql
 chart_version: 10.1.1
 
+# PostgreSQL configuration
 postgresql_admin_user: postgres
 postgresql_admin_password:
-
+postgresql_config_max_connections: 64
+postgresql_config_shared_libraries: pgaudit,pg_stat_statements
+postgresql_metrics_enabled: true
 postgresql_persistence_enabled: false
 postgresql_persistence_size: 10Gi
-
+postgresql_replicas: 1
 postgresql_replication_enabled: false
-postgresql_replication_user: repl
+postgresql_replication_user: replicator
 postgresql_replication_password:
-
-postgresql_max_connections: 64
-postgresql_shared_libraries: pgaudit,pg_stat_statements
