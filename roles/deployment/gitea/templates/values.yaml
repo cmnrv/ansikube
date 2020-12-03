@@ -1,0 +1,73 @@
+#jinja2:lstrip_blocks: True
+---
+
+replicaCount: "{{ gitea_replicas }}"
+
+service:
+  http:
+    type: ClusterIP
+    port: 3000
+  ssh:
+    type: ClusterIP
+    port: "{{ gitea_ssh_port }}"
+    {% if ingress_service_type == 'LoadBalancer' and ingress_service_ip %}
+    loadBalancerIP: "{{ ingress_service_ip }}"
+    {% endif %}
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - "gitea.{{ domain }}"
+  tls:
+    - secretName: gitea-tls-certificate
+      hosts:
+        - "gitea.{{ domain }}"
+
+persistence:
+  enabled: "{{ gitea_persistence_enabled }}"
+  size: "{{ gitea_persistence_size }}"
+
+gitea:
+  admin:
+    username: "{{ gitea_admin_user }}"
+    password: "{{ gitea_admin_password }}"
+    email: "{{ gitea_admin_email }}"
+
+  config:
+    APP_NAME: "{{ organization }} - Gitea"
+    RUN_MODE: "{{ 'prod' if inventory_hostname == 'production' else 'dev' }}"
+    database:
+      LOG_SQL: false
+    security:
+      PASSWORD_COMPLEXITY: "{{ gitea_config_password_complexity }}"
+    server:
+      SSH_PORT: "{{ gitea_ssh_port }}"
+
+  {% if not components.postgresql.enabled %}
+  database:
+    builtIn:
+      postgresql:
+        enabled: true
+  {% endif %}
+
+  cache:
+    builtIn:
+      enabled: true
+
+memcached:
+  service:
+    port: 11211
+
+postgresql:
+  global:
+    postgresql:
+      postgresqlDatabase: "{{ gitea_database_name }}"
+      postgresqlUsername: "{{ gitea_database_user }}"
+      postgresqlPassword: "{{ gitea_database_password }}"
+      servicePort: 5432
+  {% if not components.postgresql.enabled %}
+  persistence:
+    size: "{{ gitea_persistence_size }}"
+  {% endif %}
