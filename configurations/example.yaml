@@ -96,10 +96,12 @@ ingress_nginx_metrics_port: 10254
 # PostgreSQL configuration
 postgresql_admin_user: postgres
 postgresql_admin_password:
+postgresql_metrics_enabled: true
 postgresql_persistence_enabled: false
 postgresql_persistence_size: 10Gi
+postgresql_replicas: 1
 postgresql_replication_enabled: false
-postgresql_replication_user: repl
+postgresql_replication_user: replicator
 postgresql_replication_password:
 
 # pgAdmin configuration
