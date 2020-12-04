@@ -10,13 +10,22 @@ chart_name: ingress-nginx
 chart_version: 3.12.0
 
 # Ingress configuration
-ingress_name: nginx
+ingress_class: nginx
 ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
 # Main configuration
+ingress_nginx_autoscaling_enabled: false
+ingress_nginx_autoscaling_max_replicas: 2
+ingress_nginx_autoscaling_min_replicas: 1
+ingress_nginx_autoscaling_target_cpu_utilization: 75
+ingress_nginx_autoscaling_target_ram_utilization: 75
 ingress_nginx_config: {}
+ingress_nginx_extra_args: {}
 ingress_nginx_headers: {}
+ingress_nginx_kind: Deployment
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
+ingress_nginx_min_available: 1
+ingress_nginx_proxy_headers: {}

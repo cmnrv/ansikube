@@ -8,11 +8,27 @@ controller:
     {% for config in ingress_nginx_config %}
     {{ config }}: "{{ ingress_nginx_config[config] }}"
     {% endfor %}
+  proxySetHeaders:
+    {% for header in ingress_nginx_proxy_headers | default({}) %}
+    {{ header }}: "{{ ingress_nginx_proxy_headers[header] }}"
+    {% endfor %}
   addHeaders:
     {% for header in ingress_nginx_headers | default({}) %}
     {{ header }}: "{{ ingress_nginx_headers[header] }}"
     {% endfor %}
+  extraArgs:
+    {% for arg in ingress_nginx_extra_args | default({}) %}
+    {{ arg }}: "{{ ingress_nginx_extra_args[arg] }}"
+    {% endfor %}
+  kind: "{{ ingress_nginx_kind }}"
   replicaCount: "{{ ingress_replicas }}"
+  minAvailable: "{{ ingress_nginx_min_available }}"
+  autoscaling:
+    enabled: "{{ ingress_nginx_autoscaling_enabled }}"
+    minReplicas: "{{ ingress_nginx_autoscaling_min_replicas }}"
+    maxReplicas: "{{ ingress_nginx_autoscaling_max_replicas }}"
+    targetCPUUtilizationPercentage: "{{ ingress_nginx_autoscaling_target_cpu_utilization }}"
+    targetMemoryUtilizationPercentage: "{{ ingress_nginx_autoscaling_target_ram_utilization }}"
   service:
     type: "{{ ingress_service_type }}"
     {% if ingress_service_type == 'LoadBalancer' and ingress_service_ip %}
@@ -27,6 +43,9 @@ controller:
         prometheus.io/port: "{{ ingress_nginx_metrics_port }}"
 
   priorityClassName: "system-cluster-critical"
+
+defaultBackend:
+  enabled: true
 
 podSecurityPolicy:
   enabled: true
