@@ -9,10 +9,10 @@ context: example
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10
-# and then increases by steps of 10. Right now, it is defined this way:
+# and then increases by steps of 10. For the moment, we use the following priorities:
 #   10: ingress controllers
 #   20: important cluster components (cert-manager, prometheus,...)
-#   30: datastores and alike (mariadb, postgres, redis,...)
+#   30: data stores and similar tools (mariadb, postgres, redis,...)
 #   40: monitoring and security tools
 #   50: administration tools (kubernetes-dashboard, pgadmin,...)
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
