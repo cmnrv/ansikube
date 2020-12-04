@@ -21,4 +21,5 @@ grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
 grafana_persistence_size: 10Gi
-grafana_plugins: digrich-bubblechart-panel,grafana-clock-panel
+grafana_plugins:
+  - grafana-clock-panel
