@@ -75,10 +75,6 @@ components:
     enabled: false
     type: automation
     priority: 60
-  traefik:
-    enabled: false
-    type: ingress
-    priority: 10
   wiki:
     enabled: false
     type: communication
