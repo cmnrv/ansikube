@@ -13,7 +13,7 @@ context: example
 #   10: ingress controllers
 #   20: important cluster components (cert-manager, prometheus,...)
 #   30: data stores and similar tools (mariadb, postgres, redis,...)
-#   40: monitoring and security tools
+#   40: monitoring and security tools (falco, kubewatch,...)
 #   50: administration tools (kubernetes-dashboard, pgadmin,...)
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
 #   70: other tools (dokuwiki, mattermost,...)
