@@ -9,7 +9,14 @@ context: example
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10
-# and then increases by steps of 10.
+# and then increases by steps of 10. Right now, it is defined this way:
+#   10: ingress controllers
+#   20: important cluster components (cert-manager, prometheus,...)
+#   30: datastores and alike (mariadb, postgres, redis,...)
+#   40: monitoring and security tools
+#   50: administration tools (kubernetes-dashboard, pgadmin,...)
+#   60: automation and deployment tools (gitlab, harbor, rundeck,...)
+#   70: other tools (dokuwiki, mattermost,...)
 components:
   certmanager:
     enabled: true
@@ -18,15 +25,15 @@ components:
   dashboard:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   dokuwiki:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
   gitea:
     enabled: false
     type: deployment
-    priority: 50
+    priority: 60
   grafana:
     enabled: false
     type: monitoring
@@ -38,11 +45,11 @@ components:
   mattermost:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
   nats:
     enabled: false
     type: messaging
-    priority: 50
+    priority: 30
   nginx:
     enabled: true
     type: ingress
@@ -50,11 +57,11 @@ components:
   phpmyadmin:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   pgadmin:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   postgresql:
     enabled: false
     type: datastore
@@ -70,7 +77,7 @@ components:
   rabbitmq:
     enabled: false
     type: messaging
-    priority: 50
+    priority: 30
   rundeck:
     enabled: false
     type: automation
@@ -78,7 +85,7 @@ components:
   wiki:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
 
 # Cluster configuration
 kubernetes_extra_namespaces: []
