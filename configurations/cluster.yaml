@@ -11,7 +11,5 @@ kubernetes_namespaces:
   - security
 
 kubernetes_extra_namespaces: []
-
 kubernetes_service_accounts: []
-
 kubernetes_extra_service_accounts: []
