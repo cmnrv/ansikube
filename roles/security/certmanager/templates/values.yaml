@@ -4,12 +4,23 @@ fullnameOverride: "{{ release_name }}"
 
 global:
   priorityClassName: system-cluster-critical
-  logLevel: 1
+  logLevel: "{{ certmanager_log_level }}"
 
-clusterResourceNamespace: "{{ release_namespace }}"
 installCRDs: true
+replicaCount: "{{ certmanager_replicas }}"
+clusterResourceNamespace: "{{ release_namespace }}"
+
+extraArgs:
+  - --enable-certificate-owner-ref=true
 
 ingressShim:
   defaultIssuerName: "{{ 'selfsigned' if local else 'letsencrypt' }}"
   defaultIssuerKind: ClusterIssuer
   defaultIssuerGroup: cert-manager.io
+
+prometheus:
+  enabled: "{{ certmanager_metrics_enabled }}"
+
+webhook:
+  readinessProbe:
+    initialDelaySeconds: 15
