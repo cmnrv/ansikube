@@ -87,8 +87,19 @@ components:
     type: communication
     priority: 70
 
-# Cluster configuration
+# Extra namespaces to be created in your cluster
+# Should be defined using the following notation:
+#   kubernetes_extra_namespaces:
+#     - first-namespace
+#     - second-namespace
 kubernetes_extra_namespaces: []
+# Extra service accounts to be created in your cluster
+# Should be defined using the following notation:
+#   kubernetes_extra_service_accounts:
+#     - name: administration-service-account
+#       namespace: administration
+#     - name: deployment-service-account
+#       namespace: deployment
 kubernetes_extra_service_accounts: []
 
 # Organization details
