@@ -9,8 +9,8 @@ Please keep in mind that this is still a work in progress and thus the project c
 You will need the following:
 
 * Ansible 2.9+
-* The [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) ansible collection.
-* An available Kubernetes (1.16+) cluster.
+* The [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) ansible collection
+* An available Kubernetes (1.16+) cluster
 
 This project has been tested with the following kubernetes distributions and/or providers:
 * k3d, kind and minikube for local environments
@@ -19,13 +19,12 @@ This project has been tested with the following kubernetes distributions and/or 
 
 There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
 
-
 <details>
   <summary>Installing Ansible</summary>
 
 ```sh
 pip3 install --upgrade pip
-pip3 install openshift 
+pip3 install openshift
 pip3 install ansible-base
 pip3 install ansible
 ansible-galaxy collection install community.kubernetes
