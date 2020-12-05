@@ -200,7 +200,10 @@ rabbitmq_admin_password:
 rabbitmq_erlang_cookie:
 rabbitmq_persistence_enabled: false
 rabbitmq_persistence_size: 10Gi
-rabbitmq_plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+rabbitmq_plugins:
+  - rabbitmq_management
+  - rabbitmq_peer_discovery_k8s
+rabbitmq_replicas: 3
 
 # Gitea configuration
 gitea_admin_user: gitea

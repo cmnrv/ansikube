@@ -8,7 +8,7 @@ auth:
   existingPasswordSecret: rabbitmq-credentials
   existingErlangSecret: rabbitmq-erlang-cookie
 
-plugins: "{{ rabbitmq_plugins }}"
+plugins: "{{ rabbitmq_plugins | join(' ') }}"
 
 configuration: |-
 {% raw %}
