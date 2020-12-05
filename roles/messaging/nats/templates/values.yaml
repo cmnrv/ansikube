@@ -1,6 +1,6 @@
 ---
 
-fullnameOverride: "nats"
+fullnameOverride: "{{ release_name }}"
 
 cluster:
   enabled: true

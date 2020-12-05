@@ -1,14 +1,14 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: rabbitmq
+fullnameOverride: "{{ release_name }}"
 
 auth:
   username: "{{ rabbitmq_admin_user }}"
   existingPasswordSecret: rabbitmq-credentials
   existingErlangSecret: rabbitmq-erlang-cookie
 
-plugins: "{{ rabbitmq_plugins }}"
+plugins: "{{ rabbitmq_plugins | join(' ') }}"
 
 configuration: |-
 {% raw %}

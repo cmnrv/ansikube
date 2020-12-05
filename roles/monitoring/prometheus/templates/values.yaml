@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: prometheus
+fullnameOverride: "{{ release_name }}"
 
 alertmanager:
   baseURL: "https://alertmanager.{{ domain }}"
@@ -15,9 +15,19 @@ alertmanager:
       - secretName: alertmanager-tls-certificate
         hosts:
           - "alertmanager.{{ domain }}"
+  persistentVolume:
+    enabled: {{ alertmanager_persistence_enabled }}
+    size: "{{ alertmanager_persistence_size }}"
 
 server:
   baseURL: "https://prometheus.{{ domain }}"
+  extraFlags:
+    - storage.tsdb.wal-compression
+    - web.enable-lifecycle
+  global:
+    scrape_interval: "{{ prometheus_scrape_interval }}"
+    scrape_timeout: "{{ prometheus_scrape_timeout }}"
+    evaluation_interval: "{{ prometheus_evaluation_interval }}"
   ingress:
     enabled: true
     annotations:
@@ -28,9 +38,28 @@ server:
       - secretName: prometheus-tls-certificate
         hosts:
           - "prometheus.{{ domain }}"
+  persistentVolume:
+    enabled: {{ prometheus_persistence_enabled }}
+    size: "{{ prometheus_persistence_size }}"
+  replicaCount: "{{ prometheus_replicas }}"
+  retention: "{{ prometheus_retention }}"
 
 pushgateway:
-  enabled: "{{ prometheus_pushgateway_enabled }}"
+  enabled: {{ pushgateway_enabled }}
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - "pushgateway.{{ domain }}"
+    tls:
+      - secretName: pushgateway-tls-certificate
+        hosts:
+          - "pushgateway.{{ domain }}"
+  replicaCount: "{{ pushgateway_replicas }}"
+  persistentVolume:
+    enabled: {{ pushgateway_persistence_enabled }}
+    size: "{{ pushgateway_persistence_size }}"
 
 alertmanagerFiles:
   alertmanager.yml:

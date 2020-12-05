@@ -7,7 +7,19 @@ release_namespace: monitoring
 # Chart information
 chart_repository: https://prometheus-community.github.io/helm-charts
 chart_name: prometheus
-chart_version: 12.0.1
+chart_version: 12.0.2
 
 # Main configuration
-prometheus_pushgateway_enabled: false
+alertmanager_persistence_enabled: false
+alertmanager_persistence_size: 2Gi
+prometheus_evaluation_interval: 1m
+prometheus_persistence_enabled: false
+prometheus_persistence_size: 8Gi
+prometheus_replicas: 1
+prometheus_retention: 30d
+prometheus_scrape_interval: 1m
+prometheus_scrape_timeout: 10s
+pushgateway_enabled: false
+pushgateway_persistence_enabled: false
+pushgateway_persistence_size: 2Gi
+pushgateway_replicas: 1

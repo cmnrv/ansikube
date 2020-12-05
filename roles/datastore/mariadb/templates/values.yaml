@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: mariadb
+fullnameOverride: "{{ release_name }}"
 architecture: replication
 
 auth:

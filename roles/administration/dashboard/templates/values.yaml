@@ -1,13 +1,11 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: dashboard
+fullnameOverride: "{{ release_name }}"
+replicaCount: "{{ dashboard_replicas }}"
 
 extraArgs:
-  - --system-banner="{{ organization }} / {{ context }}"
-
-service:
-  externalPort: 80
+  - --system-banner="{{ organization }} - {{ context }}"
 
 ingress:
   enabled: true
@@ -24,8 +22,10 @@ ingress:
 
 settings:
   clusterName: "{{ context }}"
-  itemsPerPage: "{{ dashboard_items_per_page }}"
-  disableAccessDeniedNotifications: "{{ dashboard_disable_notifications }}"
+  itemsPerPage: {{ dashboard_config_items_displayed }}
+  logsAutoRefreshTimeInterval: {{ dashboard_config_logs_refresh_interval }}
+  resourceAutoRefreshTimeInterval: {{ dashboard_config_resouce_refresh_interval }}
+  disableAccessDeniedNotifications: {{ dashboard_config_notifications_disabled }}
 
 pinnedCRDs:
   {% if components.certmanager.enabled %}
@@ -43,4 +43,4 @@ metricsScraper:
   enabled: true
 
 rbac:
-  clusterReadOnlyRole: "{{ dashboard_readonly }}"
+  clusterReadOnlyRole: "{{ dashboard_rbac_readonly }}"

@@ -5,31 +5,41 @@ The purpose of this project is to provide an operational Kubernetes cluster with
 Please keep in mind that this is still a work in progress and thus the project could go through a major overhaul at some point.
 
 ## Requirements
-### Ansible
 
-Install PIP and the main Ansible packages:
+You will need the following:
+
+* Ansible 2.9+
+* The [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) ansible collection
+* An available Kubernetes (1.16+) cluster
+
+This project has been tested with the following kubernetes distributions and/or providers:
+* k3d, kind and minikube for local environments
+* [GKE](https://cloud.google.com/kubernetes-engine) managed kubernetes service
+* [OVH](https://www.ovhcloud.com/fr/public-cloud/kubernetes/) managed kubernetes service
+
+There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
+
+<details>
+  <summary>Installing Ansible</summary>
+
 ```sh
-[sudo] apt-get install python3-pip
 pip3 install --upgrade pip
+pip3 install openshift
 pip3 install ansible-base
 pip3 install ansible
-```
-
-Then, install the [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) collection:
-```sh
-pip3 install openshift
 ansible-galaxy collection install community.kubernetes
 ```
+</details>
 
-### k3d
+<details>
+  <summary>Installing k3d</summary>
 
 ```sh
 export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 ```
-> **_NOTE:_**
-> Kind and Minikube can be used as well, but you need to change the ingress_service_type to `NodePort`.
+</details>
 
 ## Usage
 

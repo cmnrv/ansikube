@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: "rundeck"
+fullnameOverride: "{{ release_name }}"
 
 deployment:
   replicaCount: 1

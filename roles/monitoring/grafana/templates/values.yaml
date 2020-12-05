@@ -39,7 +39,10 @@ env:
 envFromSecret: "grafana-oauth-credentials"
 {% endif %}
 
-plugins: "{{ grafana_plugins }}"
+plugins:
+{% for plugin in grafana_plugins %}
+  - "{{ plugin }}"
+{% endfor %}
 
 {% if components.postgresql.enabled or components.prometheus.enabled %}
 datasources:

@@ -10,6 +10,6 @@ chart_name: wiki
 chart_version: 2.1.0
 
 # Main configuration
-wiki_database_name: wiki
-wiki_database_user: wiki
-wiki_database_password:
+wikijs_database_name: wiki
+wikijs_database_user: wiki
+wikijs_database_password:

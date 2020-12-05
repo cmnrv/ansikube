@@ -9,7 +9,14 @@ context: example
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10
-# and then increases by steps of 10.
+# and then increases by steps of 10. For the moment, we use the following priorities:
+#   10: ingress controllers
+#   20: important cluster components (cert-manager, prometheus,...)
+#   30: data stores and similar tools (mariadb, postgres, redis,...)
+#   40: monitoring and security tools (falco, kubewatch,...)
+#   50: administration tools (kubernetes-dashboard, pgadmin,...)
+#   60: automation and deployment tools (gitlab, harbor, rundeck,...)
+#   70: other tools (dokuwiki, mattermost,...)
 components:
   certmanager:
     enabled: true
@@ -18,15 +25,15 @@ components:
   dashboard:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   dokuwiki:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
   gitea:
     enabled: false
     type: deployment
-    priority: 50
+    priority: 60
   grafana:
     enabled: false
     type: monitoring
@@ -38,11 +45,11 @@ components:
   mattermost:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
   nats:
     enabled: false
     type: messaging
-    priority: 50
+    priority: 30
   nginx:
     enabled: true
     type: ingress
@@ -50,11 +57,11 @@ components:
   phpmyadmin:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   pgadmin:
     enabled: false
     type: administration
-    priority: 40
+    priority: 50
   postgresql:
     enabled: false
     type: datastore
@@ -70,22 +77,29 @@ components:
   rabbitmq:
     enabled: false
     type: messaging
-    priority: 50
+    priority: 30
   rundeck:
     enabled: false
     type: automation
     priority: 60
-  traefik:
-    enabled: false
-    type: ingress
-    priority: 10
-  wiki:
+  wikijs:
     enabled: false
     type: communication
-    priority: 60
+    priority: 70
 
-# Cluster configuration
+# Extra namespaces to be created in your cluster
+# Should be defined using the following notation:
+#   kubernetes_extra_namespaces:
+#     - first-namespace
+#     - second-namespace
 kubernetes_extra_namespaces: []
+# Extra service accounts to be created in your cluster
+# Should be defined using the following notation:
+#   kubernetes_extra_service_accounts:
+#     - name: administration-service-account
+#       namespace: administration
+#     - name: deployment-service-account
+#       namespace: deployment
 kubernetes_extra_service_accounts: []
 
 # Organization details
@@ -94,16 +108,40 @@ domain: example.com
 email_domain: example.com
 
 # Ingress configuration
-ingress_name: nginx
+ingress_class: nginx
 ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
 # Nginx ingress configuration
+ingress_nginx_autoscaling_enabled: false
+ingress_nginx_autoscaling_max_replicas: 2
+ingress_nginx_autoscaling_min_replicas: 1
+ingress_nginx_autoscaling_target_cpu_utilization: 75
+ingress_nginx_autoscaling_target_ram_utilization: 75
 ingress_nginx_config: {}
+ingress_nginx_extra_args: {}
 ingress_nginx_headers: {}
+ingress_nginx_kind: Deployment
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
+ingress_nginx_min_available: 1
+ingress_nginx_proxy_headers: {}
+
+# Prometheus configuration
+alertmanager_persistence_enabled: false
+alertmanager_persistence_size: 2Gi
+prometheus_evaluation_interval: 1m
+prometheus_persistence_enabled: false
+prometheus_persistence_size: 8Gi
+prometheus_replicas: 1
+prometheus_retention: 30d
+prometheus_scrape_interval: 1m
+prometheus_scrape_timeout: 10s
+pushgateway_enabled: false
+pushgateway_persistence_enabled: false
+pushgateway_persistence_size: 2Gi
+pushgateway_replicas: 1
 
 # MariaDB configuration
 mariadb_metrics_enabled: true
@@ -124,6 +162,14 @@ postgresql_replicas: 1
 postgresql_replication_enabled: false
 postgresql_replication_user: replicator
 postgresql_replication_password:
+
+# Kubernetes dashboard configuration
+dashboard_config_items_displayed: 20
+dashboard_config_logs_refresh_interval: 5
+dashboard_config_notifications_disabled: true
+dashboard_config_resouce_refresh_interval: 5
+dashboard_rbac_readonly: true
+dashboard_replicas: 1
 
 # pgAdmin configuration
 pgadmin_admin_email: "admin@{{ email_domain }}"
@@ -154,7 +200,10 @@ rabbitmq_admin_password:
 rabbitmq_erlang_cookie:
 rabbitmq_persistence_enabled: false
 rabbitmq_persistence_size: 10Gi
-rabbitmq_plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+rabbitmq_plugins:
+  - rabbitmq_management
+  - rabbitmq_peer_discovery_k8s
+rabbitmq_replicas: 3
 
 # Gitea configuration
 gitea_admin_user: gitea
@@ -179,9 +228,9 @@ dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 8Gi
 
 # Wiki configuration
-wiki_database_name: wiki
-wiki_database_user: wiki
-wiki_database_password:
+wikijs_database_name: wiki
+wikijs_database_user: wiki
+wikijs_database_password:
 
 # Rundeck configuration
 rundeck_database_name: rundeck

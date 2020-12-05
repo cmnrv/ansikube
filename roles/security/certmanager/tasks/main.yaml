@@ -15,12 +15,6 @@
   tags:
     - install
 
-- name: pause for 5 seconds so the webhook is ready
-  pause:
-    seconds: 5
-  tags:
-    - install
-
 - name: check if the clusterissuer crd exists
   community.kubernetes.k8s_info:
     context: "{{ context }}"
