@@ -19,31 +19,28 @@ This project has been tested with the following kubernetes distributions and/or 
 
 There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
 
-### Installing Ansible
 
-Install PIP and the main Ansible packages:
+<details>
+  <summary>Installing Ansible</summary>
+
 ```sh
-[sudo] apt-get install python3-pip
 pip3 install --upgrade pip
+pip3 install openshift 
 pip3 install ansible-base
 pip3 install ansible
-```
-
-Then, install the [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) collection:
-```sh
-pip3 install openshift
 ansible-galaxy collection install community.kubernetes
 ```
+</details>
 
-### Installing k3d
+<details>
+  <summary>Installing k3d</summary>
 
 ```sh
 export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 ```
-> **_NOTE:_**
-> Kind and Minikube can be used as well, but you need to change the ingress_service_type to `NodePort`.
+</details>
 
 ## Usage
 
