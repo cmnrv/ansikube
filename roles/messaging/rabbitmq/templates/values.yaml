@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: rabbitmq
+fullnameOverride: "{{ release_name }}"
 
 auth:
   username: "{{ rabbitmq_admin_user }}"

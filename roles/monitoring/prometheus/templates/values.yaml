@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: prometheus
+fullnameOverride: "{{ release_name }}"
 
 alertmanager:
   baseURL: "https://alertmanager.{{ domain }}"

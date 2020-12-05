@@ -1,6 +1,6 @@
 ---
 
-fullnameOverride: redis
+fullnameOverride: "{{ release_name }}"
 
 cluster:
   enabled: true

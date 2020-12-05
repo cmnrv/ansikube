@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: "wiki"
+fullnameOverride: "{{ release_name }}"
 
 ingress:
   enabled: true

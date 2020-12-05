@@ -1,7 +1,7 @@
 #jinja2:lstrip_blocks: True
 ---
 
-fullnameOverride: postgresql
+fullnameOverride: "{{ release_name }}"
 
 {% if postgresql_replication_enabled %}
 replication:
