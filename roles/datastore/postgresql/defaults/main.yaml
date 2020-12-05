@@ -7,7 +7,7 @@ release_namespace: datastore
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: postgresql
-chart_version: 10.1.1
+chart_version: 10.1.2
 
 # Main configuration
 postgresql_admin_user: postgres

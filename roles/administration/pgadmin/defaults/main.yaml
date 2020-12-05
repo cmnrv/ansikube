@@ -7,7 +7,7 @@ release_namespace: administration
 # Chart information
 chart_repository: https://helm.runix.net/
 chart_name: pgadmin4
-chart_version: 1.3.8
+chart_version: 1.4.0
 
 # Main configuration
 pgadmin_admin_email: "admin@{{ email_domain }}"
