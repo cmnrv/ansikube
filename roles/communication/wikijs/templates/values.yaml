@@ -20,9 +20,9 @@ postgresql:
   {% if components.postgresql.enabled %}
   enabled: false
   postgresqlHost: postgresql.datastore.svc.cluster.local
-  postgresqlUser: "{{ wiki_database_user }}"
-  postgresqlDatabase: "{{ wiki_database_name }}"
-  existingSecret: wiki-credentials
+  postgresqlUser: "{{ wikijs_database_user }}"
+  postgresqlDatabase: "{{ wikijs_database_name }}"
+  existingSecret: wikijs-credentials
   existingSecretKey: postgresql-password
   {% else %}
   enabled: true

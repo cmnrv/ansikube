@@ -82,7 +82,7 @@ components:
     enabled: false
     type: automation
     priority: 60
-  wiki:
+  wikijs:
     enabled: false
     type: communication
     priority: 70
@@ -214,9 +214,9 @@ dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 8Gi
 
 # Wiki configuration
-wiki_database_name: wiki
-wiki_database_user: wiki
-wiki_database_password:
+wikijs_database_name: wiki
+wikijs_database_user: wiki
+wikijs_database_password:
 
 # Rundeck configuration
 rundeck_database_name: rundeck
