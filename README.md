@@ -18,6 +18,7 @@ This project has been tested with the following kubernetes distributions and/or 
 * [OVH](https://www.ovhcloud.com/fr/public-cloud/kubernetes/) managed kubernetes service
 
 And with the following OAuth providers:
+* GitHub
 * Google
 
 There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
