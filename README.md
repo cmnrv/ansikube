@@ -60,6 +60,12 @@ ansible-playbook --diff playbooks/install.yaml --limit local [--check]
 
 That's it, your cluster is now ready.
 
+### Want to go further ?
+
+#### Replacing the default hosts
+
+You can override the default inventory by creating a file in the inventories folder. It has to follow the following convention: `inventories/hosts.__SOMETHING__.yaml`. That file will then automatically be included and it will override any similar entry found in the default hosts file.
+
 ### Want to start over ?
 
 Delete the releases and associated resources:
