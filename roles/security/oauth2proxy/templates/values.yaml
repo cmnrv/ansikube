@@ -9,12 +9,10 @@ config:
   google:
     existingSecret: oauth2-proxy-credentials
   {% endif %}
-  configFile: |-
-    email_domains = [ "{{ email_domain }}" ]
 
 extraArgs:
   cookie-domain: ".{{ domain }}"
-  pass-access-token: true
+  email-domain: "{{ oauth2_proxy_email_domains }}"
   provider: "{{ oauth2_proxy_provider | default('google') }}"
   whitelist-domain: ".{{ domain }}"
 
