@@ -15,6 +15,7 @@ config:
 extraArgs:
   cookie-domain: ".{{ domain }}"
   pass-access-token: true
+  provider: "{{ oauth2_proxy_provider | default('google') }}"
   whitelist-domain: ".{{ domain }}"
 
 ingress:

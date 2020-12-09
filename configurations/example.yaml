@@ -148,6 +148,7 @@ pushgateway_persistence_size: 2Gi
 pushgateway_replicas: 1
 
 # Oauth2-proxy configuration
+oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
 oauth2_proxy_cookie_secret: cookie

@@ -10,6 +10,7 @@ chart_name: oauth2-proxy
 chart_version: 4.0.1
 
 # Main configuration
+oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
 oauth2_proxy_cookie_secret: cookie
