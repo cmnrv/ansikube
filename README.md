@@ -64,7 +64,7 @@ That's it, your cluster is now ready.
 
 #### Replacing the default hosts
 
-You can override the default inventory by creating a file in the inventories folder. It has to follow the following convention: `inventories/hosts.__SOMETHING__.yaml`. That file will then automatically be included and it will override any similar entry found in the default hosts file.
+You can override the default inventory by creating a file in the inventories folder (using the following convention: `inventories/hosts.__SOMETHING__.yaml`). That file will then automatically be included and it will override any similar entry found in the default hosts file.
 
 ### Want to start over ?
 
