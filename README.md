@@ -45,7 +45,7 @@ k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 
 Create your configuration file and adapt it to your needs:
 ```sh
-cp configurations/example.yaml configurations/local.context.yaml
+cp configurations/example.yaml configurations/context.local.yaml
 ```
 
 Then, run the configuration playbook to create cluster resources (such as namespaces and service accounts):
