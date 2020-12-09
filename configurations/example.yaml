@@ -152,7 +152,7 @@ oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
 oauth2_proxy_cookie_secret: cookie
-oauth2_proxy_email_domains: "*"
+oauth2_proxy_email_domains: "{{ email_domain }}"
 oauth2_proxy_service_account:
 oauth2_proxy_replicas: 1
 
