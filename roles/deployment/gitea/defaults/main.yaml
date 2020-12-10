@@ -7,7 +7,7 @@ release_namespace: deployment
 # Chart information
 chart_repository: https://dl.gitea.io/charts/
 chart_name: gitea
-chart_version: 2.0.4
+chart_version: 2.1.0
 
 # Main configuration
 gitea_admin_user: gitea
