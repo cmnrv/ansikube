@@ -1,0 +1,33 @@
+#jinja2:lstrip_blocks: True
+---
+
+fullnameOverride: "{{ release_name }}"
+
+config:
+  existingSecret: oauth2-proxy-credentials
+  {% if oauth2_proxy_service_account %}
+  google:
+    existingSecret: oauth2-proxy-credentials
+  {% endif %}
+
+extraArgs:
+  cookie-domain: ".{{ domain }}"
+  email-domain: "{{ oauth2_proxy_email_domain }}"
+  provider: "{{ oauth2_proxy_provider | default('google') }}"
+  whitelist-domain: ".{{ domain }}"
+
+ingress:
+  enabled: true
+  hosts:
+    - "auth.{{ domain }}"
+  path: /
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  tls:
+    - secretName: oauth2-proxy-tls-certificate
+      hosts:
+        - "auth.{{ domain }}"
+
+replicaCount: "{{ oauth2_proxy_replicas }}"
+
+httpScheme: http
