@@ -13,9 +13,13 @@ You will need the following:
 * An available Kubernetes (1.16+) cluster
 
 This project has been tested with the following kubernetes distributions and/or providers:
-* k3d, kind and minikube for local environments
+* k3d for local environments
 * [GKE](https://cloud.google.com/kubernetes-engine) managed kubernetes service
 * [OVH](https://www.ovhcloud.com/fr/public-cloud/kubernetes/) managed kubernetes service
+
+And with the following OAuth providers:
+* GitHub
+* Google
 
 There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
 
@@ -37,7 +41,11 @@ ansible-galaxy collection install community.kubernetes
 ```sh
 export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
+
+k3d cluster create local \
+--agents 2 --no-lb \
+--port 80:80@server[0] --port 443:443@server[0] \
+--k3s-server-arg "--no-deploy=traefik"
 ```
 </details>
 
@@ -45,7 +53,7 @@ k3d cluster create local --k3s-server-arg '--no-deploy=traefik'
 
 Create your configuration file and adapt it to your needs:
 ```sh
-cp configurations/example.yaml configurations/local.context.yaml
+cp configurations/example.yaml configurations/context.local.yaml
 ```
 
 Then, run the configuration playbook to create cluster resources (such as namespaces and service accounts):
@@ -59,6 +67,12 @@ ansible-playbook --diff playbooks/install.yaml --limit local [--check]
 ```
 
 That's it, your cluster is now ready.
+
+### Want to go further ?
+
+#### Replacing the default hosts
+
+You can override the default inventory by creating a file in the inventories folder (using the following convention: `inventories/hosts.__SOMETHING__.yaml`). That file will then automatically be included and it will override any similar entry found in the default hosts file.
 
 ### Want to start over ?
 

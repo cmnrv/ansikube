@@ -3,7 +3,7 @@
 - hosts: all
   vars_files:
     - ../configurations/cluster.yaml
-    - "../configurations/{{ inventory_hostname }}.context.yaml"
+    - "../configurations/context.{{ inventory_hostname }}.yaml"
   tasks:
     - name: create namespaces
       community.kubernetes.k8s:

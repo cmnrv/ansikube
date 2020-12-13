@@ -106,10 +106,15 @@ kubernetes_extra_namespaces: []
 #       namespace: deployment
 kubernetes_extra_service_accounts: []
 
-# Organization details
+# Your company's or organization's name. This is mostly used to fill in some titles and banners.
 organization: My Organization
-domain: example.com
-email_domain: example.com
+
+# The domain to use as a base for all ingress entries (e.g. grafana.localtest.me). Use your own domain
+# for non local environments and use domains like localtest.me or lvh.me for local environments
+domain: localtest.me
+
+# The domain to use as a base for emails and oauth settings
+email_domain: company.com
 
 # Ingress configuration
 ingress_class: nginx

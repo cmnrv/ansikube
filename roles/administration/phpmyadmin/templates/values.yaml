@@ -5,24 +5,19 @@ fullnameOverride: "{{ release_name }}"
 
 db:
   allowArbitraryServer: false
-  port: 3306
   host: "mariadb-primary.datastore.svc.cluster.local"
 
 ingress:
   enabled: true
   certManager: true
-  rewriteTarget: true
   annotations:
     kubernetes.io/tls-acme: "true"
     {% if components.oauth2proxy.enabled %}
     nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
     {% endif %}
-  hosts:
-    - name: "phpmyadmin.{{ domain }}"
-      path: /
-      tls: true
-      tlsSecret: phpmyadmin-tls-certificate
+  hostname: "phpmyadmin.{{ domain }}"
+  tls: true
 
 metrics:
   enabled: {{ phpmyadmin_metrics_enabled }}

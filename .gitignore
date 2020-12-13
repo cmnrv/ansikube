@@ -1,1 +1,2 @@
-configurations/*.context.yaml
+configurations/context.*.yaml
+inventories/hosts.*.yaml
