@@ -7,7 +7,7 @@ release_namespace: administration
 # Chart information
 chart_repository: https://kubernetes.github.io/dashboard/
 chart_name: kubernetes-dashboard
-chart_version: 3.0.1
+chart_version: 3.0.2
 
 # Main configuration
 dashboard_config_items_displayed: 20
