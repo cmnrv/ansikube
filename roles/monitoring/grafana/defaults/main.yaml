@@ -7,7 +7,7 @@ release_namespace: monitoring
 # Chart information
 chart_repository: https://grafana.github.io/helm-charts
 chart_name: grafana
-chart_version: 6.1.14
+chart_version: 6.1.15
 
 # Main configuration
 grafana_admin_user: admin

@@ -7,7 +7,7 @@ release_namespace: administration
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: phpmyadmin
-chart_version: 8.0.1
+chart_version: 8.0.2
 
 # Main configuration
 phpmyadmin_metrics_enabled: true

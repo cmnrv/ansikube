@@ -7,7 +7,7 @@ release_namespace: datastore
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: mariadb
-chart_version: 9.1.2
+chart_version: 9.1.4
 
 # Main configuration
 mariadb_metrics_enabled: true
