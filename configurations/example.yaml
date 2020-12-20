@@ -22,10 +22,6 @@ components:
     enabled: true
     type: security
     priority: 20
-  dashboard:
-    enabled: false
-    type: administration
-    priority: 50
   dokuwiki:
     enabled: false
     type: communication
@@ -38,6 +34,10 @@ components:
     enabled: false
     type: monitoring
     priority: 40
+  kubernetes_dashboard:
+    enabled: false
+    type: administration
+    priority: 50
   mariadb:
     enabled: false
     type: datastore
@@ -140,14 +140,6 @@ ingress_nginx_min_available: 1
 ingress_nginx_proxy_headers: {}
 ingress_nginx_replicas: 1
 
-# Kubernetes dashboard configuration
-dashboard_config_items_displayed: 20
-dashboard_config_logs_refresh_interval: 5
-dashboard_config_notifications_disabled: true
-dashboard_config_resouce_refresh_interval: 5
-dashboard_rbac_readonly: true
-dashboard_replicas: 1
-
 # DokuWiki configuration
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
@@ -182,6 +174,14 @@ grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
 grafana_persistence_size: 10Gi
+
+# Kubernetes dashboard configuration
+kubernetes_dashboard_config_items_displayed: 20
+kubernetes_dashboard_config_logs_refresh_interval: 5
+kubernetes_dashboard_config_notifications_disabled: true
+kubernetes_dashboard_config_resouce_refresh_interval: 5
+kubernetes_dashboard_rbac_readonly: true
+kubernetes_dashboard_replicas: 1
 
 # MariaDB configuration
 mariadb_metrics_enabled: true

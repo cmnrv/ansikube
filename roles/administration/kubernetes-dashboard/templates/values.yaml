@@ -2,7 +2,7 @@
 ---
 
 fullnameOverride: "{{ release_name }}"
-replicaCount: "{{ dashboard_replicas }}"
+replicaCount: "{{ kubernetes_dashboard_replicas }}"
 
 extraArgs:
   - --system-banner="{{ organization }} - {{ context }}"
@@ -26,10 +26,10 @@ ingress:
 
 settings:
   clusterName: "{{ context }}"
-  itemsPerPage: {{ dashboard_config_items_displayed }}
-  logsAutoRefreshTimeInterval: {{ dashboard_config_logs_refresh_interval }}
-  resourceAutoRefreshTimeInterval: {{ dashboard_config_resouce_refresh_interval }}
-  disableAccessDeniedNotifications: {{ dashboard_config_notifications_disabled }}
+  itemsPerPage: {{ kubernetes_dashboard_config_items_displayed }}
+  logsAutoRefreshTimeInterval: {{ kubernetes_dashboard_config_logs_refresh_interval }}
+  resourceAutoRefreshTimeInterval: {{ kubernetes_dashboard_config_resouce_refresh_interval }}
+  disableAccessDeniedNotifications: {{ kubernetes_dashboard_config_notifications_disabled }}
 
 pinnedCRDs:
   {% if components.certmanager.enabled %}
@@ -47,4 +47,4 @@ metricsScraper:
   enabled: true
 
 rbac:
-  clusterReadOnlyRole: "{{ dashboard_rbac_readonly }}"
+  clusterReadOnlyRole: "{{ kubernetes_dashboard_rbac_readonly }}"
