@@ -9,7 +9,7 @@ alertmanager:
     enabled: true
     annotations:
       kubernetes.io/tls-acme: "true"
-      {% if components.oauth2proxy.enabled %}
+      {% if components.oauth2_proxy.enabled %}
       nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
       nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
       {% endif %}
@@ -36,7 +36,7 @@ server:
     enabled: true
     annotations:
       kubernetes.io/tls-acme: "true"
-      {% if components.oauth2proxy.enabled %}
+      {% if components.oauth2_proxy.enabled %}
       nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
       nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
       {% endif %}
@@ -58,7 +58,7 @@ pushgateway:
     enabled: true
     annotations:
       kubernetes.io/tls-acme: "true"
-      {% if components.oauth2proxy.enabled %}
+      {% if components.oauth2_proxy.enabled %}
       nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
       nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
       {% endif %}

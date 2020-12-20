@@ -54,7 +54,7 @@ components:
     enabled: true
     type: ingress
     priority: 10
-  oauth2proxy:
+  oauth2_proxy:
     enabled: false
     type: security
     priority: 20
