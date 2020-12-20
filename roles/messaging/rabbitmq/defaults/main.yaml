@@ -7,7 +7,7 @@ release_namespace: messaging
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: rabbitmq
-chart_version: 8.5.4
+chart_version: 8.6.0
 
 # Main configuration
 rabbitmq_admin_user: admin
