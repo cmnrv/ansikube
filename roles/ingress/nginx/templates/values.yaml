@@ -21,7 +21,7 @@ controller:
     {{ arg }}: "{{ ingress_nginx_extra_args[arg] }}"
     {% endfor %}
   kind: "{{ ingress_nginx_kind }}"
-  replicaCount: "{{ ingress_replicas }}"
+  replicaCount: "{{ ingress_nginx_replicas }}"
   minAvailable: "{{ ingress_nginx_min_available }}"
   autoscaling:
     enabled: "{{ ingress_nginx_autoscaling_enabled }}"

@@ -121,7 +121,6 @@ cluster_domain: cluster.local
 
 # Ingress configuration
 ingress: nginx
-ingress_replicas: 1
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
@@ -139,6 +138,7 @@ ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
 ingress_nginx_min_available: 1
 ingress_nginx_proxy_headers: {}
+ingress_nginx_replicas: 1
 
 # Prometheus configuration
 alertmanager_persistence_enabled: false
