@@ -116,6 +116,9 @@ domain: localtest.me
 # The domain to use as a base for emails and oauth settings
 email_domain: company.com
 
+# The internal domain used by the cluster. Do not change if you don't know what this is.
+cluster_domain: cluster.local
+
 # Ingress configuration
 ingress_class: nginx
 ingress_replicas: 1
