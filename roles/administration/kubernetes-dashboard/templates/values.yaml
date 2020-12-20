@@ -32,7 +32,7 @@ settings:
   disableAccessDeniedNotifications: {{ kubernetes_dashboard_config_notifications_disabled }}
 
 pinnedCRDs:
-  {% if components.certmanager.enabled %}
+  {% if components.cert_manager.enabled %}
   - kind: customresourcedefinition
     name: certificates.cert-manager.io
     displayName: cert-manager/certificates

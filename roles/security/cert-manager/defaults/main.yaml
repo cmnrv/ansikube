@@ -10,6 +10,6 @@ chart_name: cert-manager
 chart_version: 1.1.0
 
 # Main configuration
-certmanager_log_level: 2
-certmanager_metrics_enabled: true
-certmanager_replicas: 1
+cert_manager_log_level: 2
+cert_manager_metrics_enabled: true
+cert_manager_replicas: 1

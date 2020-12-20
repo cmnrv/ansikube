@@ -18,7 +18,7 @@ context: example
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
 #   70: other tools (dokuwiki, mattermost,...)
 components:
-  certmanager:
+  cert_manager:
     enabled: true
     type: security
     priority: 20
@@ -139,6 +139,11 @@ ingress_nginx_metrics_port: 10254
 ingress_nginx_min_available: 1
 ingress_nginx_proxy_headers: {}
 ingress_nginx_replicas: 1
+
+# cert-manager configuration
+cert_manager_log_level: 2
+cert_manager_metrics_enabled: true
+cert_manager_replicas: 1
 
 # DokuWiki configuration
 dokuwiki_admin_user: admin

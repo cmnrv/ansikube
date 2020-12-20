@@ -4,10 +4,10 @@ fullnameOverride: "{{ release_name }}"
 
 global:
   priorityClassName: system-cluster-critical
-  logLevel: "{{ certmanager_log_level }}"
+  logLevel: "{{ cert_manager_log_level }}"
 
 installCRDs: true
-replicaCount: "{{ certmanager_replicas }}"
+replicaCount: "{{ cert_manager_replicas }}"
 clusterResourceNamespace: "{{ release_namespace }}"
 
 extraArgs:
@@ -19,7 +19,7 @@ ingressShim:
   defaultIssuerGroup: cert-manager.io
 
 prometheus:
-  enabled: "{{ certmanager_metrics_enabled }}"
+  enabled: "{{ cert_manager_metrics_enabled }}"
 
 webhook:
   readinessProbe:
