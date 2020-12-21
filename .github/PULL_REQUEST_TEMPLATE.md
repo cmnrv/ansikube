@@ -7,23 +7,18 @@ Describe what this pull request is doing.
 ### Added
 
 -
--
 
 ### Changed
 
--
 -
 
 ### Fixed
 
 -
--
 
 ### Removed
 
 -
--
-
 
 ---
 Resolves #
