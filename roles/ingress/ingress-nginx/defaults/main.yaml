@@ -21,6 +21,5 @@ ingress_nginx_headers: {}
 ingress_nginx_kind: Deployment
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
-ingress_nginx_min_available: 1
 ingress_nginx_proxy_headers: {}
 ingress_nginx_replicas: 1

@@ -22,7 +22,7 @@ controller:
     {% endfor %}
   kind: "{{ ingress_nginx_kind }}"
   replicaCount: "{{ ingress_nginx_replicas }}"
-  minAvailable: "{{ ingress_nginx_min_available }}"
+  minAvailable: "{{ ingress_nginx_replicas }}"
   autoscaling:
     enabled: "{{ ingress_nginx_autoscaling_enabled }}"
     minReplicas: "{{ ingress_nginx_autoscaling_min_replicas }}"
