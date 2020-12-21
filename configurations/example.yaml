@@ -26,6 +26,7 @@ components:
   postgresql: { enabled: false, type: datastore, priority: 30 }
   redis: { enabled: false, type: datastore, priority: 30 }
   rabbitmq: { enabled: false, type: messaging, priority: 30 }
+  goldpinger: { enabled: false, type: monitoring, priority: 40 }
   grafana: { enabled: false, type: monitoring, priority: 40 }
   kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
   phpmyadmin: { enabled: false, type: administration, priority: 50 }
@@ -110,6 +111,9 @@ gitea_persistence_enabled: false
 gitea_persistence_size: 2Gi
 gitea_replicas: 1
 gitea_ssh_port: 2223
+
+# Goldpinger configuration
+goldpinger_hosts: []
 
 # Grafana configuration
 grafana_admin_user: admin
