@@ -2,7 +2,7 @@
 ---
 
 fullnameOverride: "{{ release_name }}"
-replicaCount: "{{ dashboard_replicas }}"
+replicaCount: "{{ kubernetes_dashboard_replicas }}"
 
 extraArgs:
   - --system-banner="{{ organization }} - {{ context }}"
@@ -11,7 +11,7 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/tls-acme: "true"
-    {% if components.oauth2proxy.enabled %}
+    {% if components.oauth2_proxy.enabled %}
     nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
     {% endif %}
@@ -26,13 +26,13 @@ ingress:
 
 settings:
   clusterName: "{{ context }}"
-  itemsPerPage: {{ dashboard_config_items_displayed }}
-  logsAutoRefreshTimeInterval: {{ dashboard_config_logs_refresh_interval }}
-  resourceAutoRefreshTimeInterval: {{ dashboard_config_resouce_refresh_interval }}
-  disableAccessDeniedNotifications: {{ dashboard_config_notifications_disabled }}
+  itemsPerPage: {{ kubernetes_dashboard_config_items_displayed }}
+  logsAutoRefreshTimeInterval: {{ kubernetes_dashboard_config_logs_refresh_interval }}
+  resourceAutoRefreshTimeInterval: {{ kubernetes_dashboard_config_resouce_refresh_interval }}
+  disableAccessDeniedNotifications: {{ kubernetes_dashboard_config_notifications_disabled }}
 
 pinnedCRDs:
-  {% if components.certmanager.enabled %}
+  {% if components.cert_manager.enabled %}
   - kind: customresourcedefinition
     name: certificates.cert-manager.io
     displayName: cert-manager/certificates
@@ -47,4 +47,4 @@ metricsScraper:
   enabled: true
 
 rbac:
-  clusterReadOnlyRole: "{{ dashboard_rbac_readonly }}"
+  clusterReadOnlyRole: "{{ kubernetes_dashboard_rbac_readonly }}"

@@ -7,15 +7,15 @@ release_namespace: messaging
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
 chart_name: rabbitmq
-chart_version: 8.5.4
+chart_version: 8.6.0
 
 # Main configuration
 rabbitmq_admin_user: admin
 rabbitmq_admin_password:
 rabbitmq_erlang_cookie:
 rabbitmq_persistence_enabled: false
-rabbitmq_persistence_size: 10Gi
+rabbitmq_persistence_size: 2Gi
 rabbitmq_plugins:
   - rabbitmq_management
   - rabbitmq_peer_discovery_k8s
-rabbitmq_replicas: 3
+rabbitmq_replicas: 1

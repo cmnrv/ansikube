@@ -18,7 +18,7 @@
   tasks:
     - name: include role
       include_role:
-        name: "{{ item.value.type }}/{{ item.key }}"
+        name: "{{ item.value.type }}/{{ item.key | replace('_', '-') }}"
       tags:
         - install
         - uninstall

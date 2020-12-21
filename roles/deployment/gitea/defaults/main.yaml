@@ -18,6 +18,6 @@ gitea_database_name: gitea
 gitea_database_user: gitea
 gitea_database_password:
 gitea_persistence_enabled: false
-gitea_persistence_size: 10Gi
+gitea_persistence_size: 2Gi
 gitea_replicas: 1
 gitea_ssh_port: 2223

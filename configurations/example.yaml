@@ -1,5 +1,4 @@
 ---
-
 # Context configuration example, to be copied and adapted to your context (local, staging,...). Values do
 # not have be encrypted or base64 encoded, ansible is taking care of that in the templates. Context files are
 # ignored and won't be commited.
@@ -18,78 +17,24 @@ context: example
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
 #   70: other tools (dokuwiki, mattermost,...)
 components:
-  certmanager:
-    enabled: true
-    type: security
-    priority: 20
-  dashboard:
-    enabled: false
-    type: administration
-    priority: 50
-  dokuwiki:
-    enabled: false
-    type: communication
-    priority: 70
-  gitea:
-    enabled: false
-    type: deployment
-    priority: 60
-  grafana:
-    enabled: false
-    type: monitoring
-    priority: 40
-  mariadb:
-    enabled: false
-    type: datastore
-    priority: 30
-  mattermost:
-    enabled: false
-    type: communication
-    priority: 70
-  nats:
-    enabled: false
-    type: messaging
-    priority: 30
-  nginx:
-    enabled: true
-    type: ingress
-    priority: 10
-  oauth2proxy:
-    enabled: false
-    type: security
-    priority: 20
-  phpmyadmin:
-    enabled: false
-    type: administration
-    priority: 50
-  pgadmin:
-    enabled: false
-    type: administration
-    priority: 50
-  postgresql:
-    enabled: false
-    type: datastore
-    priority: 30
-  prometheus:
-    enabled: false
-    type: monitoring
-    priority: 20
-  redis:
-    enabled: false
-    type: datastore
-    priority: 30
-  rabbitmq:
-    enabled: false
-    type: messaging
-    priority: 30
-  rundeck:
-    enabled: false
-    type: automation
-    priority: 60
-  wikijs:
-    enabled: false
-    type: communication
-    priority: 70
+  ingress_nginx: { enabled: true, type: ingress, priority: 10 }
+  cert_manager: { enabled: true, type: security, priority: 20 }
+  oauth2_proxy: { enabled: false, type: security, priority: 20 }
+  prometheus: { enabled: false, type: monitoring, priority: 20 }
+  mariadb: { enabled: false, type: datastore, priority: 30 }
+  nats: { enabled: false, type: messaging, priority: 30 }
+  postgresql: { enabled: false, type: datastore, priority: 30 }
+  redis: { enabled: false, type: datastore, priority: 30 }
+  rabbitmq: { enabled: false, type: messaging, priority: 30 }
+  grafana: { enabled: false, type: monitoring, priority: 40 }
+  kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
+  phpmyadmin: { enabled: false, type: administration, priority: 50 }
+  pgadmin: { enabled: false, type: administration, priority: 50 }
+  gitea: { enabled: false, type: deployment, priority: 60 }
+  rundeck: { enabled: false, type: automation, priority: 60 }
+  dokuwiki: { enabled: false, type: communication, priority: 70 }
+  mattermost: { enabled: false, type: communication, priority: 70 }
+  wikijs: { enabled: false, type: communication, priority: 70 }
 
 # Extra namespaces to be created in your cluster
 # Should be defined using the following notation:
@@ -116,9 +61,11 @@ domain: localtest.me
 # The domain to use as a base for emails and oauth settings
 email_domain: company.com
 
+# The internal domain used by the cluster. Do not change if you don't know what this is.
+cluster_domain: cluster.local
+
 # Ingress configuration
-ingress_class: nginx
-ingress_replicas: 1
+ingress: nginx
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
@@ -134,70 +81,35 @@ ingress_nginx_headers: {}
 ingress_nginx_kind: Deployment
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
-ingress_nginx_min_available: 1
 ingress_nginx_proxy_headers: {}
+ingress_nginx_replicas: 1
 
-# Prometheus configuration
-alertmanager_persistence_enabled: false
-alertmanager_persistence_size: 2Gi
-prometheus_evaluation_interval: 1m
-prometheus_persistence_enabled: false
-prometheus_persistence_size: 8Gi
-prometheus_replicas: 1
-prometheus_retention: 30d
-prometheus_scrape_interval: 1m
-prometheus_scrape_timeout: 10s
-pushgateway_enabled: false
-pushgateway_persistence_enabled: false
-pushgateway_persistence_size: 2Gi
-pushgateway_replicas: 1
+# cert-manager configuration
+cert_manager_log_level: 2
+cert_manager_metrics_enabled: true
+cert_manager_replicas: 1
 
-# Oauth2-proxy configuration
-oauth2_proxy_provider: google
-oauth2_proxy_client_id: id
-oauth2_proxy_client_secret: secret
-oauth2_proxy_cookie_secret: cookie
-oauth2_proxy_email_domain: "{{ email_domain }}"
-oauth2_proxy_service_account:
-oauth2_proxy_replicas: 1
+# DokuWiki configuration
+dokuwiki_admin_user: admin
+dokuwiki_admin_email: "admin@{{ email_domain }}"
+dokuwiki_admin_password:
+dokuwiki_admin_name: "Administrator"
+dokuwiki_metrics_enabled: true
+dokuwiki_persistence_enabled: false
+dokuwiki_persistence_size: 2Gi
 
-# MariaDB configuration
-mariadb_metrics_enabled: true
-mariadb_persistence_enabled: false
-mariadb_persistence_size: 8Gi
-mariadb_replicas: 1
-mariadb_replication_user: replicator
-mariadb_replication_password:
-mariadb_root_password:
-
-# PostgreSQL configuration
-postgresql_admin_user: postgres
-postgresql_admin_password:
-postgresql_metrics_enabled: true
-postgresql_persistence_enabled: false
-postgresql_persistence_size: 10Gi
-postgresql_replicas: 1
-postgresql_replication_enabled: false
-postgresql_replication_user: replicator
-postgresql_replication_password:
-
-# Kubernetes dashboard configuration
-dashboard_config_items_displayed: 20
-dashboard_config_logs_refresh_interval: 5
-dashboard_config_notifications_disabled: true
-dashboard_config_resouce_refresh_interval: 5
-dashboard_rbac_readonly: true
-dashboard_replicas: 1
-
-# pgAdmin configuration
-pgadmin_admin_email: "admin@{{ email_domain }}"
-pgadmin_admin_password:
-pgadmin_persistence_enabled: false
-pgadmin_persistence_size: 5Gi
-
-# Redis configuration
-redis_persistence_enabled: false
-redis_persistence_size: 5Gi
+# Gitea configuration
+gitea_admin_user: gitea
+gitea_admin_password:
+gitea_admin_email: "admin@{{ email_domain }}"
+gitea_config_password_complexity: "lower,upper,digit,spec"
+gitea_database_name: gitea
+gitea_database_user: gitea
+gitea_database_password:
+gitea_persistence_enabled: false
+gitea_persistence_size: 2Gi
+gitea_replicas: 1
+gitea_ssh_port: 2223
 
 # Grafana configuration
 grafana_admin_user: admin
@@ -210,54 +122,100 @@ grafana_oauth_enabled: false
 grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
-grafana_persistence_size: 10Gi
+grafana_persistence_size: 2Gi
+
+# Kubernetes dashboard configuration
+kubernetes_dashboard_config_items_displayed: 20
+kubernetes_dashboard_config_logs_refresh_interval: 5
+kubernetes_dashboard_config_notifications_disabled: true
+kubernetes_dashboard_config_resouce_refresh_interval: 5
+kubernetes_dashboard_rbac_readonly: true
+kubernetes_dashboard_replicas: 1
+
+# MariaDB configuration
+mariadb_metrics_enabled: true
+mariadb_persistence_enabled: false
+mariadb_persistence_size: 2Gi
+mariadb_replicas: 1
+mariadb_replication_user: replicator
+mariadb_replication_password:
+mariadb_root_password:
+
+# Mattermost configuration
+mattermost_database_name: mattermost
+mattermost_database_user: mattermost
+mattermost_database_password:
+
+# Nats configuration
+nats_replicas: 1
+
+# Oauth2-proxy configuration
+oauth2_proxy_provider: google
+oauth2_proxy_client_id: id
+oauth2_proxy_client_secret: secret
+oauth2_proxy_cookie_secret: cookie
+oauth2_proxy_email_domain: "{{ email_domain }}"
+oauth2_proxy_service_account:
+oauth2_proxy_replicas: 1
+
+# pgAdmin configuration
+pgadmin_admin_email: "admin@{{ email_domain }}"
+pgadmin_admin_password:
+pgadmin_persistence_enabled: false
+pgadmin_persistence_size: 2Gi
+
+# PostgreSQL configuration
+postgresql_admin_user: postgres
+postgresql_admin_password:
+postgresql_metrics_enabled: true
+postgresql_persistence_enabled: false
+postgresql_persistence_size: 2Gi
+postgresql_replicas: 1
+postgresql_replication_enabled: false
+postgresql_replication_user: replicator
+postgresql_replication_password:
+
+# Prometheus configuration
+alertmanager_persistence_enabled: false
+alertmanager_persistence_size: 2Gi
+prometheus_evaluation_interval: 1m
+prometheus_persistence_enabled: false
+prometheus_persistence_size: 2Gi
+prometheus_replicas: 1
+prometheus_retention: 30d
+prometheus_scrape_interval: 1m
+prometheus_scrape_timeout: 10s
+pushgateway_enabled: false
+pushgateway_persistence_enabled: false
+pushgateway_persistence_size: 2Gi
+pushgateway_replicas: 1
 
 # RabbitMQ configuration
 rabbitmq_admin_user: admin
 rabbitmq_admin_password:
 rabbitmq_erlang_cookie:
 rabbitmq_persistence_enabled: false
-rabbitmq_persistence_size: 10Gi
+rabbitmq_persistence_size: 2Gi
 rabbitmq_plugins:
   - rabbitmq_management
   - rabbitmq_peer_discovery_k8s
-rabbitmq_replicas: 3
+rabbitmq_replicas: 1
 
-# Gitea configuration
-gitea_admin_user: gitea
-gitea_admin_password:
-gitea_admin_email: "admin@{{ email_domain }}"
-gitea_config_password_complexity: "lower,upper,digit,spec"
-gitea_database_name: gitea
-gitea_database_user: gitea
-gitea_database_password:
-gitea_persistence_enabled: false
-gitea_persistence_size: 10Gi
-gitea_replicas: 1
-gitea_ssh_port: 2223
-
-# DokuWiki configuration
-dokuwiki_admin_user: admin
-dokuwiki_admin_email: "admin@{{ email_domain }}"
-dokuwiki_admin_password:
-dokuwiki_admin_name: "Administrator"
-dokuwiki_metrics_enabled: true
-dokuwiki_persistence_enabled: false
-dokuwiki_persistence_size: 8Gi
-
-# Wiki configuration
-wikijs_database_name: wiki
-wikijs_database_user: wiki
-wikijs_database_password:
+# Redis configuration
+redis_master_set: master
+redis_persistence_enabled: false
+redis_persistence_size: 2Gi
+redis_quorum: 1
+redis_replicas: 1
 
 # Rundeck configuration
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
 rundeck_persistence_enabled: false
-rundeck_persistence_size: 5Gi
+rundeck_persistence_size: 2Gi
 
-# Mattermost configuration
-mattermost_database_name: mattermost
-mattermost_database_user: mattermost
-mattermost_database_password:
+# Wiki configuration
+wikijs_database_name: wiki
+wikijs_database_user: wiki
+wikijs_database_password:

@@ -12,7 +12,7 @@ chart_version: 9.1.4
 # Main configuration
 mariadb_metrics_enabled: true
 mariadb_persistence_enabled: false
-mariadb_persistence_size: 8Gi
+mariadb_persistence_size: 2Gi
 mariadb_replicas: 1
 mariadb_replication_user: replicator
 mariadb_replication_password:

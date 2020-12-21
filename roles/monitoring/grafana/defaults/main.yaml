@@ -7,7 +7,7 @@ release_namespace: monitoring
 # Chart information
 chart_repository: https://grafana.github.io/helm-charts
 chart_name: grafana
-chart_version: 6.1.15
+chart_version: 6.1.16
 
 # Main configuration
 grafana_admin_user: admin
@@ -20,6 +20,6 @@ grafana_oauth_enabled: false
 grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
-grafana_persistence_size: 10Gi
+grafana_persistence_size: 2Gi
 grafana_plugins:
   - grafana-clock-panel
