@@ -147,6 +147,9 @@ mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:
 
+# Nats configuration
+nats_replicas: 1
+
 # Oauth2-proxy configuration
 oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
@@ -200,8 +203,11 @@ rabbitmq_plugins:
 rabbitmq_replicas: 1
 
 # Redis configuration
+redis_master_set: master
 redis_persistence_enabled: false
 redis_persistence_size: 2Gi
+redis_quorum: 1
+redis_replicas: 1
 
 # Rundeck configuration
 rundeck_database_name: rundeck

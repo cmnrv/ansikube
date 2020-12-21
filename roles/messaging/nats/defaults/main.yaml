@@ -10,4 +10,4 @@ chart_name: nats
 chart_version: 0.7.5
 
 # Main configuration
-nats_replicas: 3
+nats_replicas: 1
