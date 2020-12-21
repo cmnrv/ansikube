@@ -20,6 +20,6 @@ grafana_oauth_enabled: false
 grafana_oauth_client_id:
 grafana_oauth_client_secret:
 grafana_persistence_enabled: false
-grafana_persistence_size: 10Gi
+grafana_persistence_size: 2Gi
 grafana_plugins:
   - grafana-clock-panel

@@ -14,4 +14,4 @@ rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
 rundeck_persistence_enabled: false
-rundeck_persistence_size: 5Gi
+rundeck_persistence_size: 2Gi

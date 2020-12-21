@@ -12,6 +12,6 @@ chart_version: 12.2.3
 # Main configuration
 redis_master_set: master
 redis_persistence_enabled: false
-redis_persistence_size: 5Gi
+redis_persistence_size: 2Gi
 redis_quorum: 2
 redis_replicas: 3
