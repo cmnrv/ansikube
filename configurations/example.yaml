@@ -17,23 +17,23 @@ context: example
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
 #   70: other tools (dokuwiki, mattermost,...)
 components:
-  cert_manager: { enabled: true, type: security, priority: 20 }
-  dokuwiki: { enabled: false, type: communication, priority: 70 }
-  gitea: { enabled: false, type: deployment, priority: 60 }
-  grafana: { enabled: false, type: monitoring, priority: 40 }
   ingress_nginx: { enabled: true, type: ingress, priority: 10 }
-  kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
-  mariadb: { enabled: false, type: datastore, priority: 30 }
-  mattermost: { enabled: false, type: communication, priority: 70 }
-  nats: { enabled: false, type: messaging, priority: 30 }
+  cert_manager: { enabled: true, type: security, priority: 20 }
   oauth2_proxy: { enabled: false, type: security, priority: 20 }
-  phpmyadmin: { enabled: false, type: administration, priority: 50 }
-  pgadmin: { enabled: false, type: administration, priority: 50 }
-  postgresql: { enabled: false, type: datastore, priority: 30 }
   prometheus: { enabled: false, type: monitoring, priority: 20 }
+  mariadb: { enabled: false, type: datastore, priority: 30 }
+  nats: { enabled: false, type: messaging, priority: 30 }
+  postgresql: { enabled: false, type: datastore, priority: 30 }
   redis: { enabled: false, type: datastore, priority: 30 }
   rabbitmq: { enabled: false, type: messaging, priority: 30 }
+  grafana: { enabled: false, type: monitoring, priority: 40 }
+  kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
+  phpmyadmin: { enabled: false, type: administration, priority: 50 }
+  pgadmin: { enabled: false, type: administration, priority: 50 }
+  gitea: { enabled: false, type: deployment, priority: 60 }
   rundeck: { enabled: false, type: automation, priority: 60 }
+  dokuwiki: { enabled: false, type: communication, priority: 70 }
+  mattermost: { enabled: false, type: communication, priority: 70 }
   wikijs: { enabled: false, type: communication, priority: 70 }
 
 # Extra namespaces to be created in your cluster
