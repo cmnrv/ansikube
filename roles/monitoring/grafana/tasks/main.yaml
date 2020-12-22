@@ -8,12 +8,6 @@
   tags:
     - install
 
-- name: debug
-  debug:
-    var: grafana_database_host
-  tags:
-    - install
-
 - name: deploy release
   community.kubernetes.helm:
     context: "{{ context }}"
