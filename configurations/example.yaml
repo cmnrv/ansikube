@@ -31,7 +31,6 @@ components:
   kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
   phpmyadmin: { enabled: false, type: administration, priority: 50 }
   pgadmin: { enabled: false, type: administration, priority: 50 }
-  gitea: { enabled: false, type: deployment, priority: 60 }
   rundeck: { enabled: false, type: automation, priority: 60 }
   dokuwiki: { enabled: false, type: communication, priority: 70 }
   mattermost: { enabled: false, type: communication, priority: 70 }
@@ -65,161 +64,193 @@ email_domain: company.com
 # The internal domain used by the cluster. Do not change if you don't know what this is.
 cluster_domain: cluster.local
 
-# Ingress configuration
+# Main ingress configuration
 ingress: nginx
 ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
-# Nginx ingress configuration
+# ingress-nginx configuration
+## Application configuration
+ingress_nginx_config: {}
+ingress_nginx_extra_args: {}
+ingress_nginx_headers: {}
+ingress_nginx_proxy_headers: {}
+## Metrics settings
+ingress_nginx_metrics_enabled: true
+ingress_nginx_metrics_port: 10254
+## Scaling settings
 ingress_nginx_autoscaling_enabled: false
 ingress_nginx_autoscaling_max_replicas: 2
 ingress_nginx_autoscaling_min_replicas: 1
 ingress_nginx_autoscaling_target_cpu_utilization: 75
 ingress_nginx_autoscaling_target_ram_utilization: 75
-ingress_nginx_config: {}
-ingress_nginx_extra_args: {}
-ingress_nginx_headers: {}
-ingress_nginx_kind: Deployment
-ingress_nginx_metrics_enabled: true
-ingress_nginx_metrics_port: 10254
-ingress_nginx_proxy_headers: {}
 ingress_nginx_replicas: 1
 
 # cert-manager configuration
+## Application configuration
 cert_manager_log_level: 2
+## Metrics settings
 cert_manager_metrics_enabled: true
+## Scaling settings
 cert_manager_replicas: 1
 
-# DokuWiki configuration
+# dokuwiki configuration
+## Administrator credentials
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
 dokuwiki_admin_password:
 dokuwiki_admin_name: "Administrator"
+## Metrics settings
 dokuwiki_metrics_enabled: true
+## Persistence settings
 dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 2Gi
 
-# Gitea configuration
-gitea_admin_user: gitea
-gitea_admin_password:
-gitea_admin_email: "admin@{{ email_domain }}"
-gitea_config_password_complexity: "lower,upper,digit,spec"
-gitea_database_name: gitea
-gitea_database_user: gitea
-gitea_database_password:
-gitea_persistence_enabled: false
-gitea_persistence_size: 2Gi
-gitea_replicas: 1
-gitea_ssh_port: 2223
-
-# Goldpinger configuration
+# goldpinger configuration
 goldpinger_hosts: []
 
-# Grafana configuration
+# grafana configuration
+## Administrator credentials
 grafana_admin_user: admin
 grafana_admin_password: grafana
+## Database settings
+### Leave host empty if using the built-in postgresql component
 grafana_database_enabled: false
+grafana_database_host:
 grafana_database_name: grafana
 grafana_database_user:
 grafana_database_password:
+## OAuth settings
 grafana_oauth_enabled: false
 grafana_oauth_client_id:
 grafana_oauth_client_secret:
+## Persistence settings
 grafana_persistence_enabled: false
 grafana_persistence_size: 2Gi
 
-# Kubernetes dashboard configuration
+# kubernetes-dashboard configuration
+## Application configuration
 kubernetes_dashboard_config_items_displayed: 20
 kubernetes_dashboard_config_logs_refresh_interval: 5
 kubernetes_dashboard_config_notifications_disabled: true
 kubernetes_dashboard_config_resouce_refresh_interval: 5
 kubernetes_dashboard_rbac_readonly: true
+## Scaling settings
 kubernetes_dashboard_replicas: 1
 
-# MariaDB configuration
-mariadb_metrics_enabled: true
-mariadb_persistence_enabled: false
-mariadb_persistence_size: 2Gi
-mariadb_replicas: 1
+# mariadb configuration
+## Administrator credentials
+mariadb_root_password:
+## Replication settings
 mariadb_replication_user: replicator
 mariadb_replication_password:
-mariadb_root_password:
+## Metrics settings
+mariadb_metrics_enabled: true
+## Persistence settings
+mariadb_persistence_enabled: false
+mariadb_persistence_size: 2Gi
+## Scaling settings
+mariadb_replicas: 1
 
-# Mattermost configuration
+# mattermost configuration
+## Database settings
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:
 
-# Nats configuration
+# nats configuration
+## Scaling settings
 nats_replicas: 1
 
-# Oauth2-proxy configuration
+# oauth2-proxy configuration
+## OAuth settings
 oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
 oauth2_proxy_cookie_secret: cookie
 oauth2_proxy_email_domain: "{{ email_domain }}"
 oauth2_proxy_service_account:
+## Scaling settings
 oauth2_proxy_replicas: 1
 
-# pgAdmin configuration
+# pgadmin configuration
+## Administrator credentials
 pgadmin_admin_email: "admin@{{ email_domain }}"
 pgadmin_admin_password:
+## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi
 
-# PostgreSQL configuration
+# postgresql configuration
+## Administrator credentials
 postgresql_admin_user: postgres
 postgresql_admin_password:
-postgresql_metrics_enabled: true
-postgresql_persistence_enabled: false
-postgresql_persistence_size: 2Gi
-postgresql_replicas: 1
+## Replication settings
 postgresql_replication_enabled: false
 postgresql_replication_user: replicator
 postgresql_replication_password:
+## Metrics settings
+postgresql_metrics_enabled: true
+## Persistence settings
+postgresql_persistence_enabled: false
+postgresql_persistence_size: 2Gi
+## Scaling settings
+postgresql_replicas: 1
 
-# Prometheus configuration
-alertmanager_persistence_enabled: false
-alertmanager_persistence_size: 2Gi
+# prometheus configuration
+## Application settings
 prometheus_evaluation_interval: 1m
-prometheus_persistence_enabled: false
-prometheus_persistence_size: 2Gi
-prometheus_replicas: 1
 prometheus_retention: 30d
 prometheus_scrape_interval: 1m
 prometheus_scrape_timeout: 10s
 pushgateway_enabled: false
+## Persistence settings
+alertmanager_persistence_enabled: false
+alertmanager_persistence_size: 2Gi
+prometheus_persistence_enabled: false
+prometheus_persistence_size: 2Gi
 pushgateway_persistence_enabled: false
 pushgateway_persistence_size: 2Gi
+## Scaling settings
+prometheus_replicas: 1
 pushgateway_replicas: 1
 
-# RabbitMQ configuration
+# rabbitmq configuration
+## Administrator credentials
 rabbitmq_admin_user: admin
 rabbitmq_admin_password:
+## Application settings
 rabbitmq_erlang_cookie:
-rabbitmq_persistence_enabled: false
-rabbitmq_persistence_size: 2Gi
 rabbitmq_plugins:
   - rabbitmq_management
   - rabbitmq_peer_discovery_k8s
+## Persistence settings
+rabbitmq_persistence_enabled: false
+rabbitmq_persistence_size: 2Gi
+## Scaling settings
 rabbitmq_replicas: 1
 
-# Redis configuration
+# redis configuration
+## Application settings
 redis_master_set: master
+redis_quorum: 1
+## Persistence settings
 redis_persistence_enabled: false
 redis_persistence_size: 2Gi
-redis_quorum: 1
+## Scaling settings
 redis_replicas: 1
 
-# Rundeck configuration
+# rundeck configuration
+## Database settings
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
+## Persistence settings
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi
 
-# Wiki configuration
+# wikijs configuration
+## Database settings
 wikijs_database_name: wiki
 wikijs_database_user: wiki
 wikijs_database_password:
