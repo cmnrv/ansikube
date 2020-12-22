@@ -20,7 +20,7 @@ controller:
     {% for arg in ingress_nginx_extra_args | default({}) %}
     {{ arg }}: "{{ ingress_nginx_extra_args[arg] }}"
     {% endfor %}
-  kind: "{{ ingress_nginx_kind }}"
+  kind: Deployment
   replicaCount: "{{ ingress_nginx_replicas }}"
   minAvailable: "{{ ingress_nginx_replicas }}"
   autoscaling:

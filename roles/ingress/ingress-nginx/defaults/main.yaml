@@ -18,7 +18,6 @@ ingress_nginx_autoscaling_target_ram_utilization: 75
 ingress_nginx_config: {}
 ingress_nginx_extra_args: {}
 ingress_nginx_headers: {}
-ingress_nginx_kind: Deployment
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
 ingress_nginx_proxy_headers: {}

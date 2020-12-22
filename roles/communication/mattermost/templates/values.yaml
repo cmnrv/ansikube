@@ -28,7 +28,7 @@ ingress:
 externalDB:
   enabled: true
   externalDriverType: "postgres"
-  externalConnectionString: "postgres://{{ mattermost_database_user }}:{{ mattermost_database_password }}@postgresql.datastore.svc.cluster.local:5432/{{ mattermost_database_name }}?sslmode=disable&connect_timeout=10"
+  externalConnectionString: "postgres://{{ mattermost_database_user }}:{{ mattermost_database_password }}@{{ mattermost_database_host }}:5432/{{ mattermost_database_name }}?sslmode=disable&connect_timeout=10"
 
 mysql:
   enabled: false
