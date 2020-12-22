@@ -5,7 +5,7 @@ fullnameOverride: "{{ release_name }}"
 
 db:
   allowArbitraryServer: false
-  host: "mariadb-primary.datastore.svc.cluster.local"
+  host: "{{ phpmyadmin_database_host | default('mariadb-primary.datastore.svc.cluster.local') }}"
 
 ingress:
   enabled: true
