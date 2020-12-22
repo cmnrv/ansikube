@@ -13,6 +13,7 @@ chart_version: 6.1.16
 grafana_admin_user: admin
 grafana_admin_password: grafana
 grafana_database_enabled: false
+grafana_database_host:
 grafana_database_name: grafana
 grafana_database_user:
 grafana_database_password:

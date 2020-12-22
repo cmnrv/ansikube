@@ -32,7 +32,7 @@ env:
   GF_SERVER_ROOT_URL: "https://grafana.{{ domain }}"
   {% if grafana_database_enabled %}
   GF_DATABASE_TYPE: "postgres"
-  GF_DATABASE_HOST: "postgresql.datastore.svc.cluster.local"
+  GF_DATABASE_HOST: "{{ grafana_database_host | default('postgresql.datastore.svc.cluster.local') }}"
   GF_DATABASE_NAME: "{{ grafana_database_name }}"
   GF_DATABASE_USER: "{{ grafana_database_user }}"
   GF_DATABASE_PASSWORD: "{{ grafana_database_password }}"
