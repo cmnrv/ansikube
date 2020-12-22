@@ -32,7 +32,6 @@ components:
   rundeck: { enabled: false, type: automation, priority: 60 }
   dokuwiki: { enabled: false, type: communication, priority: 70 }
   mattermost: { enabled: false, type: communication, priority: 70 }
-  wikijs: { enabled: false, type: communication, priority: 70 }
 
 # Extra namespaces to be created in your cluster
 # Should be defined using the following notation:
@@ -233,10 +232,3 @@ rundeck_database_password:
 ## Persistence settings
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi
-
-# wikijs configuration
-## Database settings
-#wikijs_database_host: # Uncomment if using an external postgresql database
-wikijs_database_name: wiki
-wikijs_database_user: wiki
-wikijs_database_password:
