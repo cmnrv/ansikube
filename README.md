@@ -4,9 +4,7 @@
 
 ## About this project
 
-The purpose of this project is to provide an operational Kubernetes cluster within minutes. This includes components to handle traffic, TLS certificates, datastores, monitoring and a few other features. Everything is handled through Ansible playbooks and roles, using simple YAML definitions and configurations.
-
-Please keep in mind that this is still a work in progress and thus the project could go through a major overhaul at some point.
+The purpose of this project is to configure an existing Kubernetes cluster and make it operational within minutes. This includes components to handle traffic, TLS certificates, datastores, monitoring and a few other features. Everything is handled through Ansible playbooks and roles, using simple YAML definitions and configurations.
 
 ## Getting started
 ### Requirements
