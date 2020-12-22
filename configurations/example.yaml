@@ -11,7 +11,7 @@ context: example
 # and then increases by steps of 10. For the moment, we use the following priorities:
 #   10: ingress controllers
 #   20: important cluster components (cert-manager, prometheus,...)
-#   30: data stores and similar tools (mariadb, postgres, redis,...)
+#   30: data stores and similar tools (postgres, redis,...)
 #   40: monitoring and security tools (falco, kubewatch,...)
 #   50: administration tools (kubernetes-dashboard, pgadmin,...)
 #   60: automation and deployment tools (gitlab, harbor, rundeck,...)
@@ -21,7 +21,6 @@ components:
   cert_manager: { enabled: true, type: security, priority: 20 }
   oauth2_proxy: { enabled: false, type: security, priority: 20 }
   prometheus: { enabled: false, type: monitoring, priority: 20 }
-  mariadb: { enabled: false, type: datastore, priority: 30 }
   nats: { enabled: false, type: messaging, priority: 30 }
   postgresql: { enabled: true, type: datastore, priority: 30 }
   redis: { enabled: false, type: datastore, priority: 30 }
@@ -135,20 +134,6 @@ kubernetes_dashboard_config_resouce_refresh_interval: 5
 kubernetes_dashboard_rbac_readonly: true
 ## Scaling settings
 kubernetes_dashboard_replicas: 1
-
-# mariadb configuration
-## Administrator credentials
-mariadb_root_password:
-## Replication settings
-mariadb_replication_user: replicator
-mariadb_replication_password:
-## Metrics settings
-mariadb_metrics_enabled: true
-## Persistence settings
-mariadb_persistence_enabled: false
-mariadb_persistence_size: 2Gi
-## Scaling settings
-mariadb_replicas: 1
 
 # mattermost configuration
 ## Database settings
