@@ -11,9 +11,11 @@ The purpose of this project is to configure an existing Kubernetes cluster and m
 
 You will need the following:
 
-* Ansible 2.9+
+* Ansible 2.10+
 * The [community.kubernetes](https://github.com/ansible-collections/community.kubernetes/) ansible collection
 * An available Kubernetes (1.16+) cluster
+* Helm 3
+* Kubectl
 
 This project has been tested with the following kubernetes distributions and/or providers:
 * k3d for local environments
