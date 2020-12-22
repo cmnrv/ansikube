@@ -154,6 +154,8 @@ mariadb_replicas: 1
 
 # mattermost configuration
 ## Database settings
+### Leave host empty if using the built-in postgresql component
+mattermost_database_host:
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:
@@ -180,6 +182,13 @@ pgadmin_admin_password:
 ## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi
+
+# phpmyadmin configuration
+## Database settings
+### Leave host empty if using the built-in mariadb component
+phpmyadmin_database_host:
+## Metrics settings
+phpmyadmin_metrics_enabled: true
 
 # postgresql configuration
 ## Administrator credentials
@@ -242,6 +251,8 @@ redis_replicas: 1
 
 # rundeck configuration
 ## Database settings
+### Leave host empty if using the built-in postgresql component
+rundeck_database_host:
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
@@ -251,6 +262,8 @@ rundeck_persistence_size: 2Gi
 
 # wikijs configuration
 ## Database settings
+### Leave host empty if using the built-in postgresql component
+wikijs_database_host:
 wikijs_database_name: wiki
 wikijs_database_user: wiki
 wikijs_database_password:
