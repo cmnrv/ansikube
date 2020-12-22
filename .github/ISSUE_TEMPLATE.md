@@ -1,7 +1,5 @@
 ## Description
 
-**Type:** bug/feature/...
-
 Shortly describe what this issue is about.
 
 ## Details
