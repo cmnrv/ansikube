@@ -29,7 +29,6 @@ components:
   goldpinger: { enabled: false, type: monitoring, priority: 40 }
   grafana: { enabled: false, type: monitoring, priority: 40 }
   kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
-  phpmyadmin: { enabled: false, type: administration, priority: 50 }
   pgadmin: { enabled: false, type: administration, priority: 50 }
   rundeck: { enabled: false, type: automation, priority: 60 }
   dokuwiki: { enabled: false, type: communication, priority: 70 }
@@ -180,12 +179,6 @@ pgadmin_admin_password:
 ## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi
-
-# phpmyadmin configuration
-## Database settings
-# phpmyadmin_database_host: # Uncomment if using an external mariadb/mysql database
-## Metrics settings
-phpmyadmin_metrics_enabled: true
 
 # postgresql configuration
 ## Administrator credentials
