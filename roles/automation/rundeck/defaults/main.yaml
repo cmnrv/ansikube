@@ -10,7 +10,7 @@ chart_name: rundeck
 chart_version: 0.3.4
 
 # Main configuration
-rundeck_database_host:
+rundeck_database_host: postgresql.datastore.svc.cluster.local
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:

@@ -23,7 +23,7 @@ ingress:
 postgresql:
   {% if components.postgresql.enabled or wikijs_database_host %}
   enabled: false
-  postgresqlHost: "{{ wikijs_database_host | default('postgresql.datastore.svc.cluster.local') }}"
+  postgresqlHost: "{{ wikijs_database_host }}"
   postgresqlUser: "{{ wikijs_database_user }}"
   postgresqlDatabase: "{{ wikijs_database_name }}"
   existingSecret: wikijs-credentials

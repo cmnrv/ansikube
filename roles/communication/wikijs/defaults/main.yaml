@@ -10,7 +10,7 @@ chart_name: wiki
 chart_version: 2.1.0
 
 # Main configuration
-wikijs_database_host:
+wikijs_database_host: postgresql.datastore.svc.cluster.local
 wikijs_database_name: wiki
 wikijs_database_user: wiki
 wikijs_database_password:

@@ -12,7 +12,7 @@ rundeck:
     RUNDECK_SERVER_FORWARDED: "false"
     RUNDECK_DATABASE_DRIVER: org.postgresql.Driver
     RUNDECK_DATABASE_USERNAME: "{{ rundeck_database_user }}"
-    RUNDECK_DATABASE_URL: "jdbc:postgresql://{{ rundeck_database_host | default('postgresql.datastore.svc.cluster.local') }}/{{ rundeck_database_name }}"
+    RUNDECK_DATABASE_URL: "jdbc:postgresql://{{ rundeck_database_host }}/{{ rundeck_database_name }}"
   envSecret: "rundeck-credentials"
 
 persistence:

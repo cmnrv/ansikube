@@ -10,5 +10,5 @@ chart_name: phpmyadmin
 chart_version: 8.0.2
 
 # Main configuration
-phpmyadmin_database_host:
+phpmyadmin_database_host: mariadb-primary.datastore.svc.cluster.local
 phpmyadmin_metrics_enabled: true

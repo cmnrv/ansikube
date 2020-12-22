@@ -23,7 +23,7 @@ components:
   prometheus: { enabled: false, type: monitoring, priority: 20 }
   mariadb: { enabled: false, type: datastore, priority: 30 }
   nats: { enabled: false, type: messaging, priority: 30 }
-  postgresql: { enabled: false, type: datastore, priority: 30 }
+  postgresql: { enabled: true, type: datastore, priority: 30 }
   redis: { enabled: false, type: datastore, priority: 30 }
   rabbitmq: { enabled: false, type: messaging, priority: 30 }
   goldpinger: { enabled: false, type: monitoring, priority: 40 }
@@ -114,9 +114,8 @@ goldpinger_hosts: []
 grafana_admin_user: admin
 grafana_admin_password: grafana
 ## Database settings
-### Leave host empty if using the built-in postgresql component
 grafana_database_enabled: false
-grafana_database_host:
+#grafana_database_host: # Uncomment if using an external postgresql database
 grafana_database_name: grafana
 grafana_database_user:
 grafana_database_password:
@@ -154,8 +153,7 @@ mariadb_replicas: 1
 
 # mattermost configuration
 ## Database settings
-### Leave host empty if using the built-in postgresql component
-mattermost_database_host:
+#mattermost_database_host: # Uncomment if using an external postgresql database
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:
@@ -185,8 +183,7 @@ pgadmin_persistence_size: 2Gi
 
 # phpmyadmin configuration
 ## Database settings
-### Leave host empty if using the built-in mariadb component
-phpmyadmin_database_host:
+# phpmyadmin_database_host: # Uncomment if using an external mariadb/mysql database
 ## Metrics settings
 phpmyadmin_metrics_enabled: true
 
@@ -251,8 +248,7 @@ redis_replicas: 1
 
 # rundeck configuration
 ## Database settings
-### Leave host empty if using the built-in postgresql component
-rundeck_database_host:
+#rundeck_database_host: # Uncomment if using an external postgresql database
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
 rundeck_database_password:
@@ -262,8 +258,7 @@ rundeck_persistence_size: 2Gi
 
 # wikijs configuration
 ## Database settings
-### Leave host empty if using the built-in postgresql component
-wikijs_database_host:
+#wikijs_database_host: # Uncomment if using an external postgresql database
 wikijs_database_name: wiki
 wikijs_database_user: wiki
 wikijs_database_password:

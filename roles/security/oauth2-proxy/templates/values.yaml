@@ -12,8 +12,8 @@ config:
 
 extraArgs:
   cookie-domain: ".{{ domain }}"
-  email-domain: "{{ oauth2_proxy_email_domain | default(email_domain) }}"
-  provider: "{{ oauth2_proxy_provider | default('google') }}"
+  email-domain: "{{ oauth2_proxy_email_domain }}"
+  provider: "{{ oauth2_proxy_provider }}"
   whitelist-domain: ".{{ domain }}"
 
 ingress:
