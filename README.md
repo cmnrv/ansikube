@@ -1,4 +1,4 @@
-# Ansikube
+## About this project
 
 [![License](https://img.shields.io/badge/License-GPLv3-informational.svg)](https://opensource.org/licenses/gpl-3.0)
 
@@ -6,7 +6,8 @@ The purpose of this project is to provide an operational Kubernetes cluster with
 
 Please keep in mind that this is still a work in progress and thus the project could go through a major overhaul at some point.
 
-## Requirements
+## Getting started
+### Requirements
 
 You will need the following:
 
@@ -51,7 +52,15 @@ k3d cluster create local \
 ```
 </details>
 
-## Usage
+### Installation
+
+**Option 1:** clone the repository
+```sh
+git clone https://github.com/cmnrv/ansikube.git
+```
+**Option 2:** download a package on the [releases page](https://github.com/cmnrv/ansikube/releases).
+
+### Usage
 
 Create your configuration file and adapt it to your needs:
 ```sh
@@ -72,9 +81,9 @@ That's it, your cluster is now ready.
 
 ### Want to go further ?
 
-#### Replacing the default hosts
+#### Overriding the default hosts
 
-You can override the default inventory by creating a file in the inventories folder (using the following convention: `inventories/hosts.__SOMETHING__.yaml`). That file will then automatically be included and it will override any similar entry found in the default hosts file.
+You can override the default inventory by creating a file in the inventories folder (using the following convention: inventories/hosts.__SOMETHING__.yaml). That file will then automatically be included and it will override any similar entry found in the default hosts file.
 
 ### Want to start over ?
 
