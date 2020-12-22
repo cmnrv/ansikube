@@ -7,7 +7,7 @@ global:
   logLevel: "{{ cert_manager_log_level }}"
 
 installCRDs: true
-replicaCount: "{{ cert_manager_replicas }}"
+replicaCount: "{{ cert_manager_replicas | default(1) }}"
 clusterResourceNamespace: "{{ release_namespace }}"
 
 extraArgs:
