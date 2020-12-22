@@ -54,7 +54,7 @@ k3d cluster create local \
 ```
 </details>
 
-#### Getting this project
+#### Get this project
 
 **Option 1:** clone the repository
 ```sh
@@ -81,9 +81,7 @@ ansible-playbook --diff playbooks/install.yaml --limit local [--check]
 
 That's it, your cluster is now ready.
 
-### Want to go further ?
-
-#### Overriding the default hosts
+### Overriding the default hosts
 
 You can override the default inventory by creating a file in the inventories folder (using the following convention: `inventories/hosts.__SOMETHING__.yaml`). That file will then automatically be included and it will override any similar entry found in the default hosts file.
 
