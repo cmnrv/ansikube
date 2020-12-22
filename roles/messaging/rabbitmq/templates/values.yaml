@@ -38,7 +38,7 @@ configuration: |-
   {{- end }}
 {% endraw %}
 
-replicaCount: "{{ rabbitmq_replicas }}"
+replicaCount: {{ rabbitmq_replicas }}
 
 serviceAccount:
   create: true

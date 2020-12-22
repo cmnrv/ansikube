@@ -4,7 +4,7 @@ fullnameOverride: "{{ release_name }}"
 
 cluster:
   enabled: true
-  slaveCount: "{{ redis_replicas }}"
+  slaveCount: {{ redis_replicas }}
 
 sentinel:
   enabled: true
