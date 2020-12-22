@@ -49,7 +49,7 @@ curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 
 k3d cluster create local \
 --agents 2 --no-lb \
---port 80:80@server[0] --port 443:443@server[0] \
+--port "80:80@server[0]" --port "443:443@server[0]" \
 --k3s-server-arg "--no-deploy=traefik"
 ```
 </details>
