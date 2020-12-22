@@ -4,7 +4,7 @@
 # ignored and won't be commited.
 
 # Context name, must match a context in your .kube/config file
-context: example
+context: k3d-local
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10
