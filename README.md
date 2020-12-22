@@ -26,6 +26,8 @@ And with the following OAuth providers:
 
 There is no reason for this not to work with other providers as long as you have the appropriate context defined in your kube config file.
 
+### Installation
+
 <details>
   <summary>Installing Ansible</summary>
 
@@ -41,6 +43,8 @@ ansible-galaxy collection install community.kubernetes
 <details>
   <summary>Installing k3d</summary>
 
+#### Getting this project
+
 ```sh
 export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
@@ -51,8 +55,6 @@ k3d cluster create local \
 --k3s-server-arg "--no-deploy=traefik"
 ```
 </details>
-
-### Installation
 
 **Option 1:** clone the repository
 ```sh
