@@ -10,6 +10,7 @@ chart_name: mattermost-team-edition
 chart_version: 3.19.0
 
 # Main configuration
+mattermost_database_host:
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
 mattermost_database_password:
