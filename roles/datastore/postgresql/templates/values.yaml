@@ -2,38 +2,49 @@
 ---
 
 fullnameOverride: "{{ release_name }}"
+clusterDomain: "{{ cluster_domain }}"
 
-{% if postgresql_replication_enabled %}
-replication:
+postgresql:
+  replicaCount: "{{ postgresql_replicas }}"
+
+  username: postgres
+  database: postgres
+  existingSecret: postgresql-credentials
+
+  repmgrUsername: "{{ postgresql_replication_user }}"
+
+  sharedPreloadLibraries: "{{ postgresql_config_shared_libraries }}"
+  maxConnections: "{{ postgresql_config_max_connections }}"
+
+  initdbScripts:
+    init_databases.sql: |
+    {% for variable in (lookup('varnames', '.+_database_name$')).split(',') %}
+      {% set component = variable.split('_')[0] %}
+      create role {{ vars[component + '_database_user'] }} with login encrypted password '{{ vars[component + '_database_password'] }}';
+      create database {{ component }} with owner {{ vars[component + '_database_user'] }};
+    {% endfor %}
+
+pgpool:
+  customUsers:
+    {% set pgpool_users, pgpool_passwords = [], [] %}
+    {% for variable in (lookup('varnames', '.+_database_name$')).split(',') %}
+      {% set component = variable.split('_')[0] %}
+      {% if pgpool_users.append(vars[component + '_database_user']) %}{% endif %}
+      {% if pgpool_passwords.append(vars[component + '_database_password']) %}{% endif %}
+    {% endfor %}
+    usernames: "{{ pgpool_users | join(';') }}"
+    passwords: "{{ pgpool_passwords | join(';') }}"
+
+  replicaCount: "{{ pgpool_replicas }}"
+  adminUsername: "{{ pgpool_admin_user }}"
+  adminPassword: "{{ pgpool_admin_password }}"
+
+volumePermissions:
   enabled: true
-  user: "{{ postgresql_replication_user }}"
-  password: "{{ postgresql_replication_password }}"
-  readReplicas: {{ postgresql_replicas }}
-  applicationName: postgres
-{% endif %}
 
-postgresqlUsername: "{{ postgresql_admin_user }}"
-existingSecret: postgresql-credentials
-usePasswordFile: true
-postgresqlDatabase: postgres
-
-initdbScripts:
-  init_databases.sql: |
-  {% for variable in (lookup('varnames', '.+_database_name$')).split(',') %}
-    {% set component = variable.split('_')[0] %}
-    create role {{ vars[component + '_database_user'] }} with login encrypted password '{{ vars[component + '_database_password'] }}';
-    create database {{ component }} with owner {{ vars[component + '_database_user'] }};
-  {% endfor %}
-
-initdbUser: "{{ postgresql_admin_user }}"
-initdbPassword: "{{ postgresql_admin_password }}"
-
-postgresqlSharedPreloadLibraries: "{{ postgresql_config_shared_libraries }}"
-postgresqlMaxConnections: "{{ postgresql_config_max_connections }}"
+metrics:
+  enabled: "{{ postgresql_metrics_enabled }}"
 
 persistence:
   enabled: "{{ postgresql_persistence_enabled }}"
   size: "{{ postgresql_persistence_size }}"
-
-metrics:
-  enabled: {{ postgresql_metrics_enabled }}
