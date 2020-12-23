@@ -7,7 +7,7 @@ expose:
     certSource: auto
   ingress:
     hosts:
-      core: harbor.{{ domain }}
+      core: core.harbor.{{ domain }}
       notary: notary.{{ domain }}
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
@@ -384,7 +384,7 @@ registry:
       privateKeySecret: "my-secret"
 
 chartmuseum:
-  enabled: {{ chart_museum_enabled }}
+  enabled: {{ harbor_chart_museum_enabled }}
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   # Harbor defaults ChartMuseum to returning relative urls, if you want using absolute url you should enable it by change the following value to 'true'
@@ -404,7 +404,7 @@ chartmuseum:
   podAnnotations: {}
 
 clair:
-  enabled: {{ clair_enabled}}
+  enabled: {{ harbor_clair_enabled}}
   # set the service account to be used, default if left empty
   serviceAccountName: ""
   clair:
@@ -435,7 +435,7 @@ clair:
 
 trivy:
   # enabled the flag to enable Trivy scanner
-  enabled: {{ trivy_enabled}}
+  enabled: {{ harbor_trivy_enabled}}
   image:
     # repository the repository for Trivy adapter image
     repository: goharbor/trivy-adapter-photon
@@ -491,7 +491,7 @@ trivy:
   podAnnotations: {}
 
 notary:
-  enabled: {{ notary_enabled }}
+  enabled: {{ harbor_notary_enabled }}
   server:
     # set the service account to be used, default if left empty
     serviceAccountName: ""
@@ -552,9 +552,9 @@ database:
     username: {{ harbor_database_user }}
     password: {{ harbor_database_password }}
     coreDatabase: {{ harbor_database_name }}
-    clairDatabase: {{ clair_database_name }}
-    notaryServerDatabase: {{ notaryServer_database_name }}
-    notarySignerDatabase: {{ notarySigner_database_name }}
+    clairDatabase: {{ charbor_lair_database_name }}
+    notaryServerDatabase: {{ harbor_notaryServer_database_name }}
+    notarySignerDatabase: {{ harbor_notarySigner_database_name }}
     sslmode: "disable"
   # The maximum number of connections in the idle connection pool.
   # If it <=0, no idle connections are retained.
@@ -589,7 +589,7 @@ redis:
     # addr for redis+sentinel: <host_sentinel1>:<port_sentinel1>,<host_sentinel2>:<port_sentinel2>,<host_sentinel3>:<port_sentinel3>
     addr: "redis.datastore.svc.cluster.local"
     # The name of the set of Redis instances to monitor, it must be set to support redis+sentinel
-    sentinelMasterSet: {{ redis_master_set }}
+    sentinelMasterSet: {{ harbor_redis_master_set }}
     # The "coreDatabaseIndex" must be "0" as the library Harbor
     # used doesn't support configuring it
     coreDatabaseIndex: "0"
