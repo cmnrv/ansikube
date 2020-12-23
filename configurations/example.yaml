@@ -239,26 +239,29 @@ rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi
 
 # harbor configuration
-## Module settings
-harbor_database_type: internal
+## Administrator credentials
+harbor_admin_password:
+harbor_secret_key: # The secret key used for encryption. Must be a string of 16 chars.
+## Database settings
+harbor_database_type: external
+#harbor_database_host: # Uncomment if using an external postgresql database
+harbor_database_user: harbor
+harbor_database_password:
+## Redis settings
 harbor_redis_type : internal
-
-harbor_admin_password: Harbor12345
-### The secret key used for encryption. Must be a string of 16 chars.
-harbor_secret_key: not-a-secure-key
+## Registry settings
 harbor_registry_user: harbor_registry_user
 harbor_registry_password: harbor_registry_password
 ### If you update the username or password of registry, make sure use cli tool htpasswd to generate the bcrypt hash
 ### e.g. "htpasswd -nbBC10 $username $password"
 harbor_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
-
+## Module settings
 harbor_chart_museum_enabled: false
 harbor_clair_enabled: false
 harbor_trivy_enabled: true
 harbor_notary_enabled: false
-
 ## Persistence settings
-harbor_persistence_enabled: true
+harbor_persistence_enabled: false
 harbor_registry_persistence_size: 2Gi
 harbor_chartmuseum_persistence_size: 2Gi
 harbor_jobservice_persistence_size: 2Gi

@@ -9,4 +9,24 @@ chart_name: harbor
 chart_version: 1.5.2
 
 # Main configuration
-harbor_ingress_controller: default
+harbor_admin_password:
+harbor_secret_key:
+harbor_database_type: external
+harbor_database_host: postgresql-pgpool.datastore.svc.cluster.local
+harbor_database_user: harbor
+harbor_database_password:
+harbor_redis_type : internal
+harbor_registry_user: harbor_registry_user
+harbor_registry_password: harbor_registry_password
+harbor_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
+harbor_chart_museum_enabled: false
+harbor_clair_enabled: false
+harbor_trivy_enabled: true
+harbor_notary_enabled: false
+harbor_persistence_enabled: false
+harbor_registry_persistence_size: 2Gi
+harbor_chartmuseum_persistence_size: 2Gi
+harbor_jobservice_persistence_size: 2Gi
+harbor_database_persistence_size: 2Gi
+harbor_redis_persistence_size: 2Gi
+harbor_trivy_persistence_size: 2Gi
