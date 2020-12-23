@@ -8,5 +8,5 @@ chart_repository: https://helm.goharbor.io
 chart_name: harbor
 chart_version: 1.5.2
 
-
+# Main configuration
 harbor_ingress_controller: default
