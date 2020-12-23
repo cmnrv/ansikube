@@ -243,10 +243,10 @@ rundeck_persistence_size: 2Gi
 harbor_database_type: internal
 harbor_redis_type : internal
 
-chart_museum_enabled: false
-clair_enabled: true
-trivy_enabled: true
-notary_enabled: false
+harbor_chart_museum_enabled: false
+harbor_clair_enabled: true
+harbor_trivy_enabled: true
+harbor_notary_enabled: false
 
 ## Persistence settings
 harbor_persistence_enabled: true
