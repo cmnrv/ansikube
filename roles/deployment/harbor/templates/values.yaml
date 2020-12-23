@@ -65,8 +65,8 @@ database:
     host: "{{ harbor_database_host }}"
     username: "{{ harbor_database_user }}"
     password: "{{ harbor_database_password }}"
-    coreDatabase: "registry"
-    clairDatabase: "clair"
+    coreDatabase: "{{ registry_database_name }}"
+    clairDatabase: "{{ clair_database_name }}"
     notaryServerDatabase: "notary_server"
     notarySignerDatabase: "notary_signer"
 

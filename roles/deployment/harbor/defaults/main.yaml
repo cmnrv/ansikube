@@ -1,7 +1,7 @@
 ---
 # Release information
 release_name: harbor
-release_namespace: automation
+release_namespace: deployment
 
 # Chart information
 chart_repository: https://helm.goharbor.io
@@ -15,6 +15,12 @@ harbor_database_type: external
 harbor_database_host: postgresql-pgpool.datastore.svc.cluster.local
 harbor_database_user: harbor
 harbor_database_password:
+registry_database_name: registry
+registry_database_user: "{{ harbor_database_user }}"
+registry_database_password: "{{ harbor_database_password }}"
+clair_database_name: clair
+clair_database_user: "{{ harbor_database_user }}"
+clair_database_password: "{{ harbor_database_password }}"
 harbor_redis_type : internal
 harbor_registry_user: harbor_registry_user
 harbor_registry_password: harbor_registry_password
