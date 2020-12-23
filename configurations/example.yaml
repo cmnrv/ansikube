@@ -243,6 +243,15 @@ rundeck_persistence_size: 2Gi
 harbor_database_type: internal
 harbor_redis_type : internal
 
+harbor_admin_password: Harbor12345
+### The secret key used for encryption. Must be a string of 16 chars.
+harbor_secret_key: not-a-secure-key
+harbor_registry_user: harbor_registry_user
+harbor_registry_password: harbor_registry_password
+### If you update the username or password of registry, make sure use cli tool htpasswd to generate the bcrypt hash
+### e.g. "htpasswd -nbBC10 $username $password"
+harbor_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
+
 harbor_chart_museum_enabled: false
 harbor_clair_enabled: true
 harbor_trivy_enabled: true
