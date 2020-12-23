@@ -178,7 +178,11 @@ postgresql_metrics_enabled: true
 postgresql_persistence_enabled: false
 postgresql_persistence_size: 2Gi
 ## Scaling settings
-postgresql_replicas: 1
+postgresql_replicas: 2
+## pgpool settings
+pgpool_admin_user: pgpool
+pgpool_admin_password:
+pgpool_replicas: 1
 
 # prometheus configuration
 ## Application settings
