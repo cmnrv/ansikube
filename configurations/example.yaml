@@ -255,9 +255,9 @@ harbor_notary_enabled: false
 
 ## Persistence settings
 harbor_persistence_enabled: true
-harbor_registry_persistence_size: 5Gi
-harbor_chartmuseum_persistence_size: 5Gi
-harbor_jobservice_persistence_size: 1Gi
-harbor_database_persistence_size: 1Gi
-harbor_redis_persistence_size: 1Gi
-harbor_trivy_persistence_size: 5Gi
+harbor_registry_persistence_size: 2Gi
+harbor_chartmuseum_persistence_size: 2Gi
+harbor_jobservice_persistence_size: 2Gi
+harbor_database_persistence_size: 2Gi
+harbor_redis_persistence_size: 2Gi
+harbor_trivy_persistence_size: 2Gi
