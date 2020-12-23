@@ -14,7 +14,7 @@ serverDefinitions:
       "Group": "Servers",
       "Port": 5432,
       "Username": "postgres",
-      "Host": "postgresql.datastore.svc.cluster.local",
+      "Host": "postgresql-pgpool.datastore.svc.cluster.local",
       "SSLMode": "prefer",
       "MaintenanceDB": "postgres"
     }

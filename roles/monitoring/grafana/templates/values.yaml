@@ -56,7 +56,7 @@ datasources:
       {% if components.postgresql.enabled %}
       - name: PostgreSQL
         type: postgres
-        url: postgresql.datastore.svc.cluster.local
+        url: postgresql-pgpool.datastore.svc.cluster.local
         database: "{{ grafana_database_name }}"
         user: "{{ grafana_database_user }}"
         secureJsonData:
