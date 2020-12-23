@@ -7,9 +7,9 @@ expose:
     certSource: auto
   ingress:
     hosts:
-      core: harbor.{{ domain }}
-      notary: notary.{{ domain }}
-    controller: {{ harbor_ingress_controller }}
+      core: "harbor.{{ domain }}"
+      notary: "notary.{{ domain }}"
+    controller: "{{ harbor_ingress_controller }}"
     annotations:
       ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/proxy-body-size: "0"
@@ -21,7 +21,7 @@ expose:
       nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
       {% endif %}
 
-externalURL: https://harbor.{{ domain }}
+externalURL: "https://harbor.{{ domain }}"
 
 internalTLS:
   enabled: false
@@ -30,39 +30,39 @@ persistence:
   enabled: {{ harbor_persistence_enabled }}
   persistentVolumeClaim:
     registry:
-      size: {{ harbor_registry_persistence_size }}
+      size: "{{ harbor_registry_persistence_size }}"
     chartmuseum:
-      size: {{ harbor_chartmuseum_persistence_size }}
+      size: "{{ harbor_chartmuseum_persistence_size }}"
     jobservice:
-      size: {{ harbor_jobservice_persistence_size }}
+      size: "{{ harbor_jobservice_persistence_size }}"
     database:
-      size: {{ harbor_database_persistence_size }}
+      size: "{{ harbor_database_persistence_size }}"
     redis:
-      size: {{ harbor_redis_persistence_size }}
+      size: "{{ harbor_redis_persistence_size }}"
     trivy:
-      size: {{ harbor_trivy_persistence_size }}
+      size: "{{ harbor_trivy_persistence_size }}"
 
-harborAdminPassword: {{ harbor_admin_password }}
-secretKey: {{ harbor_secret_key }}
+harborAdminPassword: "{{ harbor_admin_password }}"
+secretKey: "{{ harbor_secret_key }}"
 registry:
   credentials:
-    username: {{ harbor_registry_user }}
-    password: {{ harbor_registry_password }}
-    htpasswd: {{ harbor_ht_password }}
+    username: "{{ harbor_registry_user }}"
+    password: "{{ harbor_registry_password }}"
+    htpasswd: "{{ harbor_ht_password }}"
 
 chartmuseum:
   enabled: {{ harbor_chart_museum_enabled }}
 clair:
-  enabled: {{ harbor_clair_enabled}}
+  enabled: {{ harbor_clair_enabled }}
 trivy:
-  enabled: {{ harbor_trivy_enabled}}
+  enabled: {{ harbor_trivy_enabled }}
 notary:
   enabled: {{ harbor_notary_enabled }}
 database:
   type: {{ harbor_database_type }}
   internal:
     # The initial superuser password for internal database
-    password: {{ harbor_database_password }}
+    password: "{{ harbor_database_password }}"
 redis:
   type: {{ harbor_redis_type }}
 
