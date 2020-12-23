@@ -9,7 +9,6 @@ expose:
     hosts:
       core: "harbor.{{ domain }}"
       notary: "notary.{{ domain }}"
-    controller: "{{ harbor_ingress_controller }}"
     annotations:
       ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/proxy-body-size: "0"
@@ -59,11 +58,17 @@ trivy:
 notary:
   enabled: {{ harbor_notary_enabled }}
 database:
-  type: {{ harbor_database_type }}
+  type: "{{ 'internal' if harbor_database_type == 'internal' else 'external' }}"
   internal:
-    # The initial superuser password for internal database
     password: "{{ harbor_database_password }}"
+  external:
+    host: "{{ harbor_database_host }}"
+    username: "{{ harbor_database_user }}"
+    password: "{{ harbor_database_password }}"
+    coreDatabase: "registry"
+    clairDatabase: "clair"
+    notaryServerDatabase: "notary_server"
+    notarySignerDatabase: "notary_signer"
+
 redis:
   type: {{ harbor_redis_type }}
-
-
