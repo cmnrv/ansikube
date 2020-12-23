@@ -29,6 +29,7 @@ components:
   grafana: { enabled: false, type: monitoring, priority: 40 }
   kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
   pgadmin: { enabled: false, type: administration, priority: 50 }
+  harbor: {enabled: false,type: datastore,priority: 50}
   rundeck: { enabled: false, type: automation, priority: 60 }
   dokuwiki: { enabled: false, type: communication, priority: 70 }
   mattermost: { enabled: false, type: communication, priority: 70 }
@@ -236,3 +237,22 @@ rundeck_database_password:
 ## Persistence settings
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi
+
+# harbor configuration
+## Module settings
+harbor_database_type: internal
+harbor_redis_type : internal
+
+chart_museum_enabled: false
+clair_enabled: true
+trivy_enabled: true
+notary_enabled: false
+
+## Persistence settings
+harbor_persistence_enabled: true
+harbor_registry_persistence_size: 5Gi
+harbor_chartmuseum_persistence_size: 5Gi
+harbor_jobservice_persistence_size: 1Gi
+harbor_database_persistence_size: 1Gi
+harbor_redis_persistence_size: 1Gi
+harbor_trivy_persistence_size: 5Gi
