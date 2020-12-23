@@ -132,14 +132,15 @@ harbor_secret_key: # The secret key used for encryption. Must be a string of 16 
 ## Database settings
 harbor_database_type: external
 #harbor_database_host: # Uncomment if using an external postgresql database
+harbor_database_name: harbor
 harbor_database_user: harbor
 harbor_database_password:
 registry_database_name: registry
-registry_database_user: "{{ harbor_database_user }}"
-registry_database_password: "{{ harbor_database_password }}"
+registry_database_user: harbor
+registry_database_password:
 clair_database_name: clair
-clair_database_user: "{{ harbor_database_user }}"
-clair_database_password: "{{ harbor_database_password }}"
+clair_database_user: harbor
+clair_database_password:
 ## Redis settings
 harbor_redis_type : internal
 ## Registry settings
