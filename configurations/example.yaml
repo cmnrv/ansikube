@@ -29,7 +29,7 @@ components:
   grafana: { enabled: false, type: monitoring, priority: 40 }
   kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
   pgadmin: { enabled: false, type: administration, priority: 50 }
-  harbor: {enabled: false, type: datastore, priority: 50}
+  harbor: {enabled: false, type: automation, priority: 60}
   rundeck: { enabled: false, type: automation, priority: 60 }
   dokuwiki: { enabled: false, type: communication, priority: 70 }
   mattermost: { enabled: false, type: communication, priority: 70 }
