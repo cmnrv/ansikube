@@ -6,18 +6,22 @@ release_namespace: datastore
 
 # Chart information
 chart_repository: https://charts.bitnami.com/bitnami
-chart_name: postgresql
-chart_version: 10.2.0
+chart_name: postgresql-ha
+chart_version: 6.3.3
 
-# Main configuration
+# PostgreSQL configuration
 postgresql_admin_user: postgres
 postgresql_admin_password:
-postgresql_config_max_connections: 64
-postgresql_config_shared_libraries: pgaudit,pg_stat_statements
+postgresql_config_max_connections: 32
+postgresql_config_shared_libraries: pgaudit,pg_stat_statements,repmgr
 postgresql_metrics_enabled: true
 postgresql_persistence_enabled: false
 postgresql_persistence_size: 2Gi
-postgresql_replicas: 1
-postgresql_replication_enabled: false
 postgresql_replication_user: replicator
 postgresql_replication_password:
+postgresql_replicas: 2
+
+# pgpool configuration
+pgpool_admin_user: pgpool
+pgpool_admin_password:
+pgpool_replicas: 1
