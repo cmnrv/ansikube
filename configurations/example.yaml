@@ -251,9 +251,9 @@ pushgateway_replicas: 1
 # rabbitmq configuration
 ## Administrator credentials
 rabbitmq_admin_user: admin
-rabbitmq_admin_password:
+rabbitmq_admin_password: admin
 ## Application settings
-rabbitmq_erlang_cookie:
+rabbitmq_erlang_cookie: Vap3quennubdabAm
 rabbitmq_plugins:
   - rabbitmq_management
   - rabbitmq_peer_discovery_k8s
