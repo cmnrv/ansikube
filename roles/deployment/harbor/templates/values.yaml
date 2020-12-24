@@ -4,7 +4,9 @@ expose:
   type: ingress
   tls:
     enabled: true
-    certSource: auto
+    certSource: secret
+    secret:
+      secretName: harbor-tls-certificate
   ingress:
     hosts:
       core: "harbor.{{ domain }}"
@@ -29,17 +31,17 @@ persistence:
   enabled: {{ harbor_persistence_enabled }}
   persistentVolumeClaim:
     registry:
-      size: "{{ harbor_registry_persistence_size }}"
+      size: "{{ harbor_persistence_registry_size }}"
     chartmuseum:
-      size: "{{ harbor_chartmuseum_persistence_size }}"
+      size: "{{ harbor_persistence_chartmuseum_size }}"
     jobservice:
-      size: "{{ harbor_jobservice_persistence_size }}"
+      size: "{{ harbor_persistence_jobservice_size }}"
     database:
-      size: "{{ harbor_database_persistence_size }}"
+      size: "{{ harbor_persistence_database_size }}"
     redis:
-      size: "{{ harbor_redis_persistence_size }}"
+      size: "{{ harbor_persistence_redis_size }}"
     trivy:
-      size: "{{ harbor_trivy_persistence_size }}"
+      size: "{{ harbor_persistence_trivy_size }}"
 
 harborAdminPassword: "{{ harbor_admin_password }}"
 secretKey: "{{ harbor_secret_key }}"
@@ -47,10 +49,10 @@ registry:
   credentials:
     username: "{{ harbor_registry_user }}"
     password: "{{ harbor_registry_password }}"
-    htpasswd: "{{ harbor_ht_password }}"
+    htpasswd: "{{ harbor_registry_ht_password }}"
 
 chartmuseum:
-  enabled: {{ harbor_chart_museum_enabled }}
+  enabled: {{ harbor_chartmuseum_enabled }}
 clair:
   enabled: {{ harbor_clair_enabled }}
 trivy:
@@ -71,4 +73,7 @@ database:
     notarySignerDatabase: "notary_signer"
 
 redis:
-  type: {{ harbor_redis_type }}
+  type: "{{ 'internal' if harbor_redis_type == 'internal' else 'external' }}"
+  external:
+    addr: "{{ harbor_redis_host }}:{{ harbor_redis_port }}"
+    sentinelMasterSet: "{{ redis_master_set }}"
