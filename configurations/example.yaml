@@ -112,11 +112,11 @@ goldpinger_hosts: []
 grafana_admin_user: admin
 grafana_admin_password: grafana
 ## Database settings
-grafana_database_enabled: false
-#grafana_database_host: # Uncomment if using an external postgresql database
+grafana_database_enabled: true
+grafana_database_host: postgresql-pgpool.datastore.svc.cluster.local
 grafana_database_name: grafana
-grafana_database_user:
-grafana_database_password:
+grafana_database_user: grafana
+grafana_database_password: grafana
 ## OAuth settings
 grafana_oauth_enabled: false
 grafana_oauth_client_id:
@@ -124,6 +124,9 @@ grafana_oauth_client_secret:
 ## Persistence settings
 grafana_persistence_enabled: false
 grafana_persistence_size: 2Gi
+## Application settings
+grafana_plugins:
+  - grafana-clock-panel
 
 # harbor configuration
 ## Module settings
