@@ -9,10 +9,12 @@ chart_repository: https://kubernetes.github.io/dashboard/
 chart_name: kubernetes-dashboard
 chart_version: 3.0.2
 
-# Main configuration
+# kubernetes-dashboard configuration
+## Application configuration
 kubernetes_dashboard_config_items_displayed: 20
 kubernetes_dashboard_config_logs_refresh_interval: 5
 kubernetes_dashboard_config_notifications_disabled: true
 kubernetes_dashboard_config_resouce_refresh_interval: 5
 kubernetes_dashboard_rbac_readonly: true
+## Scaling settings
 kubernetes_dashboard_replicas: 1
