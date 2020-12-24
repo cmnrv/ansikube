@@ -182,10 +182,10 @@ kubernetes_dashboard_replicas: 1
 
 # mattermost configuration
 ## Database settings
-#mattermost_database_host: # Uncomment if using an external postgresql database
+mattermost_database_host: postgresql-pgpool.datastore.svc.cluster.local
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
-mattermost_database_password:
+mattermost_database_password: mattermost
 
 # nats configuration
 ## Scaling settings
