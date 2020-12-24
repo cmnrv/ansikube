@@ -137,18 +137,18 @@ harbor_notary_enabled: false
 harbor_persistence_enabled: false
 harbor_trivy_enabled: true
 ## Administrator credentials
-harbor_admin_password:
-harbor_secret_key:
+harbor_admin_password: harbor
+harbor_secret_key: AfAdutIdnecoyheu
 ## Database settings
 harbor_database_type: external
-#harbor_database_host: # Uncomment if using an external postgresql database
+harbor_database_host: postgresql-pgpool.datastore.svc.cluster.local
 harbor_database_name: harbor
 harbor_database_user: harbor
-harbor_database_password:
+harbor_database_password: harbor
 ## Redis settings
 harbor_redis_type : external
-# harbor_redis_host: # Uncomment if using an external redis instance
-# harbor_redis_port:
+harbor_redis_host: redis.datastore.svc.cluster.local
+harbor_redis_port: 26379
 ## Registry settings
 harbor_registry_user: harbor_registry_user
 harbor_registry_password: harbor_registry_password
@@ -157,11 +157,11 @@ harbor_registry_password: harbor_registry_password
 harbor_registry_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
 registry_database_name: registry
 registry_database_user: harbor
-registry_database_password:
+registry_database_password: harbor
 ## Clair settings
 clair_database_name: clair
 clair_database_user: harbor
-clair_database_password:
+clair_database_password: harbor
 ## Persistence settings
 harbor_persistence_chartmuseum_size: 2Gi
 harbor_persistence_database_size: 2Gi
