@@ -1,0 +1,79 @@
+#jinja2:lstrip_blocks: True
+---
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: secret
+    secret:
+      secretName: harbor-tls-certificate
+  ingress:
+    hosts:
+      core: "harbor.{{ domain }}"
+      notary: "notary.{{ domain }}"
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      kubernetes.io/tls-acme: "true"
+      {% if components.oauth2_proxy.enabled %}
+      nginx.ingress.kubernetes.io/auth-url: "https://auth.{{ domain }}/oauth2/auth"
+      nginx.ingress.kubernetes.io/auth-signin: "https://auth.{{ domain }}/oauth2/start?rd=https://$host$request_uri"
+      {% endif %}
+
+externalURL: "https://harbor.{{ domain }}"
+
+internalTLS:
+  enabled: false
+
+persistence:
+  enabled: {{ harbor_persistence_enabled }}
+  persistentVolumeClaim:
+    registry:
+      size: "{{ harbor_persistence_registry_size }}"
+    chartmuseum:
+      size: "{{ harbor_persistence_chartmuseum_size }}"
+    jobservice:
+      size: "{{ harbor_persistence_jobservice_size }}"
+    database:
+      size: "{{ harbor_persistence_database_size }}"
+    redis:
+      size: "{{ harbor_persistence_redis_size }}"
+    trivy:
+      size: "{{ harbor_persistence_trivy_size }}"
+
+harborAdminPassword: "{{ harbor_admin_password }}"
+secretKey: "{{ harbor_secret_key }}"
+registry:
+  credentials:
+    username: "{{ harbor_registry_user }}"
+    password: "{{ harbor_registry_password }}"
+    htpasswd: "{{ harbor_registry_ht_password }}"
+
+chartmuseum:
+  enabled: {{ harbor_chartmuseum_enabled }}
+clair:
+  enabled: {{ harbor_clair_enabled }}
+trivy:
+  enabled: {{ harbor_trivy_enabled }}
+notary:
+  enabled: {{ harbor_notary_enabled }}
+database:
+  type: "{{ 'internal' if harbor_database_type == 'internal' else 'external' }}"
+  internal:
+    password: "{{ harbor_database_password }}"
+  external:
+    host: "{{ harbor_database_host }}"
+    username: "{{ harbor_database_user }}"
+    password: "{{ harbor_database_password }}"
+    coreDatabase: "{{ registry_database_name }}"
+    clairDatabase: "{{ clair_database_name }}"
+    notaryServerDatabase: "notary_server"
+    notarySignerDatabase: "notary_signer"
+
+redis:
+  type: "{{ 'internal' if harbor_redis_type == 'internal' else 'external' }}"
+  external:
+    addr: "{{ harbor_redis_host }}:{{ harbor_redis_port }}"
+    sentinelMasterSet: "{{ redis_master_set }}"
