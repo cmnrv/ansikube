@@ -9,10 +9,12 @@ chart_repository: http://storage.googleapis.com/kubernetes-charts-incubator
 chart_name: rundeck
 chart_version: 0.3.4
 
-# Main configuration
+# rundeck configuration
+## Database settings
 rundeck_database_host: postgresql-pgpool.datastore.svc.cluster.local
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
-rundeck_database_password:
+rundeck_database_password: rundeck
+## Persistence settings
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi
