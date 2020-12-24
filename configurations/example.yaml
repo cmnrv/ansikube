@@ -204,7 +204,7 @@ oauth2_proxy_replicas: 1
 # pgadmin configuration
 ## Administrator credentials
 pgadmin_admin_email: "admin@{{ email_domain }}"
-pgadmin_admin_password:
+pgadmin_admin_password: pgadmin
 ## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi
