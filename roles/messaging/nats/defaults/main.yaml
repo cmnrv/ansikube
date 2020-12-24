@@ -9,5 +9,6 @@ chart_repository: https://nats-io.github.io/k8s/helm/charts/
 chart_name: nats
 chart_version: 0.7.5
 
-# Main configuration
+# nats configuration
+## Scaling settings
 nats_replicas: 1
