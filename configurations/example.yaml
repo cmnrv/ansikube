@@ -146,7 +146,7 @@ harbor_database_name: harbor
 harbor_database_user: harbor
 harbor_database_password: harbor
 ## Redis settings
-harbor_redis_type : external
+harbor_redis_type: external
 harbor_redis_host: redis.datastore.svc.cluster.local
 harbor_redis_port: 26379
 ## Registry settings
@@ -196,7 +196,8 @@ nats_replicas: 1
 oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
-oauth2_proxy_cookie_secret: RjF4QnZwQUgreXF1SXNNUFRIbi9rL3cyWFp5MjdyR0M= # use `openssl rand -base64 32 | head -c 32 | base64` to generate
+### use `openssl rand -base64 32 | head -c 32 | base64` to generate
+oauth2_proxy_cookie_secret: RjF4QnZwQUgreXF1SXNNUFRIbi9rL3cyWFp5MjdyR0M=
 oauth2_proxy_email_domain: "{{ email_domain }}"
 ## Scaling settings
 oauth2_proxy_replicas: 1
