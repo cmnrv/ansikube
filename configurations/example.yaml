@@ -126,42 +126,45 @@ grafana_persistence_enabled: false
 grafana_persistence_size: 2Gi
 
 # harbor configuration
+## Module settings
+harbor_chartmuseum_enabled: false
+harbor_clair_enabled: false
+harbor_notary_enabled: false
+harbor_persistence_enabled: false
+harbor_trivy_enabled: true
 ## Administrator credentials
 harbor_admin_password:
-harbor_secret_key: # The secret key used for encryption. Must be a string of 16 chars.
+harbor_secret_key:
 ## Database settings
 harbor_database_type: external
 #harbor_database_host: # Uncomment if using an external postgresql database
 harbor_database_name: harbor
 harbor_database_user: harbor
 harbor_database_password:
-registry_database_name: registry
-registry_database_user: harbor
-registry_database_password:
-clair_database_name: clair
-clair_database_user: harbor
-clair_database_password:
 ## Redis settings
-harbor_redis_type : internal
+harbor_redis_type : external
+# harbor_redis_host: # Uncomment if using an external redis instance
+# harbor_redis_port:
 ## Registry settings
 harbor_registry_user: harbor_registry_user
 harbor_registry_password: harbor_registry_password
 ### If you update the username or password of registry, make sure use cli tool htpasswd to generate the bcrypt hash
 ### e.g. "htpasswd -nbBC10 $username $password"
-harbor_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
-## Module settings
-harbor_chart_museum_enabled: false
-harbor_clair_enabled: false
-harbor_trivy_enabled: true
-harbor_notary_enabled: false
+harbor_registry_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
+registry_database_name: registry
+registry_database_user: harbor
+registry_database_password:
+## Clair settings
+clair_database_name: clair
+clair_database_user: harbor
+clair_database_password:
 ## Persistence settings
-harbor_persistence_enabled: false
-harbor_registry_persistence_size: 2Gi
-harbor_chartmuseum_persistence_size: 2Gi
-harbor_jobservice_persistence_size: 2Gi
-harbor_database_persistence_size: 2Gi
-harbor_redis_persistence_size: 2Gi
-harbor_trivy_persistence_size: 2Gi
+harbor_persistence_chartmuseum_size: 2Gi
+harbor_persistence_database_size: 2Gi
+harbor_persistence_jobservice_size: 2Gi
+harbor_persistence_redis_size: 2Gi
+harbor_persistence_registry_size: 2Gi
+harbor_persistence_trivy_size: 2Gi
 
 # kubernetes-dashboard configuration
 ## Application configuration
