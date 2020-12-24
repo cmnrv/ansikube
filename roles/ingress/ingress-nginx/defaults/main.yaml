@@ -9,16 +9,19 @@ chart_repository: https://kubernetes.github.io/ingress-nginx
 chart_name: ingress-nginx
 chart_version: 3.15.2
 
-# Main configuration
+# ingress-nginx configuration
+## Metrics settings
+ingress_nginx_metrics_enabled: true
+ingress_nginx_metrics_port: 10254
+## Scaling settings
 ingress_nginx_autoscaling_enabled: false
 ingress_nginx_autoscaling_max_replicas: 2
 ingress_nginx_autoscaling_min_replicas: 1
 ingress_nginx_autoscaling_target_cpu_utilization: 75
 ingress_nginx_autoscaling_target_ram_utilization: 75
+ingress_nginx_replicas: 1
+## Application settings
 ingress_nginx_config: {}
 ingress_nginx_extra_args: {}
 ingress_nginx_headers: {}
-ingress_nginx_metrics_enabled: true
-ingress_nginx_metrics_port: 10254
 ingress_nginx_proxy_headers: {}
-ingress_nginx_replicas: 1
