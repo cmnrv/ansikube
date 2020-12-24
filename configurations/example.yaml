@@ -212,11 +212,11 @@ pgadmin_persistence_size: 2Gi
 # postgresql configuration
 ## Administrator credentials
 postgresql_admin_user: postgres
-postgresql_admin_password:
+postgresql_admin_password: postgres
 ## Replication settings
-postgresql_replication_enabled: false
+postgresql_replication_enabled: true
 postgresql_replication_user: replicator
-postgresql_replication_password:
+postgresql_replication_password: replicator
 ## Metrics settings
 postgresql_metrics_enabled: true
 ## Persistence settings
@@ -226,7 +226,7 @@ postgresql_persistence_size: 2Gi
 postgresql_replicas: 2
 ## pgpool settings
 pgpool_admin_user: pgpool
-pgpool_admin_password:
+pgpool_admin_password: pgpool
 pgpool_replicas: 1
 
 # prometheus configuration
