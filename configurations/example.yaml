@@ -224,6 +224,9 @@ postgresql_persistence_enabled: false
 postgresql_persistence_size: 2Gi
 ## Scaling settings
 postgresql_replicas: 2
+## Application settings
+postgresql_config_max_connections: 32
+postgresql_config_shared_libraries: pgaudit,pg_stat_statements,repmgr
 ## pgpool settings
 pgpool_admin_user: pgpool
 pgpool_admin_password: pgpool
