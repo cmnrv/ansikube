@@ -9,9 +9,12 @@ chart_repository: https://charts.bitnami.com/bitnami
 chart_name: redis
 chart_version: 12.2.3
 
-# Main configuration
-redis_master_set: master
+# redis configuration
+## Persistence settings
 redis_persistence_enabled: false
 redis_persistence_size: 2Gi
-redis_quorum: 1
+## Scaling settings
 redis_replicas: 1
+## Application settings
+redis_master_set: master
+redis_quorum: 1

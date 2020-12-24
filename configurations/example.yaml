@@ -264,14 +264,14 @@ rabbitmq_persistence_size: 2Gi
 rabbitmq_replicas: 1
 
 # redis configuration
-## Application settings
-redis_master_set: master
-redis_quorum: 1
 ## Persistence settings
 redis_persistence_enabled: false
 redis_persistence_size: 2Gi
 ## Scaling settings
 redis_replicas: 1
+## Application settings
+redis_master_set: master
+redis_quorum: 1
 
 # rundeck configuration
 ## Database settings
