@@ -23,7 +23,7 @@ components:
   prometheus: { enabled: false, type: monitoring, priority: 20 }
   nats: { enabled: false, type: messaging, priority: 30 }
   postgresql: { enabled: true, type: datastore, priority: 30 }
-  redis: { enabled: false, type: datastore, priority: 30 }
+  redis: { enabled: true, type: datastore, priority: 30 }
   rabbitmq: { enabled: false, type: messaging, priority: 30 }
   goldpinger: { enabled: false, type: monitoring, priority: 40 }
   grafana: { enabled: false, type: monitoring, priority: 40 }
