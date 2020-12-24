@@ -7,7 +7,7 @@ release_namespace: monitoring
 # Chart information
 chart_repository: https://prometheus-community.github.io/helm-charts
 chart_name: prometheus
-chart_version: 13.0.0
+chart_version: 13.0.1
 
 # Main configuration
 alertmanager_persistence_enabled: false

@@ -5,7 +5,7 @@ release_name: rundeck
 release_namespace: automation
 
 # Chart information
-chart_repository: http://storage.googleapis.com/kubernetes-charts-incubator
+chart_repository: https://www.dwardu.com/helm-charts
 chart_name: rundeck
 chart_version: 0.3.4
 
