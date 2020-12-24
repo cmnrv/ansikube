@@ -9,7 +9,10 @@ chart_repository: https://charts.jetstack.io
 chart_name: cert-manager
 chart_version: 1.1.0
 
-# Main configuration
+# cert-manager configuration
+## Application configuration
 cert_manager_log_level: 2
+## Metrics settings
 cert_manager_metrics_enabled: true
+## Scaling settings
 cert_manager_replicas: 1

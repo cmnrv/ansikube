@@ -5,10 +5,6 @@ fullnameOverride: "{{ release_name }}"
 
 config:
   existingSecret: oauth2-proxy-credentials
-  {% if oauth2_proxy_service_account %}
-  google:
-    existingSecret: oauth2-proxy-credentials
-  {% endif %}
 
 extraArgs:
   cookie-domain: ".{{ domain }}"

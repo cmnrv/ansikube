@@ -9,19 +9,25 @@ chart_repository: https://charts.bitnami.com/bitnami
 chart_name: postgresql-ha
 chart_version: 6.3.3
 
-# PostgreSQL configuration
+# postgresql configuration
+## Administrator credentials
 postgresql_admin_user: postgres
-postgresql_admin_password:
-postgresql_config_max_connections: 32
-postgresql_config_shared_libraries: pgaudit,pg_stat_statements,repmgr
+postgresql_admin_password: postgres
+## Replication settings
+postgresql_replication_enabled: true
+postgresql_replication_user: replicator
+postgresql_replication_password: replicator
+## Metrics settings
 postgresql_metrics_enabled: true
+## Persistence settings
 postgresql_persistence_enabled: false
 postgresql_persistence_size: 2Gi
-postgresql_replication_user: replicator
-postgresql_replication_password:
+## Scaling settings
 postgresql_replicas: 2
-
-# pgpool configuration
+## Application settings
+postgresql_config_max_connections: 32
+postgresql_config_shared_libraries: pgaudit,pg_stat_statements,repmgr
+## pgpool settings
 pgpool_admin_user: pgpool
-pgpool_admin_password:
+pgpool_admin_password: pgpool
 pgpool_replicas: 1

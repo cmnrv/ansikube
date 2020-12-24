@@ -9,5 +9,6 @@ chart_repository: https://okgolove.github.io/helm-charts/
 chart_name: goldpinger
 chart_version: 2.0.2
 
-# Main configuration
+# goldpinger configuration
+## Application settings
 goldpinger_hosts: []

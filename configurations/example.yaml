@@ -23,7 +23,7 @@ components:
   prometheus: { enabled: false, type: monitoring, priority: 20 }
   nats: { enabled: false, type: messaging, priority: 30 }
   postgresql: { enabled: true, type: datastore, priority: 30 }
-  redis: { enabled: false, type: datastore, priority: 30 }
+  redis: { enabled: true, type: datastore, priority: 30 }
   rabbitmq: { enabled: false, type: messaging, priority: 30 }
   goldpinger: { enabled: false, type: monitoring, priority: 40 }
   grafana: { enabled: false, type: monitoring, priority: 40 }
@@ -68,11 +68,6 @@ ingress_service_ip: 127.0.0.1
 ingress_service_type: LoadBalancer
 
 # ingress-nginx configuration
-## Application configuration
-ingress_nginx_config: {}
-ingress_nginx_extra_args: {}
-ingress_nginx_headers: {}
-ingress_nginx_proxy_headers: {}
 ## Metrics settings
 ingress_nginx_metrics_enabled: true
 ingress_nginx_metrics_port: 10254
@@ -83,6 +78,11 @@ ingress_nginx_autoscaling_min_replicas: 1
 ingress_nginx_autoscaling_target_cpu_utilization: 75
 ingress_nginx_autoscaling_target_ram_utilization: 75
 ingress_nginx_replicas: 1
+## Application settings
+ingress_nginx_config: {}
+ingress_nginx_extra_args: {}
+ingress_nginx_headers: {}
+ingress_nginx_proxy_headers: {}
 
 # cert-manager configuration
 ## Application configuration
@@ -96,7 +96,7 @@ cert_manager_replicas: 1
 ## Administrator credentials
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
-dokuwiki_admin_password:
+dokuwiki_admin_password: dokuwiki
 dokuwiki_admin_name: "Administrator"
 ## Metrics settings
 dokuwiki_metrics_enabled: true
@@ -105,6 +105,7 @@ dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 2Gi
 
 # goldpinger configuration
+## Application settings
 goldpinger_hosts: []
 
 # grafana configuration
@@ -112,11 +113,11 @@ goldpinger_hosts: []
 grafana_admin_user: admin
 grafana_admin_password: grafana
 ## Database settings
-grafana_database_enabled: false
-#grafana_database_host: # Uncomment if using an external postgresql database
+grafana_database_enabled: true
+grafana_database_host: postgresql-pgpool.datastore.svc.cluster.local
 grafana_database_name: grafana
-grafana_database_user:
-grafana_database_password:
+grafana_database_user: grafana
+grafana_database_password: grafana
 ## OAuth settings
 grafana_oauth_enabled: false
 grafana_oauth_client_id:
@@ -124,6 +125,9 @@ grafana_oauth_client_secret:
 ## Persistence settings
 grafana_persistence_enabled: false
 grafana_persistence_size: 2Gi
+## Application settings
+grafana_plugins:
+  - grafana-clock-panel
 
 # harbor configuration
 ## Module settings
@@ -133,18 +137,18 @@ harbor_notary_enabled: false
 harbor_persistence_enabled: false
 harbor_trivy_enabled: true
 ## Administrator credentials
-harbor_admin_password:
-harbor_secret_key:
+harbor_admin_password: harbor
+harbor_secret_key: AfAdutIdnecoyheu
 ## Database settings
 harbor_database_type: external
-#harbor_database_host: # Uncomment if using an external postgresql database
+harbor_database_host: postgresql-pgpool.datastore.svc.cluster.local
 harbor_database_name: harbor
 harbor_database_user: harbor
-harbor_database_password:
+harbor_database_password: harbor
 ## Redis settings
 harbor_redis_type : external
-# harbor_redis_host: # Uncomment if using an external redis instance
-# harbor_redis_port:
+harbor_redis_host: redis.datastore.svc.cluster.local
+harbor_redis_port: 26379
 ## Registry settings
 harbor_registry_user: harbor_registry_user
 harbor_registry_password: harbor_registry_password
@@ -153,11 +157,11 @@ harbor_registry_password: harbor_registry_password
 harbor_registry_ht_password: harbor_registry_user:$2y$10$9L4Tc0DJbFFMB6RdSCunrOpTHdwhid4ktBJmLD00bYgqkkGOvll3m
 registry_database_name: registry
 registry_database_user: harbor
-registry_database_password:
+registry_database_password: harbor
 ## Clair settings
 clair_database_name: clair
 clair_database_user: harbor
-clair_database_password:
+clair_database_password: harbor
 ## Persistence settings
 harbor_persistence_chartmuseum_size: 2Gi
 harbor_persistence_database_size: 2Gi
@@ -178,10 +182,10 @@ kubernetes_dashboard_replicas: 1
 
 # mattermost configuration
 ## Database settings
-#mattermost_database_host: # Uncomment if using an external postgresql database
+mattermost_database_host: postgresql-pgpool.datastore.svc.cluster.local
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
-mattermost_database_password:
+mattermost_database_password: mattermost
 
 # nats configuration
 ## Scaling settings
@@ -192,16 +196,15 @@ nats_replicas: 1
 oauth2_proxy_provider: google
 oauth2_proxy_client_id: id
 oauth2_proxy_client_secret: secret
-oauth2_proxy_cookie_secret: cookie # use `openssl rand -base64 32 | head -c 32 | base64` to generate
+oauth2_proxy_cookie_secret: RjF4QnZwQUgreXF1SXNNUFRIbi9rL3cyWFp5MjdyR0M= # use `openssl rand -base64 32 | head -c 32 | base64` to generate
 oauth2_proxy_email_domain: "{{ email_domain }}"
-oauth2_proxy_service_account:
 ## Scaling settings
 oauth2_proxy_replicas: 1
 
 # pgadmin configuration
 ## Administrator credentials
 pgadmin_admin_email: "admin@{{ email_domain }}"
-pgadmin_admin_password:
+pgadmin_admin_password: pgadmin
 ## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi
@@ -209,11 +212,11 @@ pgadmin_persistence_size: 2Gi
 # postgresql configuration
 ## Administrator credentials
 postgresql_admin_user: postgres
-postgresql_admin_password:
+postgresql_admin_password: postgres
 ## Replication settings
-postgresql_replication_enabled: false
+postgresql_replication_enabled: true
 postgresql_replication_user: replicator
-postgresql_replication_password:
+postgresql_replication_password: replicator
 ## Metrics settings
 postgresql_metrics_enabled: true
 ## Persistence settings
@@ -221,18 +224,22 @@ postgresql_persistence_enabled: false
 postgresql_persistence_size: 2Gi
 ## Scaling settings
 postgresql_replicas: 2
+## Application settings
+postgresql_config_max_connections: 32
+postgresql_config_shared_libraries: pgaudit,pg_stat_statements,repmgr
 ## pgpool settings
 pgpool_admin_user: pgpool
-pgpool_admin_password:
+pgpool_admin_password: pgpool
 pgpool_replicas: 1
 
 # prometheus configuration
+## Modules settings
+pushgateway_enabled: false
 ## Application settings
 prometheus_evaluation_interval: 1m
 prometheus_retention: 30d
 prometheus_scrape_interval: 1m
 prometheus_scrape_timeout: 10s
-pushgateway_enabled: false
 ## Persistence settings
 alertmanager_persistence_enabled: false
 alertmanager_persistence_size: 2Gi
@@ -247,9 +254,9 @@ pushgateway_replicas: 1
 # rabbitmq configuration
 ## Administrator credentials
 rabbitmq_admin_user: admin
-rabbitmq_admin_password:
+rabbitmq_admin_password: admin
 ## Application settings
-rabbitmq_erlang_cookie:
+rabbitmq_erlang_cookie: Vap3quennubdabAm
 rabbitmq_plugins:
   - rabbitmq_management
   - rabbitmq_peer_discovery_k8s
@@ -260,21 +267,21 @@ rabbitmq_persistence_size: 2Gi
 rabbitmq_replicas: 1
 
 # redis configuration
-## Application settings
-redis_master_set: master
-redis_quorum: 1
 ## Persistence settings
 redis_persistence_enabled: false
 redis_persistence_size: 2Gi
 ## Scaling settings
 redis_replicas: 1
+## Application settings
+redis_master_set: master
+redis_quorum: 1
 
 # rundeck configuration
 ## Database settings
-#rundeck_database_host: # Uncomment if using an external postgresql database
+rundeck_database_host: postgresql-pgpool.datastore.svc.cluster.local
 rundeck_database_name: rundeck
 rundeck_database_user: rundeck
-rundeck_database_password:
+rundeck_database_password: rundeck
 ## Persistence settings
 rundeck_persistence_enabled: false
 rundeck_persistence_size: 2Gi

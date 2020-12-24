@@ -9,8 +9,10 @@ chart_repository: https://helm.runix.net/
 chart_name: pgadmin4
 chart_version: 1.4.1
 
-# Main configuration
+# pgadmin configuration
+## Administrator credentials
 pgadmin_admin_email: "admin@{{ email_domain }}"
-pgadmin_admin_password:
+pgadmin_admin_password: pgadmin
+## Persistence settings
 pgadmin_persistence_enabled: false
 pgadmin_persistence_size: 2Gi

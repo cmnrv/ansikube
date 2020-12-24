@@ -9,8 +9,9 @@ chart_repository: https://helm.mattermost.com
 chart_name: mattermost-team-edition
 chart_version: 3.19.0
 
-# Main configuration
+# mattermost configuration
+## Database settings
 mattermost_database_host: postgresql-pgpool.datastore.svc.cluster.local
 mattermost_database_name: mattermost
 mattermost_database_user: mattermost
-mattermost_database_password:
+mattermost_database_password: mattermost
