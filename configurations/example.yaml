@@ -226,12 +226,13 @@ pgpool_admin_password:
 pgpool_replicas: 1
 
 # prometheus configuration
+## Modules settings
+pushgateway_enabled: false
 ## Application settings
 prometheus_evaluation_interval: 1m
 prometheus_retention: 30d
 prometheus_scrape_interval: 1m
 prometheus_scrape_timeout: 10s
-pushgateway_enabled: false
 ## Persistence settings
 alertmanager_persistence_enabled: false
 alertmanager_persistence_size: 2Gi
