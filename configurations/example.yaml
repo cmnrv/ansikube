@@ -105,6 +105,7 @@ dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 2Gi
 
 # goldpinger configuration
+## Application settings
 goldpinger_hosts: []
 
 # grafana configuration
