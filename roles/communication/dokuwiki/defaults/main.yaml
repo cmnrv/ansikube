@@ -9,11 +9,14 @@ chart_repository: https://charts.bitnami.com/bitnami
 chart_name: dokuwiki
 chart_version: 10.0.4
 
-# Main configuration
+# dokuwiki configuration
+## Administrator credentials
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
-dokuwiki_admin_password:
+dokuwiki_admin_password: dokuwiki
 dokuwiki_admin_name: "Administrator"
+## Metrics settings
 dokuwiki_metrics_enabled: true
+## Persistence settings
 dokuwiki_persistence_enabled: false
 dokuwiki_persistence_size: 2Gi

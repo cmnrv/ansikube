@@ -96,7 +96,7 @@ cert_manager_replicas: 1
 ## Administrator credentials
 dokuwiki_admin_user: admin
 dokuwiki_admin_email: "admin@{{ email_domain }}"
-dokuwiki_admin_password:
+dokuwiki_admin_password: dokuwiki
 dokuwiki_admin_name: "Administrator"
 ## Metrics settings
 dokuwiki_metrics_enabled: true
