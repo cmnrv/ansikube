@@ -94,6 +94,11 @@ Remove the cluster configuration:
 ansible-playbook --diff playbooks/config.yaml --limit local --tags "purge" [--check]
 ```
 
+Destroy the cluster:
+```sh
+ansible-playbook --diff playbooks/config.yaml --limit local --tags "destroy" [--check]
+```
+
 ## Contributing
 
 If you wish to contribute to this project, please check the [contribution guidelines](./CONTRIBUTING.md).
