@@ -20,7 +20,7 @@ components:
   ingress_nginx: { enabled: true, type: ingress, priority: 10 }
   cert_manager: { enabled: true, type: security, priority: 20 }
   oauth2_proxy: { enabled: false, type: security, priority: 20 }
-  prometheus: { enabled: true, type: monitoring, priority: 20, wait: yes }
+  prometheus: { enabled: false, type: monitoring, priority: 20, wait: yes }
   nats: { enabled: false, type: messaging, priority: 30, wait: yes }
   postgresql: { enabled: true, type: datastore, priority: 30, wait: yes }
   redis: { enabled: true, type: datastore, priority: 30, wait: yes }
