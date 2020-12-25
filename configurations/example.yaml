@@ -7,12 +7,20 @@
 cluster:
   ## Let the setup playbook create a new kubernetes cluster
   create: true
-  ## Cluster type. Supported values are: k3d
+  ## Cluster type. Supported values are: k3d, gke
   type: k3d
   ## Cluster name
   name: local
   ## Cluster internal domain
   domain: cluster.local
+  ## GKE cluster details (type needs to be set to "gke")
+  gke:
+    project: project
+    location: region
+    nodes:
+      count: 1
+      type: g1-small
+      disk: 10
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10
