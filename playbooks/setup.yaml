@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  vars_files:
+    - "../configurations/context.{{ inventory_hostname }}.yaml"
+  roles:
+    - "cluster/setup"
+    - "cluster/configuration"

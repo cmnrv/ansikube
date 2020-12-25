@@ -1,0 +1,26 @@
+---
+
+- name: check cluster status
+  shell: "k3d cluster list | grep {{ cluster.name }}"
+  register: k3d
+  failed_when: k3d.rc > 1
+  tags:
+    - create
+    - destroy
+
+- name: create k3d cluster
+  command: >-
+    k3d cluster create "{{ cluster.name }}"
+      --agents 2 --no-lb
+      --port "80:80@server[0]" --port "443:443@server[0]"
+      --k3s-server-arg "--no-deploy=traefik"
+  when: cluster.create and not k3d.stdout
+  tags:
+    - create
+
+- name: delete k3d cluster
+  command: "k3d cluster delete {{ cluster.name }}"
+  when: cluster.create and k3d.stdout
+  tags:
+    - never
+    - destroy

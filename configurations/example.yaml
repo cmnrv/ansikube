@@ -3,8 +3,16 @@
 # not have be encrypted or base64 encoded, ansible is taking care of that in the templates. Context files are
 # ignored and won't be commited.
 
-# Context name, must match a context in your .kube/config file
-context: k3d-local
+# Cluster definition
+cluster:
+  ## Let the setup playbook create a new kubernetes cluster
+  create: true
+  ## Cluster type. Supported values are: k3d
+  type: k3d
+  ## Cluster name
+  name: local
+  ## Cluster internal domain
+  domain: cluster.local
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10

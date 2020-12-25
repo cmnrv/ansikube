@@ -48,11 +48,6 @@ ansible-galaxy collection install community.kubernetes
 ```sh
 export K3D_INSTALL_DIR=~/.local/bin # optional
 curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-
-k3d cluster create local \
---agents 2 --no-lb \
---port "80:80@server[0]" --port "443:443@server[0]" \
---k3s-server-arg "--no-deploy=traefik"
 ```
 </details>
 
@@ -71,9 +66,9 @@ Create your configuration file and adapt it to your needs:
 cp configurations/example.yaml configurations/context.local.yaml
 ```
 
-Then, run the configuration playbook to create cluster resources (such as namespaces and service accounts):
+Then, run the configuration playbook to create the cluster and cluster resources (such as namespaces and service accounts):
 ```sh
-ansible-playbook --diff playbooks/config.yaml --limit local [--check]
+ansible-playbook --diff playbooks/setup.yaml --limit local [--check]
 ```
 
 Finally, run the installation playbook to deploy secrets, releases and additional CRDs:

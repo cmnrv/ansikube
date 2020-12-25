@@ -1,0 +1,6 @@
+---
+
+- include_tasks: "{{ cluster.type }}.yaml"
+  tags:
+    - setup
+    - destroy
