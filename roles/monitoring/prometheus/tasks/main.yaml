@@ -1,9 +1,6 @@
 ---
 - set_fact:
-    wait_completion: no
-- set_fact:
-    wait_completion: yes
-  when: "components['{{ release_name | replace('-','_')}}']['wait']"
+    wait_completion: "{{ components[release_name | replace('-','_')]['wait'] | default(false) }}"
 
 - name: deploy release
   community.kubernetes.helm:
