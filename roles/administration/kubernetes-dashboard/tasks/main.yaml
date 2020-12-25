@@ -1,5 +1,8 @@
 ---
 
+- set_fact:
+    wait_completion: "{{ components[release_name | replace('-','_')]['wait'] | default(false) }}"
+    
 - name: deploy release
   community.kubernetes.helm:
     context: "{{ context }}"
@@ -10,8 +13,8 @@
     chart_repo_url: "{{ chart_repository }}"
     chart_ref: "{{ chart_name }}"
     chart_version: "{{ chart_version }}"
-    atomic: yes
-    wait: yes
+    atomic: "{{ wait_completion }}"
+    wait: "{{ wait_completion }}"
   tags:
     - install
 
