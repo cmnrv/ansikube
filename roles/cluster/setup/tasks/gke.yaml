@@ -1,0 +1,34 @@
+---
+
+- name: create gke cluster
+  google.cloud.gcp_container_cluster:
+    name: "{{ cluster.name }}"
+    initial_node_count: "{{ cluster.gke.nodes.count }}"
+    master_auth:
+      username: cluster_admin
+      password: my-secret-password
+    location: "{{ cluster.gke.location }}"
+    project: "{{ cluster.gke.project }}"
+    auth_kind: serviceaccount
+    service_account_file: "~/.gke/{{ inventory_hostname }}.json"
+    state: present
+  register: gke_cluster
+  tags:
+    - create
+
+- name: create a node pool
+  gcp_container_node_pool:
+    name: "default"
+    initial_node_count: "{{ cluster.gke.nodes.count }}"
+    cluster:
+      name: staging
+    config:
+      machine_type: "{{ cluster.gke.nodes.type }}"
+      disk_size_gb: "{{ cluster.gke.nodes.disk }}"
+    zone: "{{ cluster.gke.location }}"
+    project: "{{ cluster.gke.project }}"
+    auth_kind: serviceaccount
+    service_account_file: "~/.gke/{{ inventory_hostname }}.json"
+    state: present
+  tags:
+    - create
