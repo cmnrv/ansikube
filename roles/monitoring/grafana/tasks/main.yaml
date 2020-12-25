@@ -1,4 +1,9 @@
 ---
+- set_fact:
+    wait_completion: no
+- set_fact:
+    wait_completion: yes
+  when: "components['{{ release_name | replace('-','_')}}']['wait']"
 
 - name: create secrets
   community.kubernetes.k8s:
@@ -19,7 +24,7 @@
     chart_ref: "{{ chart_name }}"
     chart_version: "{{ chart_version }}"
     atomic: yes
-    wait: yes
+    wait: "{{ wait_completion}}"
   tags:
     - install
 
