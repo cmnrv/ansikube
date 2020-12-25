@@ -2,6 +2,7 @@
 
 - set_fact:
     wait_completion: "{{ components[release_name | replace('-','_')]['wait'] | default(false) }}"
+    
 - name: deploy release
   community.kubernetes.helm:
     context: "{{ context }}"
