@@ -20,7 +20,7 @@
     chart_repo_url: "{{ chart_repository }}"
     chart_ref: "{{ chart_name }}"
     chart_version: "{{ chart_version }}"
-    atomic: yes
+    atomic: "{{ wait_completion }}"
     wait: "{{ wait_completion}}"
   tags:
     - install
