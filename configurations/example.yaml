@@ -20,19 +20,19 @@ components:
   ingress_nginx: { enabled: true, type: ingress, priority: 10 }
   cert_manager: { enabled: true, type: security, priority: 20 }
   oauth2_proxy: { enabled: false, type: security, priority: 20 }
-  prometheus: { enabled: false, type: monitoring, priority: 20 }
-  nats: { enabled: false, type: messaging, priority: 30 }
-  postgresql: { enabled: true, type: datastore, priority: 30 }
-  redis: { enabled: true, type: datastore, priority: 30 }
-  rabbitmq: { enabled: false, type: messaging, priority: 30 }
-  goldpinger: { enabled: false, type: monitoring, priority: 40 }
-  grafana: { enabled: false, type: monitoring, priority: 40 }
-  kubernetes_dashboard: { enabled: false, type: administration, priority: 50 }
-  pgadmin: { enabled: false, type: administration, priority: 50 }
-  harbor: { enabled: false, type: deployment, priority: 60 }
-  rundeck: { enabled: false, type: automation, priority: 60 }
-  dokuwiki: { enabled: false, type: communication, priority: 70 }
-  mattermost: { enabled: false, type: communication, priority: 70 }
+  prometheus: { enabled: false, type: monitoring, priority: 20, wait: yes }
+  nats: { enabled: false, type: messaging, priority: 30, wait: yes }
+  postgresql: { enabled: true, type: datastore, priority: 30, wait: yes }
+  redis: { enabled: true, type: datastore, priority: 30, wait: yes }
+  rabbitmq: { enabled: false, type: messaging, priority: 30, wait: yes }
+  goldpinger: { enabled: false, type: monitoring, priority: 40, wait: yes }
+  grafana: { enabled: false, type: monitoring, priority: 40, wait: yes }
+  kubernetes_dashboard: { enabled: false, type: administration, priority: 50, wait: yes }
+  pgadmin: { enabled: false, type: administration, priority: 50, wait: yes }
+  harbor: { enabled: false, type: deployment, priority: 60, wait: yes }
+  rundeck: { enabled: false, type: automation, priority: 60, wait: yes }
+  dokuwiki: { enabled: false, type: communication, priority: 70, wait: yes }
+  mattermost: { enabled: false, type: communication, priority: 70, wait: yes }
 
 # Extra namespaces to be created in your cluster
 # Should be defined using the following notation:
