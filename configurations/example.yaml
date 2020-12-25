@@ -17,10 +17,15 @@ cluster:
   gke:
     project: project
     location: region
+    credentials:
+      username: admin
+      password: password
     nodes:
       count: 1
       type: g1-small
       disk: 10
+
+context: k3d-local
 
 # Components to be installed in your cluster
 # Priorities defined here are used to control the order in which the components are installed. It starts from 10

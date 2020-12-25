@@ -32,3 +32,15 @@
     state: present
   tags:
     - create
+
+- name: destroy gke cluster
+  google.cloud.gcp_container_cluster:
+    name: "{{ cluster.name }}"
+    location: "{{ cluster.gke.location }}"
+    project: "{{ cluster.gke.project }}"
+    auth_kind: serviceaccount
+    service_account_file: "~/.gke/{{ inventory_hostname }}.json"
+    state: absent
+  tags:
+    - never
+    - destroy
