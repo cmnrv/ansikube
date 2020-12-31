@@ -7,7 +7,7 @@ release_namespace: kube-system
 # Chart information
 chart_repository: https://kubernetes.github.io/ingress-nginx
 chart_name: ingress-nginx
-chart_version: 3.16.1
+chart_version: 3.19.0
 
 # ingress-nginx configuration
 ## Metrics settings

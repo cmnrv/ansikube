@@ -7,7 +7,7 @@ release_namespace: monitoring
 # Chart information
 chart_repository: https://prometheus-community.github.io/helm-charts
 chart_name: prometheus
-chart_version: 13.0.1
+chart_version: 13.0.2
 
 # prometheus configuration
 ## Modules settings
