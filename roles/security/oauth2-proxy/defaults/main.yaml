@@ -7,7 +7,7 @@ release_namespace: kube-system
 # Chart information
 chart_repository: https://k8s-at-home.com/charts/
 chart_name: oauth2-proxy
-chart_version: 4.0.1
+chart_version: 4.1.0
 
 # oauth2-proxy configuration
 ## OAuth settings
